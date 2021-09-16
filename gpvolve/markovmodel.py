@@ -8,7 +8,8 @@ from .utils import add_self_probability
 
 
 class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
-    """Class for building and analyzing evolutionary markov state models
+    """
+    Class for building and analyzing evolutionary markov state models
 
     Parameters
     ----------
@@ -18,20 +19,24 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
     Attributes
     ----------
     transition_matrix : 2D numpy.ndarray.
-        The transition matrix that defines the probability of all mutations fixing in all backgrounds.
+        The transition matrix that defines the probability of all mutations
+        fixing in all backgrounds.
 
     timescales : numpy.ndarray.
-        The relaxation timescales of the markov system calculated by eigendecomposition of the transition matrix.
+        The relaxation timescales of the markov system calculated by eigen
+        decomposition of the transition matrix.
 
     eigenvalues : numpy.ndarray.
-        The eigenvalues of the markov system calculated by eigendecomposition of the transition matrix.
+        The eigenvalues of the markov system calculated by eigendecomposition
+        of the transition matrix.
 
     eigenvectors :
-        The eigenvectors of the markov system calculated by eigendecomposition of the transition matrix.
+        The eigenvectors of the markov system calculated by eigendecomposition
+        of the transition matrix.
 
     peaks :
-        Fitness peaks. A fitness peak is defined as nodes with a fitness higher than all its neighboring nodes.
-
+        Fitness peaks. A fitness peak is defined as nodes with a fitness higher
+        than all its neighboring nodes.
     """
 
     def __init__(self, gpm, *args, **kwargs):
@@ -58,19 +63,23 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         # Get back
 
     def apply_selection(self, fitness_function, **params):
-        """Compute fitness values from a user-defined phenotype-fitness function. A few basic functions can be found in
-           gpsolve.fitness. For a direct mapping of phenotype to fitness, use one_to_one without additional parameters.
+        """
+        Compute fitness values from a user-defined phenotype-fitness function.
+        A few basic functions can be found in gpsolve.fitness. For a direct
+        mapping of phenotype to fitness, use one_to_one without additional
+        parameters.
 
         Parameters
         ----------
         fitness_function: function.
-            A python function that takes phenotypes and additional parameters(optional) and
-            returns a list of fitnesses(type=float).
+            A python function that takes phenotypes and additional parameters
+            (optional) and returns a list of fitnesses(type=float).
 
         Returns
         -------
         Nothing: None
-            The computed fitness values are automatically stored under self.gpm.data.fitnesses.
+            The computed fitness values are automatically stored under
+            self.gpm.data.fitnesses.
         """
         # Add fitnesses column to gpm.data pandas data frame.
         self.gpm.data['fitnesses'] = fitness_function(self.gpm.data.phenotypes, **params)
@@ -80,18 +89,22 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         nx.set_node_attributes(self, name='fitness', values=values)
 
     def build_transition_matrix(self, fixation_model, **params):
-        """Calculate fixation probability along all edges and build transition matrix
+        """
+        Calculate fixation probability along all edges and build transition
+        matrix
 
         Parameters
         ----------
         fixation_model : Python function.
-            A function that takes two numpy arrays of fitnesses and returns the fixation probability between the iths
-            fitness of the first array and the iths fitness of the second array.
+            A function that takes two numpy arrays of fitnesses and returns the
+            fixation probability between the iths fitness of the first array and
+            the iths fitness of the second array.
 
         Returns
         -------
         Nothing : None.
-            Sets transition_matrix attribute and networkx.DiGraph network edge attributes automatically.
+            Sets transition_matrix attribute and networkx.DiGraph network edge
+            attributes automatically.
 
         """
         # Split all egdes into two tuples, each containing one node of each pair of nodes at the same position.
@@ -121,7 +134,8 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         nx.set_edge_attributes(self, name="transition_probability", values=dict(zip(self.self_edges, diag_vals)))
 
     def peaks(self):
-        """Find nodes without neighbors of higher fitness. Equal fitness allowed.
+        """
+        Find nodes without neighbors of higher fitness. Equal fitness allowed.
 
         Parameters
         ----------
@@ -131,7 +145,8 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         Returns
         -------
         _peaks : list of sets.
-            List of peaks. Each peak is a set and can contain multiple nodes if it's a flat peak of nodes with identical
+            List of peaks. Each peak is a set and can contain multiple nodes if
+            it's a flat peak of nodes with identical
             fitness.
         """
         if self._peaks:
@@ -158,8 +173,9 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             return self._peaks
 
     def soft_peaks(self, error):
-        """Find nodes without neighbors of higher fitness. Equal fitness allowed. Takes into account error, e.g. if
-        fitness1 has one neighbor (fitness2) with higher fitness, fitness1 is still considered a peak if
+        """Find nodes without neighbors of higher fitness. Equal fitness
+        allowed. Takes into account error, e.g. if fitness1 has one neighbor
+        (fitness2) with higher fitness, fitness1 is still considered a peak if
         fitness1 + error is higher than or equal to fitness2 - error.
 
         Parameters
@@ -168,13 +184,15 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             EvoMSM object with transition matrix.
 
         error : list
-            List with one error value for each fitness. Must be in same order as fitness/phenotypes array.
+            List with one error value for each fitness. Must be in same order as
+            fitness/phenotypes array.
 
         Returns
         -------
         peaks : list of sets.
-            List of peaks. Each peak is a set and can contain multiple nodes if it's a flat peak of nodes with identical
-            fitness or nodes with indistinguishable fitness within the margin of error.
+            List of peaks. Each peak is a set and can contain multiple nodes if
+            it's a flat peak of nodes with identical fitness or nodes with
+            indistinguishable fitness within the margin of error.
         """
         peak_list = []
         fitnesses = pow(self.gpm.data.fitnesses, 10)
@@ -196,19 +214,24 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         return peaks
 
     def step_function(self):
-        """A function that bins phenotypes and allows one to define neutral networks in g-p-maps with continuous
-        phenotypes
+        """
+        A function that bins phenotypes and allows one to define neutral
+        networks in g-p-maps with continuous phenotypes
         """
         pass
 
     def neutral_network(self):
-        """Find neutral network. Look for connected components among phenotypes with same value or value within the same
-        pre-defines bin."""
+        """
+        Find neutral network. Look for connected components among phenotypes
+        with same value or value within the same pre-defines bin.
+        """
         pass
 
     @property
     def transition_matrix(self):
-        """Transition matrix of the """
+        """
+        Transition matrix of the
+        """
         if self._transition_matrix.any():
             return self._transition_matrix
         else:
@@ -220,7 +243,8 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
 
     @transition_matrix.setter
     def transition_matrix(self, T):
-        """Set transition matrix
+        """
+        Set transition matrix
 
         Parameters
         ----------
@@ -240,7 +264,9 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
 
     @property
     def stationary_distribution(self):
-        """The stationary distribution of the genotype-phenotype-map."""
+        """
+        The stationary distribution of the genotype-phenotype-map.
+        """
         stat_dist = nx.get_node_attributes(self, name="stationary_distribution")
         if stat_dist:
             return stat_dist
@@ -260,7 +286,10 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
 
     @property
     def timescales(self):
-        """Get the relaxation timescales corresponding to the eigenvalues in arbitrary units."""
+        """
+        Get the relaxation timescales corresponding to the eigenvalues in
+        arbitrary units.
+        """
         if isinstance(self._timescales, np.ndarray):
             return self._timescales
         else:
@@ -273,7 +302,9 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
 
     @property
     def eigenvalues(self):
-        """Get the eigenvalues of the transition matrix"""
+        """
+        Get the eigenvalues of the transition matrix.
+        """
         if isinstance(self._eigenvalues, np.ndarray):
             return self._eigenvalues
         else:
@@ -286,7 +317,9 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
 
     @property
     def eigenvectors(self):
-        """Get the eigenvalues of the transition matrix"""
+        """
+        Get the eigenvalues of the transition matrix.
+        """
         if isinstance(self._eigenvectors, np.ndarray):
             return self._eigenvectors
         else:
@@ -298,7 +331,10 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         self._eigenvectors = eigenvectors
 
     def forward_committor(self, source=None, target=None):
-        """If no new source and target provided, return existing forward committor values, else, calculate them."""
+        """
+        If no new source and target provided, return existing forward committor
+        values, else, calculate them.
+        """
         if not source and not target:
             if isinstance(self._forward_committor, np.ndarray):
                 return self._forward_committor
@@ -312,7 +348,10 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             return self._forward_committor
 
     def backward_committor(self, source=None, target=None):
-        """If no new source and target provided, return existing backward committor values, else, calculate them."""
+        """
+        If no new source and target provided, return existing backward committor
+        values, else, calculate them.
+        """
         if not source and not target:
             if isinstance(self._backward_committor, np.ndarray):
                 return self._backward_committor
@@ -326,8 +365,10 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             return self._backward_committor
 
     @staticmethod
-    def calc_committor(T, source, target, forward=None):
-        """Calculate forward or backward committor for each node between source and target.
+    def calc_committor(self,T, source, target, forward=None):
+        """
+        Calculate forward or backward committor for each node between source
+        and target.
 
         Parameters
         ----------
@@ -335,22 +376,24 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             Row stochastic transition matrix.
 
         source : list.
-            Source of probability flux. Committor value i will be the probability of leaving source and reaching node i
-            before reaching target or source again.
+            Source of probability flux. Committor value i will be the
+            probability of leaving source and reaching node i before reaching
+            target or source again.
 
         target : list.
-            Sink of probability flux. Committor value i will be the probability of reaching target from node i before
-            reaching source.
+            Sink of probability flux. Committor value i will be the probability
+            of reaching target from node i before reaching source.
 
         forward : bool.
-            If True, forward committor is calculated. If False, backward committor is calculated.
+            If True, forward committor is calculated. If False, backward
+            committor is calculated.
 
         Returns
         -------
         committor : 1D numpy.ndarray.
             Committor values in order of transition matrix.
         """
-        committor = committor(T, source, target, forward=forward)
+        committor = self.calc_committor(T, source, target, forward=forward)
         return committor
 
     # @property

@@ -3,25 +3,30 @@ from scipy.sparse import csr_matrix
 
 
 def to_greedy(transition_matrix):
-    """Turn transition matrix into 'greedy' transition matrix. Only the step with the highest positive fitness
-    difference is allowed (prob. = 1), all other steps are not permitted (prob. = 0)
+    """
+    Turn transition matrix into 'greedy' transition matrix. Only the step with
+    the highest positive fitness difference is allowed (prob. = 1), all other
+    steps are not permitted (prob. = 0).
 
     Parameters
     ----------
     transition_matrix : 2D numpy.ndarray.
-        Transition matrix where the highest value T(i->j) per row i should correspond to the step s(i->j) where j is
-        the neighbor of genotype i with the highest fitness. Can be obtained using the 'ratio' fixation function, where
-        transition probability T(i->j) is simply the ratio of fitness j over fitness i.
+        Transition matrix where the highest value T(i->j) per row i should
+        correspond to the step s(i->j) where j is the neighbor of genotype i
+        with the highest fitness. Can be obtained using the 'ratio' fixation
+        function, where transition probability T(i->j) is simply the ratio of
+        fitness j over fitness i.
 
     Returns
     -------
     M : 2D numpy.ndarray.
-        Transition matrix corresponding to a 'greedy random walk' on the genotype-phenotype map.
+        Transition matrix corresponding to a 'greedy random walk' on the
+        genotype-phenotype map.
 
     References
     ----------
-    de Visser JA, Krug J. 2014. Empirical fitness landscapes and the predictability of evolution. Nature Reviews
-    Genetics 15:480–490.
+    de Visser JA, Krug J. 2014. Empirical fitness landscapes and the
+    predictability of evolution. Nature Reviews Genetics 15:480–490.
     """
     T = transition_matrix.copy()
     # Remove self-looping probability/matrix diagonal = 0
@@ -40,7 +45,8 @@ def to_greedy(transition_matrix):
 
 
 def moran(fitness1, fitness2, population_size):
-    """Computes the fixation probability between two 1D arrays of fitnesses or two single fitnesses.
+    """
+    Computes the fixation probability between two 1D arrays of fitnesses or two single fitnesses.
 
     Parameters
     ----------
@@ -118,20 +124,25 @@ def mccandlish(fitness1, fitness2, population_size):
 
 
 def bloom(preference1, preference2, beta=1):
-    """Computes probability (F(r_x->r_y)) of fixing amino acid x at site r when site r is amino acid y using
-    amino acid preference data from deep-mutational scanning experiments.
+    """
+    Computes probability (F(r_x->r_y)) of fixing amino acid x at site r when
+    site r is amino acid y using amino acid preference data from deep-mutational
+    scanning experiments.
 
     Parameters
     ----------
     preferences1 : 1D numpy.ndarray(dtype=float, int).
-        Array of amino acid preferences. The ith element corresponds to the preference of amino acid x at site r.
+        Array of amino acid preferences. The ith element corresponds to the
+        preference of amino acid x at site r.
 
     preferences2 : 1D numpy.ndarray(dtype=float, int).
-        Array of amino acid preferences. The ith element corresponds to the preference of amino acid y at site r.
+        Array of amino acid preferences. The ith element corresponds to the
+        preference of amino acid y at site r.
 
     beta : int, float (beta >= 0).
-        Free parameter that scales the stringency of amino acid preferences. Beta = 1: Equal stringency of deep
-        mutational scanning experiments and natural evolution. Beta < 1: Less stringent than natural selection.
+        Free parameter that scales the stringency of amino acid preferences.
+        Beta = 1: Equal stringency of deep mutational scanning experiments and
+        natural evolution. Beta < 1: Less stringent than natural selection.
         Beta > 1: More stringent than natural selection.
 
     Returns
@@ -141,7 +152,8 @@ def bloom(preference1, preference2, beta=1):
 
     References
     ----------
-    Equation 3 - Jesse D. Bloom, Molecular Biology and Evolution, Volume 31, Issue 10, 1 October 2014, Pages 2753–2769
+    Equation 3 - Jesse D. Bloom, Molecular Biology and Evolution, Volume 31,
+    Issue 10, 1 October 2014, Pages 2753–2769
     """
     # Calculate preference ratios.
     sij = preference2 / preference1
@@ -156,7 +168,9 @@ def bloom(preference1, preference2, beta=1):
 
 
 def strong_selection_weak_mutation(fitness1, fitness2):
-    """Strong selection, weak mutation model."""
+    """
+    Strong selection, weak mutation model.
+    """
     sij = (fitness2 - fitness1) / fitness1
     if sij < 0:
         sij = 0
@@ -164,13 +178,17 @@ def strong_selection_weak_mutation(fitness1, fitness2):
 
 
 def ratio(fitness1, fitness2):
-    """Fixation probability equals the ratio of new fitness over old fitness"""
+    """
+    Fixation probability equals the ratio of new fitness over old fitness
+    """
     sij = fitness2 / fitness1
     return sij
 
 
 def equal_fixation(fitness1, fitness2):
-    """Only adaptive steps are allowed and all adaptive steps have the same probability"""
+    """
+    Only adaptive steps are allowed and all adaptive steps have the same
+    probability."""
     sij = fitness2 / fitness1
     sij[sij <= 1] = 0
     sij[sij > 1] = 1

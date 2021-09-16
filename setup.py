@@ -4,12 +4,13 @@
 # Note: To use the 'upload' functionality of this file, you must:
 #   $ pip install twine
 
-import io
-import os
-import sys
+import io, os, sys, glob
 from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
+from setuptools.extension import Extension
+
+import numpy as np
 
 # Package meta-data.
 NAME = 'gpvolve'
@@ -88,6 +89,16 @@ class UploadCommand(Command):
 
         sys.exit()
 
+# Files for c extension
+model_c_files = list(glob.glob('gpvolve/simulate/wright_fisher/wright_fisher_engine_ext/*.c'))
+ext = Extension('gpvolve.simulate.wright_fisher.wright_fisher_engine_ext',
+                model_c_files,
+                include_dirs=[np.get_include()],
+                define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
+
+# Make sure these are included with the package
+all_c_files = list(glob.glob("**/*.c",recursive=True))
+all_c_files.extend(list(glob.glob("**/*.h",recursive=True)))
 
 # Where the magic happens:
 setup(
@@ -109,6 +120,7 @@ setup(
     # },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
+    package_data={"":all_c_files},
     include_package_data=True,
     license='MIT',
     classifiers=[
@@ -121,6 +133,7 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
+    ext_modules=[ext],
     # $ setup.py publish support.
     cmdclass={
         'upload': UploadCommand,

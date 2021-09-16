@@ -1,6 +1,5 @@
 from msmtools.flux import tpt
 
-
 def paths_prob_to_edges_flux(paths_prob):
     """Chops a list of paths into its edges, and calculate the probability
     of that edge across all paths.
@@ -38,7 +37,8 @@ def paths_prob_to_edges_flux(paths_prob):
 
 
 class TransitionPathTheory(object):
-    """Class for calculating reactive flux of a markov state model.
+    """
+    Class for calculating reactive flux of a markov state model.
 
     Parameters
     ----------
@@ -57,7 +57,8 @@ class TransitionPathTheory(object):
         Net flux between all pairs of genotypes/nodes.
 
     total_flux : float.
-        The total probability flux that leaves source and ends at sink without passing through source again.
+        The total probability flux that leaves source and ends at sink without
+        passing through source again.
 
     forward_committor: 1D numpy.ndarray.
         Forward committor values for all nodes.
@@ -67,8 +68,8 @@ class TransitionPathTheory(object):
 
     Notes
     -----
-    This class can be seen as a wrapper for the msmtools function tpt. Please read the msmtools/flux docs and the
-    references therein [1].
+    This class can be seen as a wrapper for the msmtools function tpt. Please
+    read the msmtools/flux docs and the references therein [1].
 
     References
     ----------
@@ -88,7 +89,9 @@ class TransitionPathTheory(object):
         self.backward_committor = self.ReactiveFlux.backward_committor
 
     def coarse_grain(self, sets):
-        """Coarse grain flux based on a list of sets, which can represent metastable clusters
+        """
+        Coarse grain flux based on a list of sets, which can represent
+        metastable clusters
 
         Parameters
         ----------
@@ -112,7 +115,10 @@ class TransitionPathTheory(object):
 
     @source.setter
     def source(self, source):
-        """Set source node/genotype to list of nodes(type=int) or genotypes(type=str)"""
+        """
+        Set source node/genotype to list of nodes(type=int) or
+        genotypes(type=str)
+        """
         if isinstance(source, list):
             if not isinstance(source[0], int):
                 df = self.msm.gpm.data
@@ -124,12 +130,17 @@ class TransitionPathTheory(object):
 
     @property
     def target(self):
-        """Get target node"""
+        """
+        Get target node
+        """
         return self._target
 
     @target.setter
     def target(self, target):
-        """Set target node/genotype to list of nodes(type=int) or genotypes(type=str)"""
+        """
+        Set target node/genotype to list of nodes(type=int) or
+        genotypes(type=str)
+        """
         if isinstance(target, list):
             if not isinstance(target[0], int):
                 df = self.msm.gpm.data

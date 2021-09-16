@@ -6,7 +6,9 @@ from .utils import combinations, path_prob, rm_self_prob, add_self_probability, 
 
 
 def flux_decomp(flux_matrix, source, target, fraction=1, maxiter=1000):
-    """Decomposition of flux into pathways"""
+    """
+    Decomposition of flux into pathways.
+    """
     paths, capacities = pw(flux_matrix, source, target, fraction=fraction, maxiter=maxiter)
 
     pathways = {tuple(path[0]): path[1] for path in zip(paths, capacities)}
@@ -15,12 +17,14 @@ def flux_decomp(flux_matrix, source, target, fraction=1, maxiter=1000):
 
 
 def exhaustive_enumeration(graph, source, target, edge_attr, normalize=False, rm_diag=False):
-    """Calculate the probabiliy of all forward paths between source and target
+    """
+    Calculate the probabiliy of all forward paths between source and target.
 
     Parameters
     ----------
     graph : networkx.DiGraph.
-        networkx.DiGraph. Can be build from a transition matrix (numpy matrix/array) using networkx.from_numpy_matrix.
+        networkx.DiGraph. Can be build from a transition matrix (numpy
+        matrix/array) using networkx.from_numpy_matrix.
 
     source : int.
         Starting node for all paths
@@ -29,20 +33,23 @@ def exhaustive_enumeration(graph, source, target, edge_attr, normalize=False, rm
         List of nodes at which the paths can end.
 
     edge_attr : str.
-        Edge attribute that is used to build transition matrix. Only use 'weight' if it's an explicitly defined edge
-        attribute, otherwise networkx will build an adjacency matrix instead of a transition matrix.
+        Edge attribute that is used to build transition matrix. Only use
+        'weight' if it's an explicitly defined edge attribute, otherwise
+        networkx will build an adjacency matrix instead of a transition matrix.
 
     normalize : bool.
-        If True, normalize each path probability by the sum of all probabilities, so they sum to 1.
+        If True, normalize each path probability by the sum of all
+        probabilities, so they sum to 1.
 
     rm_diag : bool.
-        If True, the matrix diagonal, i.e. the probability of self-looping, is set to 0. This will skew the path
-        probabilities.
+        If True, the matrix diagonal, i.e. the probability of self-looping, is
+        set to 0. This will skew the path probabilities.
 
     Returns
     -------
     path_probs : dict.
-        Dictionary with paths (dtype=tuple) as dict. keys and probabilities as dict. values.
+        Dictionary with paths (dtype=tuple) as dict. keys and probabilities as
+        dict. values.
     """
     # Check arguments.
     if edge_attr == 'weight':
@@ -80,13 +87,16 @@ def exhaustive_enumeration(graph, source, target, edge_attr, normalize=False, rm
 
 
 def greedy(T, source=None):
-    """Find the 'greedy' path from source to the nearest peak. Always make step with highest probability.
+    """
+    Find the 'greedy' path from source to the nearest peak. Always make step
+    with highest probability.
 
     Parameters
     ----------
     T : 2D numpy.ndarray
-        Transition matrix where element T(ij) should correspond to fixation probability from genotype i to j.
-        The highest probability of each row should correspond to the step with highest positive fitness difference.
+        Transition matrix where element T(ij) should correspond to fixation
+        probability from genotype i to j. The highest probability of each row
+        should correspond to the step with highest positive fitness difference.
 
     source : int.
         Starting node for all paths
@@ -97,12 +107,14 @@ def greedy(T, source=None):
     Returns
     -------
     path : list.
-        The path from source to a peak (list of integers). Integers correspond to transition matrix indices.
+        The path from source to a peak (list of integers). Integers correspond
+        to transition matrix indices.
 
     Notes
     -----
-    Same can be achieved with one iteration of the gillespie algorithm if the transition matrix contains only one
-    nonzero value per row, which corresponds to the transition from genotype i to the neighboring genotype j with the
+    Same can be achieved with one iteration of the gillespie algorithm if the
+    transition matrix contains only one nonzero value per row, which corresponds
+    to the transition from genotype i to the neighboring genotype j with the
     highest fitness.
     """
 
