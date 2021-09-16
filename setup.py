@@ -11,6 +11,9 @@ from setuptools import find_packages, setup, Command
 from setuptools.extension import Extension
 
 import numpy as np
+#import Cython.Compiler.Options
+#Cython.Compiler.Options.annotate = True
+from Cython.Distutils import build_ext
 
 # Package meta-data.
 NAME = 'gpvolve'
@@ -90,11 +93,16 @@ class UploadCommand(Command):
         sys.exit()
 
 # Files for c extension
-model_c_files = list(glob.glob('gpvolve/simulate/wright_fisher/wright_fisher_engine_ext/*.c'))
+#model_c_files = list(glob.glob('gpvolve/simulate/wright_fisher/wright_fisher_engine_ext/*.c'))
+model_pyx_files = list(glob.glob('gpvolve/simulate/wright_fisher/*.pyx'))
 ext = Extension('gpvolve.simulate.wright_fisher.wright_fisher_engine_ext',
-                model_c_files,
+                model_pyx_files,
                 include_dirs=[np.get_include()],
                 define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
+
+                #model_c_files,
+                #include_dirs=[np.get_include()],
+                #define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
 
 # Make sure these are included with the package
 all_c_files = list(glob.glob("**/*.c",recursive=True))
@@ -137,5 +145,6 @@ setup(
     # $ setup.py publish support.
     cmdclass={
         'upload': UploadCommand,
+        'build_ext': build_ext,
     },
 )

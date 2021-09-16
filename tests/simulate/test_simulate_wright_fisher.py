@@ -123,7 +123,7 @@ def test_wright_fisher_simulate_argparse():
     gpm.data.loc[:,"name"] = ["not","good","name","scheme"]
     with pytest.raises(ValueError):
         pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=10,
-                                  initial_pop_column=None)
+                        initial_pop_column=None)
 
     # No pops --> stick pop_size on wildtype
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
@@ -240,6 +240,7 @@ def test_wright_fisher_simulate():
     gpm.get_neighbors()
     pops = simulate(gpm,mutation_rate=0.1,num_steps=1000,initial_pop_column="pops")
     result = np.sum(pops,axis=0)
+    print(pops)
     assert 1 - np.min(result)/np.max(result) < 0.10
 
     # make sure conservation of mass holds
@@ -259,18 +260,6 @@ def test_wright_fisher_simulate():
     assert len(np.unique(np.sum(pops,axis=1))) == 1
     assert np.unique(np.sum(pops,axis=1))[0] == 100
 
-
-    # Make sure memory size allocation is right
-    pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=2**8 - 1)
-    assert isinstance(pops[-1,0],np.uint8)
-    pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=2**8)
-    assert isinstance(pops[-1,0],np.uint16)
-    pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=2**16-1)
-    assert isinstance(pops[-1,0],np.uint16)
-    pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=2**16)
-    assert isinstance(pops[-1,0],np.uint32)
-
-
 def test_wright_fisher_simulate_larger():
 
     # Do a generic run for a large-ish map.
@@ -279,6 +268,5 @@ def test_wright_fisher_simulate_larger():
     gpm = gpmap.GenotypePhenotypeMap(genotype=genotype,fitness=fitness)
     gpm.get_neighbors()
     pops = simulate(gpm,mutation_rate=0.1,num_steps=1000,pop_size=500)
-    assert isinstance(pops[-1,0],np.uint16)
     assert pops.shape[0] == 1001
     assert pops.shape[1] == len(genotype)

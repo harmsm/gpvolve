@@ -6,11 +6,10 @@ __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
 # Figure out if we are using c or python wright fisher engine
-#try:
-#from .wright_fisher_engine_ext import wf_engine
-#except ImportError:
-#    from .wright_fisher_engine_python import wf_engine
-from .wright_fisher_engine_python import wf_engine
+try:
+    from gpvolve.simulate.wright_fisher.wright_fisher_engine_ext import wf_engine
+except ImportError:
+    from gpvolve.simulate.wright_fisher.wright_fisher_engine_python import wf_engine
 
 import gpmap
 
@@ -30,10 +29,9 @@ def _wf_engine_thread(args):
     args : tuple
         arg[0] is queue for storing results. if None, return results directly.
         arg[1] is index uniquely identifying thread run.
-        arg[2] is simulation data type
-        arg[3] is initial population array
-        arg[4] is number of steps to run
-        arg[5] is number of genoytpes
+        arg[2] is initial population array
+        arg[3] is number of steps to run
+        arg[4] is number of genoytpes
 
         Remaining args are sent to wf_engine (no error checking).
     """
@@ -41,17 +39,16 @@ def _wf_engine_thread(args):
     # Parse front part of args tuple
     queue = args[0]
     index = args[1]
-    sim_dtype = args[2]
-    initial_pop = args[3]
-    num_steps = args[4]
-    num_genotypes = args[5]
+    initial_pop = args[2]
+    num_steps = args[3]
+    num_genotypes = args[4]
 
     # Make pops array to store results
-    pops = np.zeros((num_steps+1,num_genotypes),dtype=sim_dtype)
+    pops = np.zeros((num_steps+1,num_genotypes),dtype=int)
     pops[0] = initial_pop
 
     # Construct args to send to wf_engine, making appopriate pops array
-    wf_args = list(args[4:])
+    wf_args = list(args[3:])
     wf_args.append(pops)
     wf_args = tuple(wf_args)
 
@@ -211,7 +208,7 @@ def simulate(gpm,
 
         err = None
         try:
-            wt_index = np.arange(len(gpm.data),dtype=int)[gpm.data.name == "wildtype"]
+            wt_index = np.arange(len(gpm.data),dtype=int)[gpm.data.name == "wildtype"][0]
         except AttributeError:
             err = "gpm.data should have a 'name' column.\n"
         except IndexError:
@@ -261,47 +258,48 @@ def simulate(gpm,
     # How many individuals to mutate each generation
     num_to_mutate = int(np.round(mutation_rate*pop_size,0))
 
-    # Get genotype loc indexes
-    genotype_indexes = np.array(gpm.data.loc[:,"name"].index,dtype=int)
-
-    # Dictionary for converting dataframe loc indexes to iloc indexes. Sims are
-    # going to be done using iloc indexes for efficiency; however, neighbors
-    # .source and .target use loc indexing.
-    loc_to_iloc = dict(zip(genotype_indexes,
-                           np.arange(len(genotype_indexes),dtype=int)))
-
-    # Create list of numpy arrays containing neighbors. These use the iloc
-    # indexing scheme
-    neighbors = []
-    for g in genotype_indexes:
-
-        iloc_g = loc_to_iloc[g]
-
-        # Non-self neighbors
-        mask = np.logical_and(gpm.neighbors.source == g,
-                              gpm.neighbors.target != g)
-        neighbor_list = []
-        for n in gpm.neighbors.target[mask]:
-            iloc_n = loc_to_iloc[n]
-            neighbor_list.append(iloc_n)
-
-        neighbors.append(np.array(neighbor_list,dtype=int))
-
-    # array containing length of each neighbors array.
-    num_neighbors = np.array([len(n) for n in neighbors],dtype=int)
-
-    # Figure out what sort of array to use to store the populations
-    sim_dtype = None
-    for d in [np.uint8,np.uint16,np.uint32,np.uint64]:
-        if np.iinfo(d).max >= pop_size:
-            sim_dtype = d
-            break
-    if sim_dtype is None:
-        err = f"population size '{pop_size}' > max allowed '{np.iinfo(np.uint64).max}'\n'"
-        raise OverflowError(err)
+    # Structures for converting dataframe loc indexes to iloc indexes and vice
+    # versa. gpm.neighbors stores edges with loc (to allow users to add and
+    # remove rows), but contiguous iloc numbers will be much faster in numpy
+    # and C. iloc_to_loc is a numpy array that effectively acts like a dict for
+    # potentially non-contiguous loc indexes
+    iloc_to_loc = np.array(gpm.data.index,dtype=int)
+    loc_to_iloc = -np.ones(np.max(gpm.data.index) + 1,dtype=int)
+    loc_to_iloc[gpm.data.index] = np.arange(len(gpm.data.index))
 
     # Get number of genotypes
-    num_genotypes = len(genotype_indexes)
+    num_genotypes = len(iloc_to_loc)
+
+    # Get all non-self neighbors
+    non_self_neighbors_mask = gpm.neighbors.source != gpm.neighbors.target
+    num_total_neighbors = np.sum(non_self_neighbors_mask)
+
+    # Sort edges by source, all in iloc indexes
+    edges = np.zeros((num_total_neighbors,2),dtype=int)
+    edges[:,0] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"source"]]
+    edges[:,1] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"target"]]
+    sorted_by_sources = np.argsort(edges[:,0])
+
+    # List of all neighbor targets in a single, huge 1D array. This will act
+    # as a jagged array, with neighbor_starts indicating where each source
+    # starts in the array
+    neighbors = edges[sorted_by_sources,1]
+
+    # Where should we look for neighbors of genotype in neighbors array?
+    genotypes_with_neighbors, start_indexes = np.unique(edges[sorted_by_sources,0],return_index=True)
+    neighbor_slicer = -1*np.ones((num_genotypes,2),dtype=int)
+
+    # Where to start looking for genotype's neighbors in neighbors array
+    neighbor_slicer[genotypes_with_neighbors,0] = start_indexes
+
+    # Where to stop looking for genotype's neighbors in neighbors array
+    neighbor_slicer[genotypes_with_neighbors[:-1],1] = start_indexes[1:]
+    neighbor_slicer[genotypes_with_neighbors[-1],1] = num_total_neighbors
+
+    del edges
+    del sorted_by_sources
+    del genotypes_with_neighbors
+    del start_indexes
 
     # Decide whether we are running replicates on multiple threads (meaning
     # we need a queue) or just running on one thread.
@@ -317,9 +315,9 @@ def simulate(gpm,
     for i in range(num_replicate_sims):
 
         # Make args list
-        args = [queue,i,sim_dtype,initial_pop,
+        args = [queue,i,initial_pop,
                 num_steps,num_genotypes,pop_size,num_to_mutate,
-                fitness,num_neighbors,neighbors]
+                fitness,neighbor_slicer,neighbors]
 
         # Append this to args
         all_args.append(tuple(args))

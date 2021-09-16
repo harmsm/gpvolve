@@ -12,7 +12,7 @@ def wf_engine(num_steps,
               pop_size,
               num_to_mutate,
               fitness,
-              num_neighbors,
+              neighbor_slicer,
               neighbors,
               pops):
     """
@@ -31,14 +31,15 @@ def wf_engine(num_steps,
         number of genotypes to mutate to a neighbor each time step
     fitness : numpy.ndarray
         num_genotypes-long float array containing fitness of each genotype
-    num_neighbors : numpy.ndarray
+    neighbor_slicer : numpy.ndarray
         num_genotypes-long int array containing number of neighbors accessible
         for each genotype (excluding self)
-    neighbors : list of numpy.ndarray
-        num_genotypes-long list of int arrays, where each array stores the
-        indexes of neighboring genotypes for the genotype.
+    neighbors : numpy.ndarray
+        1D numpy int array storing a jagged array with neighbors for each
+        genotype. neighbor_slicer is used to look up where each genotype's
+        neighbors are in this array
     pops : numpy.ndarray
-        num_steps + 1 x num_genotypes 2D int array that stores the population
+        num_steps + 1 by num_genotypes 2D int array that stores the population
         of each genotype for each step in the simulation. The first row holds
         the initial population of all genotypes.
 
@@ -54,16 +55,18 @@ def wf_engine(num_steps,
 
         # Look at non-zero genotypes
         mask = indexes[pops[i-1,:] != 0]
+        local_fitness = fitness[mask]
+        local_pop = pops[i-1,mask]
 
         # If all fitness are 0 for the populated genotypes, probability of
         # reproducing depends only on how often each genotype occurs.
-        if np.sum(fitness[mask]) == 0:
-            prob = pops[i-1,mask]
+        if np.sum(local_fitness) == 0:
+            prob = local_pop
 
         # In most cases, reproduction probability is given by how many of each
         # genotype times its fitness
         else:
-            prob = pops[i-1,mask]*fitness[mask]
+            prob = local_pop*local_fitness
 
         # Normalize prob
         prob = prob/np.sum(prob)
@@ -73,7 +76,8 @@ def wf_engine(num_steps,
 
         # Introduce mutations
         for j in range(num_to_mutate):
-            new_pop[j] = np.random.choice(neighbors[new_pop[j]],size=1)[0]
+            k = new_pop[j]
+            new_pop[j] = np.random.choice(neighbors[neighbor_slicer[k,0]:neighbor_slicer[k,1]],size=1)[0]
 
         # Count how often each genotype occurs and store in pops array
         idx, counts = np.unique(new_pop,return_counts=True)
