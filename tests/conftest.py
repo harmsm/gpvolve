@@ -32,3 +32,10 @@ def gpvolve_gpm():
 
 
     return gpm
+
+@pytest.fixture(scope="module")
+def number_data():
+
+    return {"max_float":np.finfo(float).max,
+            "tiny_float":np.finfo(float).tiny,
+            "max_int":np.finfo(float).max}

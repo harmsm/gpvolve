@@ -216,24 +216,8 @@ def test_wright_fisher_simulate():
                                      fitness=[0.1,0.2,0.2,0.3])
     gpm.get_neighbors()
 
-    # NOT SURE HOW TO ACTUALLY TEST THIS GIVEN CURRENT IMPLEMENTATION
-    # # Make sure we make right number of attempts give mutation_rate and pop_size
-    # pops = simulate(gpm,mutation_rate=0.1,num_steps=1,pop_size=100)
-    # assert np.sum(list(attempts.values())) == 10
-    #
-    # pops = simulate(gpm,mutation_rate=1,num_steps=1,pop_size=100)
-    # assert np.sum(list(attempts.values())) == 100
-    #
-    # pops = simulate(gpm,mutation_rate=0,num_steps=1,pop_size=100)
-    # assert np.sum(list(attempts.values())) == 0
-    #
-    # # Make sure we don't ever try a self -> self move
-    # pops = simulate(gpm,mutation_rate=1,num_steps=1,pop_size=100)
-    # for k in attempts.keys():
-    #     assert k[0] != k[1]
-
-    # Run simulation multiple times with equal fitness and equal pops. Should
-    # end up basically equal at end.
+    # Run simulation with equal fitness and equal pops. Should end up basically
+    # equal at end.
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,0.1,0.1,0.1],
                                      pops=[200,200,200,200])
