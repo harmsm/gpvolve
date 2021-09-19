@@ -14,62 +14,38 @@ from cython.cimports.cpython.mem import PyMem_Free
 
 from numpy.random cimport bitgen_t
 from numpy.random import PCG64
-from numpy.random.c_distributions cimport random_standard_uniform, random_bounded_uint64
+from numpy.random.c_distributions cimport random_standard_uniform, random_bounded_uint64, random_poisson
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.cdivision(True) # Deactivate divide-by-zero checking
-def wf_engine(num_steps,
-              num_genotypes,
-              pop_size,
-              num_to_mutate,
-              fitness,
-              neighbor_slicer,
-              neighbors,
-              pops):
-
+def wf_engine_cython(pops,
+                     mutation_rate,
+                     fitness,
+                     neighbor_slicer,
+                     neighbors):
     """
     A cython implementation of the Wright Fisher engine.
 
-    Parameters
-    ----------
-    num_steps : int
-        number of time steps to run
-    num_genotypes : int
-        number of genotypes in the whole map
-    pop_size : int
-        size of the population
-    num_to_mutate : int
-        number of genotypes to mutate to a neighbor each time step
-    fitness : numpy.ndarray
-        num_genotypes-long float array containing fitness of each genotype
-    neighbor_slicer : numpy.ndarray
-        num_genotypes-long int array containing number of neighbors accessible
-        for each genotype (excluding self)
-    neighbors : numpy.ndarray
-        1D numpy int array storing a jagged array with neighbors for each
-        genotype. neighbor_slicer is used to look up where each genotype's
-        neighbors are in this array
-    pops : numpy.ndarray
-        num_steps + 1 by num_genotypes 2D int array that stores the population
-        of each genotype for each step in the simulation. The first row holds
-        the initial population of all genotypes.
-
-    Returns
-    -------
-    pops : nump.ndarray
-        num_steps + 1 x num_genotypes 2D int array that stores the population
-        of each genotype for each step in the simulation.
+    This function should not be called directly. Instead, use wf_engine
+    wrapper. Wrapper has argument docs and does argument sanity checking.
     """
 
     cdef double denominator
     cdef int i, j, k, num_populated_genotypes, min_index, max_index
+    cdef int num_to_mutate_int
 
+    # Get number of genoptypes, population size, and number of steps
+    num_genotypes = len(fitness)
+    pop_size = sum(pops[0,:])
+    num_steps = len(pops)
+
+    # Create c-versions of the simulation parameters
     cdef int num_steps_int = <int>num_steps
     cdef int num_genotypes_int = <int>num_genotypes
     cdef int pop_size_int = <int>pop_size
-    cdef int num_to_mutate_int = <int>num_to_mutate
     cdef double pop_size_dbl = <double>pop_size
+    cdef double expected_num_mutations = <double>(pop_size_dbl*mutation_rate)
 
     # efficient views of numy arrays
     cdef double[:] fitness_view = fitness
@@ -77,14 +53,14 @@ def wf_engine(num_steps,
     cdef long[:] neighbors_view = neighbors
     cdef long[:,:] pops_view = pops
 
+    # Initialize random number generator
     cdef bitgen_t *bitgen_state
-
     bitgen_state = <bitgen_t *>PyCapsule_GetPointer(PCG64().capsule,
                                                     "BitGenerator")
 
+    # Some temporary vectors
     choice_vector = np.zeros(pop_size,dtype=int)
     prob_vector = np.zeros(pop_size,dtype=float)
-
     cdef long[:] choice_vector_view = choice_vector
     cdef double[:] prob_vector_view = prob_vector
 
@@ -110,8 +86,14 @@ def wf_engine(num_steps,
             for j in range(0,num_populated_genotypes,1):
                 prob_vector_view[j] = prob_vector_view[j]/denominator
 
+        # How many to mutate this generation?
+        num_to_mutate_int = random_poisson(bitgen_state, expected_num_mutations)
+
+        # Go through the population
         for j in range(0,pop_size_int,1):
 
+            # Use random weighted number to choose which genotype this new
+            # critter will have
             cum_sum = 0.0
             rand_value = random_standard_uniform(bitgen_state)
             for k in range(0,num_populated_genotypes,1):
@@ -120,7 +102,7 @@ def wf_engine(num_steps,
                     break
             k = choice_vector_view[k]
 
-            # If this genotype is slated to mutate...
+            # If this critter is slated to mutate...
             if j < num_to_mutate_int:
 
                 # Figure out the minimal and maximum values for this genotype's

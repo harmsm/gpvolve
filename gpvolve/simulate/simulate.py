@@ -5,11 +5,7 @@ Run Wright Fisher simulation on a genotype phentoype map.
 __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
-# Figure out if we are using c or python wright fisher engine
-try:
-    from gpvolve.simulate.wright_fisher.wright_fisher_engine_ext import wf_engine
-except ImportError:
-    from gpvolve.simulate.wright_fisher.wright_fisher_engine_python import wf_engine
+from .wright_fisher import wf_engine
 
 import gpmap
 
@@ -20,40 +16,40 @@ from tqdm.auto import tqdm
 import multiprocessing as mp
 import warnings, os
 
-def _wf_engine_thread(args):
+def _sim_on_thread(args):
     """
-    Run a wright fisher engine on a thread.
+    Run a simulation on a thread. Constructs a pops array for storing simulation
+    results and then runs simulation_engine(pops,*args[5:]).
 
     Parameters
     ----------
     args : tuple
-        arg[0] is queue for storing results. if None, return results directly.
-        arg[1] is index uniquely identifying thread run.
-        arg[2] is initial population array
-        arg[3] is number of steps to run
-        arg[4] is number of genoytpes
-
-        Remaining args are sent to wf_engine (no error checking).
+        arg[0] is simulation engine
+        arg[1] is queue for storing results. If None, return results directly.
+        arg[2] is index uniquely identifying thread run.
+        arg[3] is initial population array
+        arg[4] is number of steps to run
+        Remaining args are sent to wf_engine.
     """
 
-    # Parse front part of args tuple
-    queue = args[0]
-    index = args[1]
-    initial_pop = args[2]
-    num_steps = args[3]
-    num_genotypes = args[4]
+    # Parse args tuple
+    engine_function = args[0]
+    queue = args[1]
+    index = args[2]
+    initial_pop = args[3]
+    num_steps = args[4]
 
     # Make pops array to store results
-    pops = np.zeros((num_steps+1,num_genotypes),dtype=int)
+    pops = np.zeros((num_steps+1,len(initial_pop)),dtype=int)
     pops[0] = initial_pop
 
     # Construct args to send to wf_engine, making appopriate pops array
-    wf_args = list(args[3:])
-    wf_args.append(pops)
+    wf_args = [pops]
+    wf_args.extend(args[5:])
     wf_args = tuple(wf_args)
 
     # Do calculation
-    pops = wf_engine(*wf_args)
+    pops = engine_function(*wf_args)
 
     # If multithreaded (queue not None), append to queue. Otherwise, just
     # return
@@ -62,31 +58,55 @@ def _wf_engine_thread(args):
     else:
         queue.put(pops)
 
-def _prep_run(gpm,
-              mutation_rate,
-              num_steps,
-              pop_size,
-              fitness_column,
-              initial_pop_column,
-              num_replicate_sims,
-              num_threads):
+
+def simulate(gpm,
+             engine="wf",
+             num_steps=1000,
+             mutation_rate=0.001,
+             pop_size=100,
+             fitness_column="fitness",
+             initial_pop_column=None,
+             num_replicate_sims=1,
+             num_threads=1,
+             use_cython=True):
     """
-    Private function that does heavy lifting for doing error checking and then
-    creating arguments to pass to the main run function. See the "simulate"
-    function for argument details.
+    Simulate evolution across a GenotypePhenotypeMap.
 
     Parameters
     ----------
-    See 'simulate' function for argument details.
+    gpm : GenotypePhenotypeMap
+        genotype phenotype map to use for the simulation
+    engine : str
+        simulation engine to use. "wf": Wright-Fisher. Currently only engine
+        available.
+    num_steps : int
+        number of steps to run the simulation (must be >= 0)
+    mutation_rate : float
+        how probable is it that a genotype mutates over a generation?
+    pop_size : int
+        population size. must be int > 0. if initial_pop_column is set, this
+        overrides the population size
+    fitness_column : str
+        column in gpm.data that has fitness value for each genotype
+    initial_pop_column : str
+        column in gpm.data that has initial population for each genotype. If
+        None, assign the wildtype genotype a population pop_size and set rest
+        to 0.
+    num_replicate_sims : int
+        number of replicate simulations to run. must be int > 0.
+    num_threads : int
+        number of threads to run (one simulation per thread). if None, use all
+        available cpus. If set, must be an int > 0.
+    use_cython : bool
+        use faster cython implementation if available.
 
     Returns
     -------
-    run_config : dict
-        dictionary of information for kicking off run
+    results : np.ndarray or list
+        if num_replicate_sims == 1 (default), return num_steps + 1 x num_genotypes
+        array with genotype counts over steps. If num_replicate_sims > 1, return
+        a list of arrays, one for each replicate simulation.
     """
-    # -------------------------------------------------------------------------
-    # Parse arguments and validate sanity
-    # -------------------------------------------------------------------------
 
     # Check gpm instance
     if not isinstance(gpm,gpmap.GenotypePhenotypeMap):
@@ -115,13 +135,14 @@ def _prep_run(gpm,
         err += "gpm.get_neighbors()?\n"
         raise ValueError(err)
 
-    # Check mutation_rate
+    # Get engine function
+    engine_functions = {"wf":wf_engine}
     try:
-        mutation_rate = float(mutation_rate)
-        if mutation_rate < 0 or mutation_rate > 1:
-            raise ValueError
-    except (ValueError,TypeError):
-        err = "mutation_rate must be a float >= 0 and <= 1.\n"
+        engine_function = engine_function[engine]
+    except (KeyError,TypeError):
+        err = f"engine '{engine}' not recognized. Should be one of:\n"
+        for k in engine_function:
+            err += "    {k}\n"
         raise ValueError(err)
 
     # Check number of steps
@@ -131,6 +152,15 @@ def _prep_run(gpm,
             raise ValueError
     except (ValueError,TypeError):
         err = "num_steps must be an integer >= 0.\n"
+        raise ValueError(err)
+
+    # Check mutation_rate
+    try:
+        mutation_rate = float(mutation_rate)
+        if mutation_rate < 0 or mutation_rate > 1:
+            raise ValueError
+    except (ValueError,TypeError):
+        err = "mutation_rate must be a float >= 0 and <= 1.\n"
         raise ValueError(err)
 
     # Get initial population vector
@@ -234,110 +264,19 @@ def _prep_run(gpm,
         err = "num_replicate_sims should be an integer > 1.\n"
         raise ValueError(err)
 
+    # Make sure use_cython can be cast as bool (should pretty much always work)
+    try:
+        use_cython = bool(use_cython)
+    except TypeError:
+        err = "use_cython must be 'True' or 'False'\n"
+        raise TypeError(err)
+
     # -------------------------------------------------------------------------
-    # Set up values used to run calculation
+    # Prep for calculation
     # -------------------------------------------------------------------------
 
-    # How many individuals to mutate each generation
-    num_to_mutate = int(np.round(mutation_rate*pop_size,0))
-
-    # Structures for converting dataframe loc indexes to iloc indexes and vice
-    # versa. gpm.neighbors stores edges with loc (to allow users to add and
-    # remove rows), but contiguous iloc numbers will be much faster in numpy
-    # and C. iloc_to_loc is a numpy array that effectively acts like a dict for
-    # potentially non-contiguous loc indexes
-    iloc_to_loc = np.array(gpm.data.index,dtype=int)
-    loc_to_iloc = -np.ones(np.max(gpm.data.index) + 1,dtype=int)
-    loc_to_iloc[gpm.data.index] = np.arange(len(gpm.data.index))
-
-    # Get number of genotypes
-    num_genotypes = len(iloc_to_loc)
-
-    # Get all non-self neighbors
-    non_self_neighbors_mask = gpm.neighbors.source != gpm.neighbors.target
-    num_total_neighbors = np.sum(non_self_neighbors_mask)
-
-    # Sort edges by source, all in iloc indexes
-    edges = np.zeros((num_total_neighbors,2),dtype=int)
-    edges[:,0] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"source"]]
-    edges[:,1] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"target"]]
-    sorted_by_sources = np.argsort(edges[:,0])
-
-    # List of all neighbor targets in a single, huge 1D array. This will act
-    # as a jagged array, with neighbor_starts indicating where each source
-    # starts in the array
-    neighbors = edges[sorted_by_sources,1]
-
-    # Where should we look for neighbors of genotype in neighbors array?
-    genotypes_with_neighbors, start_indexes = np.unique(edges[sorted_by_sources,0],return_index=True)
-    neighbor_slicer = -1*np.ones((num_genotypes,2),dtype=int)
-
-    # Where to start looking for genotype's neighbors in neighbors array
-    neighbor_slicer[genotypes_with_neighbors,0] = start_indexes
-
-    # Where to stop looking for genotype's neighbors in neighbors array
-    neighbor_slicer[genotypes_with_neighbors[:-1],1] = start_indexes[1:]
-    neighbor_slicer[genotypes_with_neighbors[-1],1] = num_total_neighbors
-
-    return {"num_threads":num_threads,
-            "num_replicate_sims":num_replicate_sims,
-            "initial_pop":initial_pop,
-            "num_steps":num_steps,
-            "num_genotypes":num_genotypes,
-            "pop_size":pop_size,
-            "num_to_mutate":num_to_mutate,
-            "fitness":fitness,
-            "neighbor_slicer":neighbor_slicer,
-            "neighbors":neighbors}
-
-def simulate(gpm,
-             mutation_rate,
-             num_steps=1000,
-             pop_size=100,
-             fitness_column="fitness",
-             initial_pop_column=None,
-             num_replicate_sims=1,
-             num_threads=1):
-    """
-    Parameters
-    ----------
-    gpm : GenotypePhenotypeMap
-        genotype phenotype map to use for the simulation
-    mutation_rate : float
-        how probable is it that a genotype mutates over a generation?
-    num_steps : int
-        number of steps to run the simulation (must be >= 0)
-    pop_size : int
-        population size. must be int > 0. if initial_pop_column is set, this
-        overrides the population size
-    fitness_column : str
-        column in gpm.data that has relative fitness values for each genotype
-    initial_pop_column : str
-        column in gpm.data that has initial population for each genotype. If
-        None, assign the wildtype genotype a population pop_size and set rest
-        to 0.
-    num_replicate_sims : int
-        number of replicate simulations to run. must be int > 0.
-    num_threads : int
-        number of threads to run (one simulation per thread). if None, use all
-        available cpus. If set, must be an int > 0.
-
-    Returns
-    -------
-    results : np.ndarray or list
-        if num_replicate_sims == 1 (default), return num_steps + 1 x num_genotypes
-        array with genotype counts over steps. If num_replicate_sims > 1, return
-        a list of arrays, one for each replicate simulation.
-    """
-
-    run_config = _prep_run(gpm,
-                           mutation_rate,
-                           num_steps,
-                           pop_size,
-                           fitness_column,
-                           initial_pop_column,
-                           num_replicate_sims,
-                           num_threads)
+    # Get neighbors into useful form
+    neighbor_slicer, neighbors = utils.flatten_neighbors(gpm)
 
     # Decide whether we are running replicates on multiple threads (meaning
     # we need a queue) or just running on one thread.
@@ -352,31 +291,30 @@ def simulate(gpm,
     all_args = []
     for i in range(run_config["num_replicate_sims"]):
 
-        to_get =  ["initial_pop","num_steps","num_genotypes","pop_size",
-                   "num_to_mutate","fitness","neighbor_slicer","neighbors"]
-        # Make args list
-        args = [queue,i]
-        for k in to_get:
-            args.append(run_config[k])
+        args = [engine_function,queue,i,mutation_rate,
+                mutation_rate,fitness,neighbor_slicer,neighbors,
+                use_cython]
 
         # Append this to args
         all_args.append(tuple(args))
 
-    # If only one thread, call without Pool/queue complexity
+    # If only one thread, call without dealing with Pool/queue complexity
     if run_config["num_threads"]  == 1:
         results = []
         for a in all_args:
-            results.append(_wf_engine_thread(a))
+            results.append(_sim_on_thread(a))
 
-    # If more than one thread, call under control of pool
+    # If more than one thread, put under control of Pool
     else:
         with mp.Pool(num_threads) as pool:
 
             # pool.imap() runs a function on elements in iterable, filling threads
-            # as each job finishes. (Calls _wf_engine_thread on every args tuple in
-            # all_args).
-
-            list(pool.imap(_wf_engine_thread,all_args))
+            # as each job finishes. (Calls _sim_on_thread on every args tuple in
+            # all_args). This black magic call inserts a tqdm progress bar
+            # into this process. It means every time a thread finishes, the
+            # progress bar updates.
+            list(tqdm(pool.imap(_sim_on_thread,all_args),
+                      total=len(all_args)))
 
         # Get pops arrays from queue object
         results = []

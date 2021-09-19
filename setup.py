@@ -7,26 +7,28 @@
 import io, os, sys, glob
 from shutil import rmtree
 
-from setuptools import find_packages, setup, Command
+from setuptools import find_packages, setup, Command, dist
 from setuptools.extension import Extension
 
+# hack necessary to allow setup.py install..
+dist.Distribution().fetch_build_eggs(['Cython>=3.0.0a9', 'numpy>=1.21.1'])
+
 import numpy as np
-#import Cython.Compiler.Options
-#Cython.Compiler.Options.annotate = True
+import Cython.Compiler.Options
+Cython.Compiler.Options.annotate = True
 from Cython.Distutils import build_ext
 
 # Package meta-data.
 NAME = 'gpvolve'
-DESCRIPTION = "A python package for extracting tevolutionary trajectories from genotype-phenotype-maps"
+DESCRIPTION = "A python package for simulating and analyzing evolutionary trajectories through genotype-phenotype-maps"
 URL = 'https://github.com/harmslab/gpvolve'
-EMAIL = 'l.d.goldbach@students.uu.nl'
-AUTHOR = 'Leander D. Goldbach'
+EMAIL = 'harmsm@gmail.com'
+AUTHOR = 'Leander D. Goldbach, Michael J. Harms'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = '0.2.0'
 
 # What packages are required for this module to be executed?
-REQUIRED = ['numpy', 'cython', 'networkx',
-            'msmtools', 'gpmap', 'gpgraph', 'matplotlib']
+REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'gpmap', 'matplotlib']
 
 # What packages are optional?
 EXTRAS = {}
@@ -92,21 +94,37 @@ class UploadCommand(Command):
 
         sys.exit()
 
-# Files for c extension
-#model_c_files = list(glob.glob('gpvolve/simulate/wright_fisher/wright_fisher_engine_ext/*.c'))
-model_pyx_files = list(glob.glob('gpvolve/simulate/wright_fisher/*.pyx'))
-ext = Extension('gpvolve.simulate.wright_fisher.wright_fisher_engine_ext',
-                model_pyx_files,
-                include_dirs=[np.get_include()],
-                define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
+# list of cython extensions as tuples of (module,path)
+extensions = [('gpvolve.simulate.wright_fisher.wright_fisher_engine_cython',
+               'gpvolve/simulate/wright_fisher/'),
+              ('gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython',
+               'gpvolve/markov/utils/_generate_tmatrix')]
 
-                #model_c_files,
-                #include_dirs=[np.get_include()],
-                #define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
+# Create extensions to compile
+ext_modules = []
+for e in extensions:
+    # Get pyx files
+    model_pyx_files = glob.glob(os.path.join(e[1],"*.pyx"))
+
+    # Get c files, making sure not to grab .c files corresponding to .pyx files
+    # that may have been generated previously by cython commands. If we
+    # include those, we get duplicate definitions of functions
+    for c in glob.glob(os.path.join(e[1],"*.c")):
+        if ".".join(c.split(".")[:-1]) + ".pyx" not in model_pyx_files:
+            model_pyx_files.append(c)
+
+    ext_modules.append(
+        Extension(e[0],
+                  model_pyx_files,
+                  include_dirs=[np.get_include()],
+                  define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
+    )
 
 # Make sure these are included with the package
 all_c_files = list(glob.glob("**/*.c",recursive=True))
 all_c_files.extend(list(glob.glob("**/*.h",recursive=True)))
+all_c_files.extend(list(glob.glob("**/*.pyx",recursive=True)))
+all_c_files.extend(list(glob.glob("**/*.pxd",recursive=True)))
 
 # Where the magic happens:
 setup(
@@ -138,10 +156,13 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
-    ext_modules=[ext],
+    ext_modules=ext_modules,
     # $ setup.py publish support.
     cmdclass={
         'upload': UploadCommand,
