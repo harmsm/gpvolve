@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <float.h>
+#include <stdio.h>
 
 #define PRECISION 1E-20
 #define LOG2E 1.44269504088896340736 // log2(e)
@@ -14,20 +15,7 @@ int is_zero(double value){
 int same_number(double value1, double value2){
     // See if value1 and value2 have the same value within precision.
 
-    // If value2 is zero, we'll get a divide by zero below.  First check to see
-    // if it's zero.  If it is, see if value1 is zero.  If both are zero, return
-    // true.  If value2 is zero and value1 is not, return false.
-    if (is_zero(value2)){
-        if (is_zero(value1)){
-            return 1;
-        } else{
-            return 0;
-        }
-    }
-
-    // Return true if ratio of value1/value2 is close to one and they have the
-    // same sign.
-    return (((1 - PRECISION) < (value1/value2)) && ((value1/value2) < (1 + PRECISION)));
+    return fabs(value1 - value2) < PRECISION;
 }
 
 double log2(double value){
@@ -36,7 +24,7 @@ double log2(double value){
 
 }
 
-double sswm(double fitness_i, double fitness_j, int population_size){
+double sswm(double fitness_i, double fitness_j, long population_size){
 
     // Strong selection, weak mutation model. From Gillespie 1984.
     //
@@ -81,7 +69,7 @@ double sswm(double fitness_i, double fitness_j, int population_size){
 
 }
 
-double mcclandish(double fitness_i, double fitness_j, int population_size){
+double mcclandish(double fitness_i, double fitness_j, long population_size){
     //
     // Calculate fixation probability using model proposed by McClandish, 2011.
     //
@@ -232,7 +220,7 @@ double mcclandish(double fitness_i, double fitness_j, int population_size){
 
 }
 
-double moran(double fitness_i, double fitness_j, int population_size){
+double moran(double fitness_i, double fitness_j, long population_size){
 
     // Calculate fixation probability using moran model proposed by Sella and
     // Hirsch, 2005.

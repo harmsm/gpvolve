@@ -6,7 +6,7 @@ fitness and neighbor data given some fixation model.
 __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
-from fixation import moran, mcclandish, sswm
+from .fixation import moran, mcclandish, sswm
 import numpy as np
 
 def generate_tmatrix_python(fitness,
@@ -46,14 +46,36 @@ def generate_tmatrix_python(fitness,
             Pi_out = 0.0
             for j in range(num_neighbors):
 
+                j_n = neighbors[neighbor_slicer[i,0] + j]
+
                 # Calculate fixation probability for i -> j
-                Pij_fix = fixation_model(fitness[i],fitness[j],population_size)
+                Pij_fix = fixation_model(fitness[i],fitness[j_n],population_size)
 
                 # Pij is Pmutate * Pfix = 1/n*Pfix
-                T[i,j] = Pij_fix/num_neighbors
-                Pi_out += T[i,j]
+                T[i,j_n] = Pij_fix/num_neighbors
+                Pi_out += T[i,j_n]
 
             # Probability of remaining is 1 - total probability of leaving.
             T[i,i] = 1 - Pi_out
 
     return T
+
+def _moran_tester(f1,f2,N):
+    """
+    Wrap moran to allow pytest to access. Not generally used by users.
+    """
+    return moran(f1,f2,N)
+
+def _mcclandish_tester(f1,f2,N):
+    """
+    Wrap mcclandish to allow pytest to access. Not generally used by users.
+    """
+
+    return mcclandish(f1,f2,N)
+
+def _sswm_tester(f1,f2,N):
+    """
+    Wrap sswm to allow pytest to access. Not generally used by users.
+    """
+
+    return sswm(f1,f2,N)

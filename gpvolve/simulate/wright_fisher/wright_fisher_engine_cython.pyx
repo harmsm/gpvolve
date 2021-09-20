@@ -1,3 +1,4 @@
+#cython: language_level=3
 __description__ = \
 """
 Cython implementation of Wright Fisher simulation.
@@ -14,7 +15,11 @@ from cython.cimports.cpython.mem import PyMem_Free
 
 from numpy.random cimport bitgen_t
 from numpy.random import PCG64
-from numpy.random.c_distributions cimport random_standard_uniform, random_bounded_uint64, random_poisson
+from numpy.random.c_distributions cimport (random_standard_uniform,
+                                           random_bounded_uint64,
+                                           random_poisson)
+
+
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.

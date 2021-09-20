@@ -6,22 +6,25 @@ __author__ = "Michael J. Harms"
 __date__ = "2021-09-19"
 
 import warnings
-import gpmap.markov.utils.generate_tmatrix.generate_tmatrix_python as py
+from . import generate_tmatrix_python as py
 
 try:
+    from . import generate_tmatrix_cython as cy
     cy_available = True
-    import gpmap.markov.utils.generate_tmatrix.generate_tmatrix_cython as cy
+
 except ImportError:
     cy_available = False
-    w = "Could not load cython version of generate_tmatrix. Falling\n"
+    w = "Could not find cython version of generate_tmatrix. Falling\n"
     w += "back on python version (same functionality, much slower)\n."
     warnings.warn(w)
+
+import numpy as np
 
 def generate_tmatrix(fitness,
                      neighbor_slicer,
                      neighbors,
                      population_size=1000,
-                     fixation_model="moran"
+                     fixation_model="moran",
                      use_cython=True):
     r"""
     Generate a stochastic transition matrix for evolution across between genotypes
@@ -75,6 +78,7 @@ def generate_tmatrix(fitness,
         if np.sum(fitness < 0):
             err = "fitness vector contains values < 0\n"
             raise ValueError(err)
+
     except TypeError:
         err = "fitness vector must contain float values\n"
         raise TypeError(err)
@@ -83,7 +87,7 @@ def generate_tmatrix(fitness,
         # Make sure fitness and neighbors have same length
         if fitness.shape[0] != neighbor_slicer.shape[0]:
             raise ValueError
-    except (AttributeError,IndexError)
+    except (AttributeError,IndexError):
         err = "fitness and neighbor_slicer must be numpy arrays of the same\n"
         err += "length. (neighors and neighbor_slicer should generally be\n"
         err += "made with the flatten_neighbors function).\n"
@@ -94,16 +98,16 @@ def generate_tmatrix(fitness,
         population_size = int(population_size)
         if population_size < 1:
             raise ValueError
+
     except (TypeError,ValueError):
-        err = "population size must be an int >= 1\n"
+        err = f"population size must be an int >= 1.\n"
         raise ValueError(err)
-    cdef int population_size_int = <int>population_size
 
     # Fixation model (external c function; see f_type def above)
     fixation_models = ["moran","mcclandish","sswm"]
-    if fixation not in fixation_models:
+    if fixation_model not in fixation_models:
         err = f"fixation model '{fixation_model}' not recognized.\n"
-        err += f"Should be one of {"".join(fixation_model)}\n"
+        err += f"Should be one of {','.join(fixation_model)}.\n"
         raise ValueError(err)
 
     # Figure out which implementation to use

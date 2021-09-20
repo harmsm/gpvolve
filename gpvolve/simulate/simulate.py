@@ -193,7 +193,7 @@ def simulate(gpm,
         if pop_size < 1:
             raise ValueError
     except (ValueError,TypeError):
-        err = "pop_size must be an integer > 0.\n"
+        err = f"pop_size must be an integer > 0.\n"
         raise ValueError(err)
 
     # Get fitness data
@@ -209,8 +209,8 @@ def simulate(gpm,
         raise KeyError(err)
     except (TypeError,ValueError):
         err = "fitness_column must point to a column in gpm.data that can\n"
-        err += "be coerced as a float, where the minimum is >= 0, and that\n"
-        err += "does not have nan.\n"
+        err += "be coerced as a float, where the minimum is >= 0 and that does\n"
+        err += "not have nan.\n"
         raise ValueError(err)
 
     # If we have not made an initial_pop array above, make one with the wildtype
