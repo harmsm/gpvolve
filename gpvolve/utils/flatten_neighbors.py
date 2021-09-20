@@ -73,8 +73,9 @@ def flatten_neighbors(gpm):
     # Get number of genotypes
     num_genotypes = len(loc_to_iloc)
 
-    # Get all non-self neighbors
     non_self_neighbors_mask = gpm.neighbors.source != gpm.neighbors.target
+    non_self_neighbors_mask = np.logical_and(keep_mask,
+                                             non_self_neighbors_mask)
     num_total_neighbors = np.sum(non_self_neighbors_mask)
 
     # Sort edges by source, all in iloc indexes

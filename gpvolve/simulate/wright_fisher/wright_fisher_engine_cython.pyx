@@ -45,6 +45,10 @@ def wf_engine_cython(pops,
     pop_size = sum(pops[0,:])
     num_steps = len(pops)
 
+    # If zero population, don't bother with simulation
+    if pop_size == 0:
+        return pops
+
     # Create c-versions of the simulation parameters
     cdef int num_steps_int = <int>num_steps
     cdef int num_genotypes_int = <int>num_genotypes
@@ -64,12 +68,12 @@ def wf_engine_cython(pops,
                                                     "BitGenerator")
 
     # Some temporary vectors
-    choice_vector = np.zeros(pop_size,dtype=int)
-    prob_vector = np.zeros(pop_size,dtype=float)
+    choice_vector = np.zeros(num_genotypes,dtype=int)
+    prob_vector = np.zeros(num_genotypes,dtype=float)
     cdef long[:] choice_vector_view = choice_vector
     cdef double[:] prob_vector_view = prob_vector
 
-    for i in range(1,num_steps_int+1,1):
+    for i in range(1,num_steps_int,1):
 
         denominator = 0;
         k = 0;
@@ -105,6 +109,7 @@ def wf_engine_cython(pops,
                 cum_sum += prob_vector_view[k]
                 if cum_sum >= rand_value:
                     break
+
             k = choice_vector_view[k]
 
             # If this critter is slated to mutate...
@@ -118,10 +123,10 @@ def wf_engine_cython(pops,
                 # Get random integer between 0 and max_index - min_index -- which
                 # neighbor to grab
                 k = random_bounded_uint64(bitgen_state,
-                                          0,max_index-min_index-1,
+                                          min_index,max_index-min_index-1,
                                           0,0)
                 # Get genotype index corresponding to that neighbor choice
-                k = neighbors_view[k + min_index]
+                k = neighbors_view[k]
 
             # Update next generation population with new genotype k
             pops_view[i,k] += 1

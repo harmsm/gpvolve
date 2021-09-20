@@ -19,6 +19,10 @@ def wf_engine_python(pops,
     wrapper. Wrapper has argument docs and does argument sanity checking.
     """
 
+    # If zero population, don't bother with simulation
+    if np.sum(pops[0,:]) == 0:
+        return pops
+
     # Get number of genoptypes, population size, and expected number of mutations
     # each generation
     num_genotypes = len(fitness)
@@ -52,6 +56,12 @@ def wf_engine_python(pops,
 
         # Introduce mutations
         num_to_mutate = np.random.poisson(expected_num_mutations)
+
+        # If we have a ridiculously high mutation rate, do not mutate each
+        # genotype more than once.
+        if num_to_mutate > pop_size:
+            num_to_mutate = pop_size
+
         for j in range(num_to_mutate):
             k = new_pop[j]
             new_pop[j] = np.random.choice(neighbors[neighbor_slicer[k,0]:neighbor_slicer[k,1]],size=1)[0]

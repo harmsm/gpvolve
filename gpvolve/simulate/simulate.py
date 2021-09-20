@@ -7,6 +7,8 @@ __date__ = "2021-09-15"
 
 from .wright_fisher import wf_engine
 
+import gpvolve.utils as utils
+
 import gpmap
 
 import numpy as np
@@ -138,10 +140,10 @@ def simulate(gpm,
     # Get engine function
     engine_functions = {"wf":wf_engine}
     try:
-        engine_function = engine_function[engine]
+        engine_function = engine_functions[engine]
     except (KeyError,TypeError):
         err = f"engine '{engine}' not recognized. Should be one of:\n"
-        for k in engine_function:
+        for k in engine_functions:
             err += "    {k}\n"
         raise ValueError(err)
 
@@ -280,7 +282,7 @@ def simulate(gpm,
 
     # Decide whether we are running replicates on multiple threads (meaning
     # we need a queue) or just running on one thread.
-    if run_config["num_threads"] == 1:
+    if num_threads == 1:
         queue = None
     else:
         # Kick off queue for capturing results
@@ -289,9 +291,9 @@ def simulate(gpm,
     # Build a list of args to pass for each replicate. This is formatted in
     # this way so it can be passed via multiprocessing.imap call.
     all_args = []
-    for i in range(run_config["num_replicate_sims"]):
+    for i in range(num_replicate_sims):
 
-        args = [engine_function,queue,i,mutation_rate,
+        args = [engine_function,queue,i,initial_pop,num_steps,
                 mutation_rate,fitness,neighbor_slicer,neighbors,
                 use_cython]
 
@@ -299,7 +301,7 @@ def simulate(gpm,
         all_args.append(tuple(args))
 
     # If only one thread, call without dealing with Pool/queue complexity
-    if run_config["num_threads"]  == 1:
+    if num_threads  == 1:
         results = []
         for a in all_args:
             results.append(_sim_on_thread(a))
