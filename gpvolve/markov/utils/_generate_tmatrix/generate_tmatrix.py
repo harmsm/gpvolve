@@ -107,7 +107,7 @@ def generate_tmatrix(fitness,
     fixation_models = ["moran","mcclandish","sswm"]
     if fixation_model not in fixation_models:
         err = f"fixation model '{fixation_model}' not recognized.\n"
-        err += f"Should be one of {','.join(fixation_model)}.\n"
+        err += f"Should be one of {','.join(fixation_models)}.\n"
         raise ValueError(err)
 
     # Figure out which implementation to use

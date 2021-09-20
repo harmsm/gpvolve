@@ -59,7 +59,7 @@ def mcclandish(fitness_i, fitness_j, population_size):
     # fitness are not same, just record them both as param sets. Do the
     # calculation for all params in param_sets and take the mean at the end.
     if fitness_i == fitness_j:
-        param_sets = [(fitness_i*0.99999,fitness_j),(fitness_i,fitness_j*0.99999)]
+        param_sets = [(fitness_i*0.999,fitness_j),(fitness_i,fitness_j*0.999)]
     else:
         param_sets = [(fitness_i,fitness_j)]
 
@@ -202,7 +202,7 @@ def moran(fitness_i, fitness_j, population_size):
     # fitness are not same, just record them both as param sets. Do the
     # calculation for all params in param_sets and take the mean at the end.
     if fitness_i == fitness_j:
-        param_sets = [(fitness_i*0.9999999999,fitness_j),(fitness_i,fitness_j*0.9999999999  )]
+        param_sets = [(fitness_i*0.999,fitness_j),(fitness_i,fitness_j*0.999)]
     else:
         param_sets = [(fitness_i,fitness_j)]
 

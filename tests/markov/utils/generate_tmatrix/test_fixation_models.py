@@ -24,6 +24,7 @@ def test_sswm(number_data,pop_gen_scenarios):
         return 1 - np.exp(-sij)
 
     for module in [py,cy]:
+        print("testing",module)
 
         limits = number_data
 
@@ -54,8 +55,6 @@ def test_sswm(number_data,pop_gen_scenarios):
             assert not np.isnan(real)
 
 
-
-
 def test_moran(number_data,pop_gen_scenarios):
 
     def local_moran(f1,f2,N):
@@ -70,6 +69,7 @@ def test_moran(number_data,pop_gen_scenarios):
 
 
     for module in [py,cy]:
+        print("testing",module)
 
         limits = number_data
 
@@ -111,6 +111,7 @@ def test_mcclandish(number_data,pop_gen_scenarios):
 
 
     for module in [py,cy]:
+        print("testing",module)
 
         limits = number_data
 
@@ -132,5 +133,4 @@ def test_mcclandish(number_data,pop_gen_scenarios):
             local = local_mcclandish(*s)
             if not np.isnan(local):
                 assert np.isclose(real,local)
-            print(s,real,local)
             assert not np.isnan(real)
