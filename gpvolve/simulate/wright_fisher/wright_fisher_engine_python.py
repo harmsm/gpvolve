@@ -64,7 +64,12 @@ def wf_engine_python(pops,
 
         for j in range(num_to_mutate):
             k = new_pop[j]
-            new_pop[j] = np.random.choice(neighbors[neighbor_slicer[k,0]:neighbor_slicer[k,1]],size=1)[0]
+
+            # If neighbor_slicer[k,0] == -1, this genotype *has* no neighbors.
+            # Mutation should lead to self.
+            if neighbor_slicer[k,0] != -1:
+                a = neighbors[neighbor_slicer[k,0]:neighbor_slicer[k,1]]
+                new_pop[j] = np.random.choice(a,size=1)[0]
 
         # Count how often each genotype occurs and store in pops array
         idx, counts = np.unique(new_pop,return_counts=True)

@@ -3,6 +3,7 @@ from .__version__ import __version__
 from . import simulate
 from . import markov
 from . import utils
+from . import check
 
 # from .markovmodel import GenotypePhenotypeMSM
 # from .visualization import *

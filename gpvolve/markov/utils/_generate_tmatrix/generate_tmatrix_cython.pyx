@@ -83,10 +83,26 @@ def generate_tmatrix_cython(fitness,
         if num_neighbors == 0:
             T_view[i,i] = 1.0
         else:
+
+            # Look for a self neighbor. If there, lower the number of real
+            # neighbors by one because self-transitions depend on all other
+            # transitions. We have to do this in its own loop because we divide
+            # by num_neighbors every iteration fo the main loop.
+            num_to_iterate_over = num_neighbors
+            for j in range(num_to_iterate_over):
+                j_n = neighbors[neighbor_slicer[i,0] + j]
+                if i == j_n:
+                    num_neighbors = num_neighbors - 1
+                    break
+
             Pi_out = 0.0
-            for j in range(num_neighbors):
+            for j in range(num_to_iterate_over):
 
                 j_n = neighbors[neighbor_slicer[i,0] + j]
+
+                # skip self neighbors.
+                if i == j_n:
+                    continue
 
                 # Calculate fixation probability for i -> j
                 Pij_fix = fixation_model_ftype(fitness_view[i],

@@ -4840,30 +4840,49 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  *                 min_index = neighbor_slicer_view[k,0]
  *                 max_index = neighbor_slicer_view[k,1]             # <<<<<<<<<<<<<<
  * 
- *                 # Get random integer between 0 and max_index - min_index -- which
+ *                 # If min_index == -1, this genotype *has* no neighbors. Mutation
  */
         __pyx_t_19 = __pyx_v_k;
         __pyx_t_20 = 1;
         __pyx_v_max_index = (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_19 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_20 * __pyx_v_neighbor_slicer_view.strides[1]) )));
 
         /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":125
- *                 # Get random integer between 0 and max_index - min_index -- which
- *                 # neighbor to grab
- *                 k = random_bounded_uint64(bitgen_state,             # <<<<<<<<<<<<<<
- *                                           min_index,max_index-min_index-1,
- *                                           0,0)
+ *                 # If min_index == -1, this genotype *has* no neighbors. Mutation
+ *                 # should lead to self.
+ *                 if min_index != -1:             # <<<<<<<<<<<<<<
+ * 
+ *                     # Get random integer between 0 and max_index - min_index --
  */
-        __pyx_v_k = random_bounded_uint64(__pyx_v_bitgen_state, __pyx_v_min_index, ((__pyx_v_max_index - __pyx_v_min_index) - 1), 0, 0);
+        __pyx_t_4 = ((__pyx_v_min_index != -1L) != 0);
+        if (__pyx_t_4) {
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":129
- *                                           0,0)
- *                 # Get genotype index corresponding to that neighbor choice
- *                 k = neighbors_view[k]             # <<<<<<<<<<<<<<
+          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":129
+ *                     # Get random integer between 0 and max_index - min_index --
+ *                     # which neighbor to grab
+ *                     k = random_bounded_uint64(bitgen_state,             # <<<<<<<<<<<<<<
+ *                                               min_index,max_index-min_index-1,
+ *                                               0,0)
+ */
+          __pyx_v_k = random_bounded_uint64(__pyx_v_bitgen_state, __pyx_v_min_index, ((__pyx_v_max_index - __pyx_v_min_index) - 1), 0, 0);
+
+          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":133
+ *                                               0,0)
+ *                     # Get genotype index corresponding to that neighbor choice
+ *                     k = neighbors_view[k]             # <<<<<<<<<<<<<<
  * 
  *             # Update next generation population with new genotype k
  */
-        __pyx_t_20 = __pyx_v_k;
-        __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_neighbors_view.data + __pyx_t_20 * __pyx_v_neighbors_view.strides[0]) )));
+          __pyx_t_20 = __pyx_v_k;
+          __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_neighbors_view.data + __pyx_t_20 * __pyx_v_neighbors_view.strides[0]) )));
+
+          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":125
+ *                 # If min_index == -1, this genotype *has* no neighbors. Mutation
+ *                 # should lead to self.
+ *                 if min_index != -1:             # <<<<<<<<<<<<<<
+ * 
+ *                     # Get random integer between 0 and max_index - min_index --
+ */
+        }
 
         /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":116
  * 
@@ -4874,7 +4893,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
       }
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":132
+      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":136
  * 
  *             # Update next generation population with new genotype k
  *             pops_view[i,k] += 1             # <<<<<<<<<<<<<<
@@ -4887,7 +4906,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     }
   }
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":134
+  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":138
  *             pops_view[i,k] += 1
  * 
  *     return pops             # <<<<<<<<<<<<<<

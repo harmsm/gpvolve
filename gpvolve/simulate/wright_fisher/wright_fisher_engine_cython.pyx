@@ -120,13 +120,17 @@ def wf_engine_cython(pops,
                 min_index = neighbor_slicer_view[k,0]
                 max_index = neighbor_slicer_view[k,1]
 
-                # Get random integer between 0 and max_index - min_index -- which
-                # neighbor to grab
-                k = random_bounded_uint64(bitgen_state,
-                                          min_index,max_index-min_index-1,
-                                          0,0)
-                # Get genotype index corresponding to that neighbor choice
-                k = neighbors_view[k]
+                # If min_index == -1, this genotype *has* no neighbors. Mutation
+                # should lead to self. 
+                if min_index != -1:
+
+                    # Get random integer between 0 and max_index - min_index --
+                    # which neighbor to grab
+                    k = random_bounded_uint64(bitgen_state,
+                                              min_index,max_index-min_index-1,
+                                              0,0)
+                    # Get genotype index corresponding to that neighbor choice
+                    k = neighbors_view[k]
 
             # Update next generation population with new genotype k
             pops_view[i,k] += 1

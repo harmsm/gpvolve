@@ -48,11 +48,6 @@ def _test_wf_engine(use_cython=False):
         for m in possible_mu:
             for f in possible_fitness:
 
-                #print("pops",p)
-                #print("mutation_rate",m)
-                #print("fitness",f)
-                #print("use_cython",use_cython)
-
                 pops = wf.wf_engine(pops=p,
                                     mutation_rate=m,
                                     fitness=f,
@@ -84,7 +79,6 @@ def _test_numerical(use_cython=False):
 
     pops = np.zeros((5001,len(gpm.pops)),dtype=int)
     pops[0,:] = gpm.pops
-
 
     pops = wf.wf_engine(pops=pops,
                         mutation_rate=0.1,

@@ -931,26 +931,34 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_20 = 1;
         __pyx_v_max_index = (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_19 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_20 * __pyx_v_neighbor_slicer_view.strides[1]) )));
 </pre><pre class="cython line score-0">&#xA0;<span class="">122</span>: </pre>
-<pre class="cython line score-0">&#xA0;<span class="">123</span>:                 <span class="c"># Get random integer between 0 and max_index - min_index -- which</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">124</span>:                 <span class="c"># neighbor to grab</span></pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">125</span>:                 <span class="n">k</span> <span class="o">=</span> <span class="n">random_bounded_uint64</span><span class="p">(</span><span class="n">bitgen_state</span><span class="p">,</span></pre>
-<pre class='cython code score-0 '>        __pyx_v_k = random_bounded_uint64(__pyx_v_bitgen_state, __pyx_v_min_index, ((__pyx_v_max_index - __pyx_v_min_index) - 1), 0, 0);
-</pre><pre class="cython line score-0">&#xA0;<span class="">126</span>:                                           <span class="n">min_index</span><span class="p">,</span><span class="n">max_index</span><span class="o">-</span><span class="n">min_index</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">127</span>:                                           <span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">)</span></pre>
-<pre class="cython line score-0">&#xA0;<span class="">128</span>:                 <span class="c"># Get genotype index corresponding to that neighbor choice</span></pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">129</span>:                 <span class="n">k</span> <span class="o">=</span> <span class="n">neighbors_view</span><span class="p">[</span><span class="n">k</span><span class="p">]</span></pre>
-<pre class='cython code score-0 '>        __pyx_t_20 = __pyx_v_k;
-        __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_neighbors_view.data + __pyx_t_20 * __pyx_v_neighbors_view.strides[0]) )));
-</pre><pre class="cython line score-0">&#xA0;<span class="">130</span>: </pre>
-<pre class="cython line score-0">&#xA0;<span class="">131</span>:             <span class="c"># Update next generation population with new genotype k</span></pre>
-<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">132</span>:             <span class="n">pops_view</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">123</span>:                 <span class="c"># If min_index == -1, this genotype *has* no neighbors. Mutation</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">124</span>:                 <span class="c"># should lead to self. </span></pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">125</span>:                 <span class="k">if</span> <span class="n">min_index</span> <span class="o">!=</span> <span class="o">-</span><span class="mf">1</span><span class="p">:</span></pre>
+<pre class='cython code score-0 '>        __pyx_t_4 = ((__pyx_v_min_index != -1L) != 0);
+        if (__pyx_t_4) {
+/* … */
+        }
+</pre><pre class="cython line score-0">&#xA0;<span class="">126</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">127</span>:                     <span class="c"># Get random integer between 0 and max_index - min_index --</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">128</span>:                     <span class="c"># which neighbor to grab</span></pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">129</span>:                     <span class="n">k</span> <span class="o">=</span> <span class="n">random_bounded_uint64</span><span class="p">(</span><span class="n">bitgen_state</span><span class="p">,</span></pre>
+<pre class='cython code score-0 '>          __pyx_v_k = random_bounded_uint64(__pyx_v_bitgen_state, __pyx_v_min_index, ((__pyx_v_max_index - __pyx_v_min_index) - 1), 0, 0);
+</pre><pre class="cython line score-0">&#xA0;<span class="">130</span>:                                               <span class="n">min_index</span><span class="p">,</span><span class="n">max_index</span><span class="o">-</span><span class="n">min_index</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">131</span>:                                               <span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">)</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">132</span>:                     <span class="c"># Get genotype index corresponding to that neighbor choice</span></pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">133</span>:                     <span class="n">k</span> <span class="o">=</span> <span class="n">neighbors_view</span><span class="p">[</span><span class="n">k</span><span class="p">]</span></pre>
+<pre class='cython code score-0 '>          __pyx_t_20 = __pyx_v_k;
+          __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_neighbors_view.data + __pyx_t_20 * __pyx_v_neighbors_view.strides[0]) )));
+</pre><pre class="cython line score-0">&#xA0;<span class="">134</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">135</span>:             <span class="c"># Update next generation population with new genotype k</span></pre>
+<pre class="cython line score-0" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">136</span>:             <span class="n">pops_view</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">1</span></pre>
 <pre class='cython code score-0 '>      __pyx_t_20 = __pyx_v_i;
       __pyx_t_19 = __pyx_v_k;
       *((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_pops_view.data + __pyx_t_20 * __pyx_v_pops_view.strides[0]) ) + __pyx_t_19 * __pyx_v_pops_view.strides[1]) )) += 1;
     }
   }
-</pre><pre class="cython line score-0">&#xA0;<span class="">133</span>: </pre>
-<pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">134</span>:     <span class="k">return</span> <span class="n">pops</span></pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">137</span>: </pre>
+<pre class="cython line score-2" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">138</span>:     <span class="k">return</span> <span class="n">pops</span></pre>
 <pre class='cython code score-2 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_pops);
   __pyx_r = __pyx_v_pops;

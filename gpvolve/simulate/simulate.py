@@ -7,6 +7,7 @@ __date__ = "2021-09-15"
 
 from .wright_fisher import wf_engine
 
+import gpvolve.check as check
 import gpvolve.utils as utils
 
 import gpmap
@@ -110,32 +111,7 @@ def simulate(gpm,
         a list of arrays, one for each replicate simulation.
     """
 
-    # Check gpm instance
-    if not isinstance(gpm,gpmap.GenotypePhenotypeMap):
-        err = "gpm must be a gpmap.GenotypePhenotypeMap instance\n"
-        raise TypeError(err)
-
-    # Look for gpm.data dataframe
-    try:
-        if not isinstance(gpm.data,pd.DataFrame):
-            raise AttributeError
-    except (AttributeError,TypeError):
-        err = "gpm must have .data attribute that is a pandas DataFrame\n"
-        raise ValueError(err)
-
-    # Look for gpm.neighbors dataframe
-    try:
-        if not isinstance(gpm.neighbors,pd.DataFrame):
-            raise AttributeError
-
-        gpm.neighbors.loc[:,"source"]
-        gpm.neighbors.loc[:,"target"]
-
-    except (KeyError,AttributeError):
-        err = "gpm must have .neighbors attribute that is a pandas\n"
-        err += "DataFrame with source and target columns. Have you run\n"
-        err += "gpm.get_neighbors()?\n"
-        raise ValueError(err)
+    check.gpm_sanity(gpm)
 
     # Get engine function
     engine_functions = {"wf":wf_engine}
@@ -276,6 +252,9 @@ def simulate(gpm,
     # -------------------------------------------------------------------------
     # Prep for calculation
     # -------------------------------------------------------------------------
+
+    # Check for poor connectivity and throw a warning if such nodes exist.
+    utils.check_neighbor_connectivity(gpm,warn=True)
 
     # Get neighbors into useful form
     neighbor_slicer, neighbors = utils.flatten_neighbors(gpm)

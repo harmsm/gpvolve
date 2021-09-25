@@ -6,6 +6,7 @@ __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
 import gpmap
+from gpvolve import check
 
 import numpy as np
 import pandas as pd
@@ -13,7 +14,8 @@ import pandas as pd
 def flatten_neighbors(gpm):
     """
     Flatten the neighbors in a GenotypePhenotypeMap into a 1D array. This is
-    a useful form for neighbors in fast cython/c simluation methods.
+    a useful form for neighbors in fast cython/c simluation methods. All rows in
+    gpm.neighbors with gpm.neighbors.include == True are returned.
 
     Parameters
     ----------
@@ -26,7 +28,10 @@ def flatten_neighbors(gpm):
         2D array of ints that is num_genotypes by 2. Indicates where to look for
         each genotype's neighbors in the 1D neighbors array. If
         neighbor_slicer[4,0] -> 6 and neighbor_slicer[4,1] -> 12, the neighbors
-        for gentoype 4 are held in neighbors[6:12].
+        for gentoype 4 are held in neighbors[6:12]. neighbor_slicer is
+        guaranteed to have an entry for every genotype, even those without any
+        neighbors. If a genotype "i" has no neighbors, neighbor_slicer[i,[0,1]]
+        == [-1,-1].
     neighbors : np.ndarray
         1D array of ints holding neighbors for each genotype flattened into a
         single vector of the form |genotype_0_neighbors|genotype_1_neighbors|...
@@ -35,32 +40,7 @@ def flatten_neighbors(gpm):
     # Parse arguments and validate sanity
     # -------------------------------------------------------------------------
 
-    # Check gpm instance
-    if not isinstance(gpm,gpmap.GenotypePhenotypeMap):
-        err = "gpm must be a gpmap.GenotypePhenotypeMap instance\n"
-        raise TypeError(err)
-
-    # Look for gpm.data dataframe
-    try:
-        if not isinstance(gpm.data,pd.DataFrame):
-            raise AttributeError
-    except (AttributeError,TypeError):
-        err = "gpm must have .data attribute that is a pandas DataFrame\n"
-        raise ValueError(err)
-
-    # Look for gpm.neighbors dataframe
-    try:
-        if not isinstance(gpm.neighbors,pd.DataFrame):
-            raise AttributeError
-
-        gpm.neighbors.loc[:,"source"]
-        gpm.neighbors.loc[:,"target"]
-
-    except (KeyError,AttributeError):
-        err = "gpm must have .neighbors attribute that is a pandas\n"
-        err += "DataFrame with source and target columns. Have you run\n"
-        err += "gpm.get_neighbors()?\n"
-        raise ValueError(err)
+    check.gpm_sanity(gpm)
 
     # Structures for converting dataframe loc indexes to iloc indexes and vice
     # versa. gpm.neighbors stores edges with loc (to allow users to add and
@@ -73,15 +53,18 @@ def flatten_neighbors(gpm):
     # Get number of genotypes
     num_genotypes = len(loc_to_iloc)
 
-    non_self_neighbors_mask = gpm.neighbors.source != gpm.neighbors.target
-    non_self_neighbors_mask = np.logical_and(keep_mask,
-                                             non_self_neighbors_mask)
-    num_total_neighbors = np.sum(non_self_neighbors_mask)
+    try:
+        keep_mask = gpm.neighbors.loc[:,"include"]
+    except KeyError:
+        keep_mask = np.ones(len(gpm.neighbors),dtype=bool)
+
+    # Num neighbors
+    num_total_neighbors = np.sum(keep_mask)
 
     # Sort edges by source, all in iloc indexes
     edges = np.zeros((num_total_neighbors,2),dtype=int)
-    edges[:,0] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"source"]]
-    edges[:,1] = loc_to_iloc[gpm.neighbors.loc[non_self_neighbors_mask,"target"]]
+    edges[:,0] = loc_to_iloc[gpm.neighbors.loc[keep_mask,"source"]]
+    edges[:,1] = loc_to_iloc[gpm.neighbors.loc[keep_mask,"target"]]
     sorted_by_sources = np.argsort(edges[:,0])
 
     # List of all neighbor targets in a single, huge 1D array. This will act
@@ -98,6 +81,7 @@ def flatten_neighbors(gpm):
 
     # Where to stop looking for genotype's neighbors in neighbors array
     neighbor_slicer[genotypes_with_neighbors[:-1],1] = start_indexes[1:]
-    neighbor_slicer[genotypes_with_neighbors[-1],1] = num_total_neighbors
+    if num_total_neighbors != 0:
+        neighbor_slicer[genotypes_with_neighbors[-1],1] = num_total_neighbors
 
     return neighbor_slicer, neighbors
