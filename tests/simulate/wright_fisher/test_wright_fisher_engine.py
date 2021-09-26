@@ -112,7 +112,7 @@ def _test_numerical(use_cython=False):
                         neighbors=neighbors,
                         use_cython=use_cython)
 
-    assert pops[-1,-1] >= 98
+    assert pops[-1,-1] >= 95
 
     # make sure conservation of mass holds
     assert len(np.unique(np.sum(pops,axis=1))) == 1
