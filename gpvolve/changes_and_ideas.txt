@@ -1,0 +1,24 @@
+# Initial changes
+
+1. gpmsm (GenotypePhenotypeMSM), which was a subclass of gpgraph, was scrapped.
+2. Package is being refactored as a collection of tools that can be used
+    directly on a gpmap object (since gpmap + gpgraph are now one).
+3. Usages of NetworkX are being phased out (main use was making transition matrix,
+    which the program now does using cython).
+    Note: unless necessary, 'markov' and 'simulate' submodules won't require much meddling
+    since they are working fine.
+4. 'Utils' was combined in a single folder
+5. '__init__.py' files inside each submodule were fixed
+
+# Troubleshooting
+1. Figure out where to put decorator properties of old GenotypePhenotypeMSM subclass.
+    Some of the functions are already utils.
+2. Scrap obsolete code from all submodules.
+3. Making sure essential functions are still working after eliminating gpmsm subclass.
+
+# Goals for 10/12/21
+1. Clear up and organize existing code into a useful collection of functions for gpmap.
+2. Make current 'gpvole' compatible with current version of 'gpmap'
+3. Write at least a unit test for each written piece of code, and at least one for each
+    faulty existing piece of code and/or code that needs to be refactored.
+4. Get binder, jupyter examples and 'pip' installation back online.

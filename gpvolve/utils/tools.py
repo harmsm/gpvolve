@@ -3,7 +3,6 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import shortest_path
 
-
 def get_sub_paths(paths, start, end):
     """Get part of path between 'start' node and 'end' node.
     Parameters

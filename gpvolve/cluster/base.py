@@ -1,11 +1,14 @@
 from .utils import *
-from ..utils import find_max
-
 import msmtools.analysis as mana
 import warnings
 import networkx as nx
 from scipy.sparse import dok_matrix
 import itertools
+
+# Questionable import/not-found
+# 10/5/21 - Obsolete, replaced with
+from ..utils import find_max
+
 
 class GenotypePhenotypeClusters(object):
     """Handles clustered genotype-phenotype maps.
