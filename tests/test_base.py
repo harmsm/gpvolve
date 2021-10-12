@@ -1,7 +1,7 @@
 
 import pytest
 import gpvolve.check as check
-import gpvolve
+import gpmap
 
 
 def test_check_gpm():

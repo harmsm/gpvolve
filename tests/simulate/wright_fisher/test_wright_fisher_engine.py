@@ -1,13 +1,9 @@
-
-import pytest
-
+import itertools
 import gpmap
+import numpy as np
 from gpvolve import utils
 from gpvolve.simulate import wright_fisher as wf
 
-import numpy as np
-
-import itertools
 
 def _test_wf_engine(use_cython=False):
     """

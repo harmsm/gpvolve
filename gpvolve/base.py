@@ -72,6 +72,7 @@ def build_transition_matrix(gpm, fixation_model, **params):
     # diag_vals = self.transition_matrix[diag_indices]
     # # nx.set_edge_attributes(self, name="transition_probability", values=dict(zip(self.self_edges, diag_vals)))
 
+    gpvolve.utils
 
 def apply_selection(gpm, fitness_function, **params):
     """

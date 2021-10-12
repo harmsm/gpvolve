@@ -1,10 +1,9 @@
 
-import pytest, warnings
-
 import gpmap
+import numpy as np
+import pytest
 import gpvolve.utils as utils
 
-import numpy as np
 
 def test_check_neighbor_connectivity():
 

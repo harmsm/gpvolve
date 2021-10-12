@@ -22,3 +22,9 @@
 3. Write at least a unit test for each written piece of code, and at least one for each
     faulty existing piece of code and/or code that needs to be refactored.
 4. Get binder, jupyter examples and 'pip' installation back online.
+
+Update: do not prepare a pip installation
+
+
+Meeting 10/5/21
+Thinking about possible uses.

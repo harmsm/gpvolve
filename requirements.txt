@@ -7,4 +7,3 @@ cython>=0.29.20
 msmtools>=1.2.6
 networkx>=2.4
 gpmap>=0.7.0
-gpgraph>=0.2.0

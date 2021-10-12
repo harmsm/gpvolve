@@ -1,1 +1,1 @@
-from .simulate import simulate
+import gpvolve.simulate as simulate
