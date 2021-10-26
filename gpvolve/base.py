@@ -1,11 +1,8 @@
-import warnings
 import networkx as nx
 import numpy as np
+from msmtools.analysis import eigenvalues, eigenvectors, timescales
+
 from .check import gpm_sanity
-from gpgraph import GenotypePhenotypeGraph
-from msmtools.analysis import is_connected, is_reversible, eigenvalues, eigenvectors, is_transition_matrix, timescales, \
-    stationary_distribution
-from .utils import add_self_probability
 
 
 def check_tmatrix(gpm):
@@ -72,7 +69,6 @@ def build_transition_matrix(gpm, fixation_model, **params):
     # diag_vals = self.transition_matrix[diag_indices]
     # # nx.set_edge_attributes(self, name="transition_probability", values=dict(zip(self.self_edges, diag_vals)))
 
-    gpvolve.utils
 
 def apply_selection(gpm, fitness_function, **params):
     """
@@ -209,139 +205,139 @@ def soft_peaks(gpm, error):
 # ------>> Check which can be converted to utils
 # or which are already present as utils
 ###################################################################################################
+#
+# def timescales(self):
+#     "These are gpvolve's additional properties"
+#     return self._gpv
+#
+# def timescales(self):
+#     """
+#     Get the relaxation timescales corresponding to the eigenvalues in
+#     arbitrary units.
+#     """
+#     if isinstance(self._timescales, np.ndarray):
+#         return self._timescales
+#     else:
+#         self._timescales = timescales(self.transition_matrix)
+#         return self._timescales
+#
+#
+# def timescales(self, timescales):
+#     self._timescales = timescales
+#
+#
+# def eigenvalues(self):
+#     """
+#     Get the eigenvalues of the transition matrix.
+#     """
+#     if isinstance(self._eigenvalues, np.ndarray):
+#         return self._eigenvalues
+#     else:
+#         self._eigenvalues = eigenvalues(self.transition_matrix)
+#         return self._eigenvalues
+#
+#
+# def eigenvalues(self, eigenvalues):
+#     self._eigenvalues = eigenvalues
+#
+#
+# def eigenvectors(self):
+#     """
+#     Get the eigenvalues of the transition matrix.
+#     """
+#     if isinstance(self._eigenvectors, np.ndarray):
+#         return self._eigenvectors
+#     else:
+#         self._eigenvectors = eigenvectors(self.transition_matrix)
+#         return self._eigenvectors
+#
+#
+# def eigenvectors(self, eigenvectors):
+#     self._eigenvectors = eigenvectors
+#
+#
+# def forward_committor(self, source=None, target=None):
+#     """
+#     If no new source and target provided, return existing forward committor
+#     values, else, calculate them.
+#     """
+#     if not source and not target:
+#         if isinstance(self._forward_committor, np.ndarray):
+#             return self._forward_committor
+#
+#         else:
+#             raise Exception('No forward committor calculated and no source and target provided.')
+#
+#     elif source and target:
+#         self._forward_committor = self.calc_committor(self.transition_matrix, source, target,
+#                                                       forward=True)
+#         return self._forward_committor
+#
+#
+# def backward_committor(self, source=None, target=None):
+#     """
+#     If no new source and target provided, return existing backward committor
+#     values, else, calculate them.
+#     """
+#     if not source and not target:
+#         if isinstance(self._backward_committor, np.ndarray):
+#             return self._backward_committor
+#
+#         else:
+#             raise Exception('No forward committor calculated and no source and target provided.')
+#
+#     elif isinstance(source, list) and isinstance(target, list):
+#         self._backward_committor = self.calc_committor(self.transition_matrix, source, target,
+#                                                        forward=False)
+#         return self._backward_committor
+#
+#
+# def calc_committor(self, T, source, target, forward=None):
+#     """
+#     Calculate forward or backward committor for each node between source
+#     and target.
+#
+#     Parameters
+#     ----------
+#     T : 2D numpy.ndarray.
+#         Row stochastic transition matrix.
+#
+#     source : list.
+#         Source of probability flux. Committor value i will be the
+#         probability of leaving source and reaching node i before reaching
+#         target or source again.
+#
+#     target : list.
+#         Sink of probability flux. Committor value i will be the probability
+#         of reaching target from node i before reaching source.
+#
+#     forward : bool.
+#         If True, forward committor is calculated. If False, backward
+#         committor is calculated.
+#
+#     Returns
+#     -------
+#     committor : 1D numpy.ndarray.
+#         Committor values in order of transition matrix.
+#     """
+#     committor = self.calc_committor(T, source, target, forward=forward)
+#     return committor
 
-def timescales(self):
-    "These are gpvolve's additional properties"
-    return self._gpv
-
-def timescales(self):
-    """
-    Get the relaxation timescales corresponding to the eigenvalues in
-    arbitrary units.
-    """
-    if isinstance(self._timescales, np.ndarray):
-        return self._timescales
-    else:
-        self._timescales = timescales(self.transition_matrix)
-        return self._timescales
-
-
-def timescales(self, timescales):
-    self._timescales = timescales
-
-
-def eigenvalues(self):
-    """
-    Get the eigenvalues of the transition matrix.
-    """
-    if isinstance(self._eigenvalues, np.ndarray):
-        return self._eigenvalues
-    else:
-        self._eigenvalues = eigenvalues(self.transition_matrix)
-        return self._eigenvalues
-
-
-def eigenvalues(self, eigenvalues):
-    self._eigenvalues = eigenvalues
-
-
-def eigenvectors(self):
-    """
-    Get the eigenvalues of the transition matrix.
-    """
-    if isinstance(self._eigenvectors, np.ndarray):
-        return self._eigenvectors
-    else:
-        self._eigenvectors = eigenvectors(self.transition_matrix)
-        return self._eigenvectors
-
-
-def eigenvectors(self, eigenvectors):
-    self._eigenvectors = eigenvectors
-
-
-def forward_committor(self, source=None, target=None):
-    """
-    If no new source and target provided, return existing forward committor
-    values, else, calculate them.
-    """
-    if not source and not target:
-        if isinstance(self._forward_committor, np.ndarray):
-            return self._forward_committor
-
-        else:
-            raise Exception('No forward committor calculated and no source and target provided.')
-
-    elif source and target:
-        self._forward_committor = self.calc_committor(self.transition_matrix, source, target,
-                                                      forward=True)
-        return self._forward_committor
-
-
-def backward_committor(self, source=None, target=None):
-    """
-    If no new source and target provided, return existing backward committor
-    values, else, calculate them.
-    """
-    if not source and not target:
-        if isinstance(self._backward_committor, np.ndarray):
-            return self._backward_committor
-
-        else:
-            raise Exception('No forward committor calculated and no source and target provided.')
-
-    elif isinstance(source, list) and isinstance(target, list):
-        self._backward_committor = self.calc_committor(self.transition_matrix, source, target,
-                                                       forward=False)
-        return self._backward_committor
-
-
-def calc_committor(self, T, source, target, forward=None):
-    """
-    Calculate forward or backward committor for each node between source
-    and target.
-
-    Parameters
-    ----------
-    T : 2D numpy.ndarray.
-        Row stochastic transition matrix.
-
-    source : list.
-        Source of probability flux. Committor value i will be the
-        probability of leaving source and reaching node i before reaching
-        target or source again.
-
-    target : list.
-        Sink of probability flux. Committor value i will be the probability
-        of reaching target from node i before reaching source.
-
-    forward : bool.
-        If True, forward committor is calculated. If False, backward
-        committor is calculated.
-
-    Returns
-    -------
-    committor : 1D numpy.ndarray.
-        Committor values in order of transition matrix.
-    """
-    committor = self.calc_committor(T, source, target, forward=forward)
-    return committor
-
-
-def step_function(gpm):
-    """
-    A function that bins phenotypes and allows one to define neutral
-    networks in g-p-maps with continuous phenotypes
-    """
-    pass
-
-
-def neutral_network(gpm):
-    """
-    Find neutral network. Look for connected components among phenotypes
-    with same value or value within the same pre-defines bin.
-    """
-    pass
+#
+# def step_function(gpm):
+#     """
+#     A function that bins phenotypes and allows one to define neutral
+#     networks in g-p-maps with continuous phenotypes
+#     """
+#     pass
+#
+#
+# def neutral_network(gpm):
+#     """
+#     Find neutral network. Look for connected components among phenotypes
+#     with same value or value within the same pre-defines bin.
+#     """
+#     pass
 # def stationary_distribution(gpm):
 #     """
 #     The stationary distribution of the genotype-phenotype-map.

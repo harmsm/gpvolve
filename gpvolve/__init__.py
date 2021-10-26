@@ -1,15 +1,15 @@
 # Import the main module in this package
+from .__version__ import __version__
+
+from gpvolve import simulate as simulate
+from gpvolve import utils as utils
+from gpvolve import pyplot as plot
+from gpvolve import cluster as cluster
+from gpvolve import markov as markov
+from gpvolve import analysis as analysis
+from gpvolve import phenotype_to_fitness as phenotype_to_fitness
 
 
-from . import simulate as simulate
-from . import utils as utils
-from . import pyplot as plot
-from . import phenotype_to_fitness as phenotype_to_fitness
-from . import markov as markov
-from . import cluster as cluster
-from . import analysis as analysis
-
-# from gpvolve.base import *
 # import gpvolve.utils as utils
 # import gpvolve.simulate as simulate
 # import gpvolve.pyplot as pyplot
@@ -17,6 +17,7 @@ from . import analysis as analysis
 # import gpvolve.markov as markov
 # import gpvolve.cluster as cluster
 # import gpvolve.analysis as analysis
+
 
 # from .base import *
 # from .analysis import *
