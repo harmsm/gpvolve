@@ -6,6 +6,7 @@ fitness.
 
 import numpy as np
 
+
 def exponential(phenotypes, a=1,b=0,k=1):
     r"""
     Apply exponential fitness function to phenotypes. Applies model:

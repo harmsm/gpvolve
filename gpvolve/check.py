@@ -8,6 +8,7 @@ __date__ = "2021-09-25"
 import gpmap
 import pandas as pd
 
+
 def gpm_sanity(gpm):
     """
     Check sanity of a gpmap.GenotypePhenotypeMap instance for gpvolve, throwing

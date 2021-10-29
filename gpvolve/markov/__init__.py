@@ -1,2 +1,1 @@
-
-from . import utils
+from gpvolve.markov import utils

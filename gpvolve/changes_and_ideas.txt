@@ -11,14 +11,16 @@
 5. '__init__.py' files inside each submodule were fixed
 6. "GenotypePhenotypeClusters" class was deleted because it was a subclass of gpmsm.
 7. Redundant functions deleted and
+[Week of 10/29:]
+8. Fixed linking for submodules inside of gpvolve
+9. Windows compiler error fixed
+10. All relative imports replaced by absolute imports
 
 # Troubleshooting
-1. Figure out correct linking for submodules inside of gpvolve
+1. Wright-fisher simulation still not compiling on mingw compiler
 
-# Goals for 10/12/21
-1. Write at least a unit test for each written piece of code, and at least one for each
-    faulty existing piece of code and/or code that needs to be refactored.
+# Goals for 10/5/21
+1. Rewrite "cluster" functions so they're more useful
 
-
-Meeting 10/12/21
-- Help clara start with the SLIM submodule
+Meeting 10/29/21
+1.

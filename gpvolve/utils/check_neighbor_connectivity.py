@@ -1,7 +1,7 @@
-
 from gpvolve import check
 import warnings
 import numpy as np
+
 
 def check_neighbor_connectivity(gpm,warn=False):
     """

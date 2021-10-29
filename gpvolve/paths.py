@@ -2,7 +2,7 @@ import networkx as nx
 import numpy as np
 from msmtools.flux import pathways as pw
 
-from .utils import combinations, path_prob, rm_self_prob, add_self_probability, euclidean_distance
+from gpvolve.utils import combinations, path_prob, rm_self_prob, add_self_probability, euclidean_distance
 
 
 def flux_decomp(flux_matrix, source, target, fraction=1, maxiter=1000):

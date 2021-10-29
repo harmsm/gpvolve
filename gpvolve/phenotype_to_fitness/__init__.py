@@ -1,3 +1,2 @@
-from .exponential import exponential
-from .sigmoidal import sigmoidal
-
+from gpvolve.phenotype_to_fitness.exponential import exponential
+from gpvolve.phenotype_to_fitness.sigmoidal import sigmoidal

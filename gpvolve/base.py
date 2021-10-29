@@ -1,6 +1,4 @@
 import networkx as nx
-import numpy as np
-from msmtools.analysis import eigenvalues, eigenvectors, timescales
 
 from .check import gpm_sanity
 
@@ -69,135 +67,135 @@ def build_transition_matrix(gpm, fixation_model, **params):
     # diag_vals = self.transition_matrix[diag_indices]
     # # nx.set_edge_attributes(self, name="transition_probability", values=dict(zip(self.self_edges, diag_vals)))
 
-
-def apply_selection(gpm, fitness_function, **params):
-    """
-    Compute fitness values from a user-defined phenotype-fitness function.
-    A few basic functions can be found in gpsolve.fitness. For a direct
-    mapping of phenotype to fitness, use one_to_one without additional
-    parameters.
-
-    Parameters
-    ----------
-    fitness_function: function.
-        A python function that takes phenotypes and additional parameters
-        (optional) and returns a list of fitnesses(type=float).
-
-    Returns
-    -------
-    Nothing: None
-        The computed fitness values are automatically stored under
-        self.gpm.data.fitnesses.
-    """
-    # Check minimum requirements (is it gpmap object, does it have tmatrix)
-    gpm_sanity(gpm)
-
-    # Check transition matrix is present
-    check_tmatrix(gpm)
-
-    # Add fitnesses column to gpm.data pandas data frame.
-    gpm.data['fitnesses'] = fitness_function(gpm.data.phenotypes, **params)
-
-    # 10/5/21 - Finding a more ideal way of doing this without NetworkX
-    # Add node attribute.
-    # values = {node: fitness for node, fitness in enumerate(gpm.data.fitnesses.tolist())}
-    # nx.set_node_attributes(gpm, name='fitness', values=values)
-
-
-def peaks(gpm):
-    """
-    Find nodes without neighbors of higher fitness. Equal fitness allowed.
-
-    Parameters
-    ----------
-    gpm : A gpmap object.
-        gpmap object. Function will calculate transition matrix
-        if it hasn't been calculated yet.
-
-    Returns
-    -------
-    _peaks : list of sets.
-        List of peaks. Each peak is a set and can contain multiple nodes if
-        it's a flat peak of nodes with identical
-        fitness.
-    """
-    # Check minimum requirements (is it gpmap object, does it have tmatrix)
-    gpm_sanity(gpm)
-
-    # Check transition matrix is present
-    check_tmatrix(gpm)
-
-    if gpm._peaks:
-        return gpm._peaks
-    else:
-        peak_list = []
-        for node, fitness in enumerate(gpm.data.fitnesses):
-            # Get neighbors.
-            neighbors = list(neighbors(node))
-            # Remove self.
-            neighbors.remove(node)
-            # If fitness is higher than or equal to fitness of neighbors, it's a peak.
-            if fitness >= max([gpm.data.fitnesses[neighbor] for neighbor in neighbors]):
-                peak_list.append(node)
-
-        # Find connected peaks.
-        new = nx.graph.Graph()
-        new.add_nodes_from(peak_list)
-        new.add_edges_from(gpm.edges)
-        peak_graph = new.subgraph(peak_list)
-        peaks = list(nx.connected_components(peak_graph.to_undirected()))
-        gpm._peaks = peaks
-
-        return gpm._peaks
-
-
-def soft_peaks(gpm, error):
-    """Find nodes without neighbors of higher fitness. Equal fitness
-    allowed. Takes into account error, e.g. if fitness1 has one neighbor
-    (fitness2) with higher fitness, fitness1 is still considered a peak if
-    fitness1 + error is higher than or equal to fitness2 - error.
-
-    Parameters
-    ----------
-    gpm : EvoMSM object.
-        EvoMSM object with transition matrix.
-
-    error : list
-        List with one error value for each fitness. Must be in same order as
-        fitness/phenotypes array.
-
-    Returns
-    -------
-    peaks : list of sets.
-        List of peaks. Each peak is a set and can contain multiple nodes if
-        it's a flat peak of nodes with identical fitness or nodes with
-        indistinguishable fitness within the margin of error.
-    """
-    # Check minimum requirements (is it gpmap object, does it have tmatrix)
-    gpm_sanity(gpm)
-
-    # Check transition matrix is present
-    check_tmatrix(gpm)
-
-    peak_list = []
-    fitnesses = pow(gpm.data.fitnesses, 10)
-    error = pow(error, 10)
-    floor_fitnesses = fitnesses - error
-    for node, fitness in enumerate(fitnesses):
-        # Get neighbors.
-        neighbors = list(neighbors(node))
-        # Remove self.
-        neighbors.remove(node)
-        # If fitness is higher than or equal to fitness of neighbors, it's a peak.
-        if fitness + error[node] >= max([floor_fitnesses[neighbor] for neighbor in neighbors]):
-            peak_list.append(node)
-
-    # 10/1/21 - Finding best compatible method to find conn. peaks without NetworkX
-    # Find connected peaks.
-    # peak_graph = gpm.tmatrix.subgraph(peak_list)
-    # peaks = list(nx.connected_components(peak_graph.to_undirected()))
-
-    return peaks
+#
+# def apply_selection(gpm, fitness_function, **params):
+#     """
+#     Compute fitness values from a user-defined phenotype-fitness function.
+#     A few basic functions can be found in gpsolve.fitness. For a direct
+#     mapping of phenotype to fitness, use one_to_one without additional
+#     parameters.
+#
+#     Parameters
+#     ----------
+#     fitness_function: function.
+#         A python function that takes phenotypes and additional parameters
+#         (optional) and returns a list of fitnesses(type=float).
+#
+#     Returns
+#     -------
+#     Nothing: None
+#         The computed fitness values are automatically stored under
+#         self.gpm.data.fitnesses.
+#     """
+#     # Check minimum requirements (is it gpmap object, does it have tmatrix)
+#     gpm_sanity(gpm)
+#
+#     # Check transition matrix is present
+#     check_tmatrix(gpm)
+#
+#     # Add fitnesses column to gpm.data pandas data frame.
+#     gpm.data['fitnesses'] = fitness_function(gpm.data.phenotypes, **params)
+#
+#     # 10/5/21 - Finding a more ideal way of doing this without NetworkX
+#     # Add node attribute.
+#     # values = {node: fitness for node, fitness in enumerate(gpm.data.fitnesses.tolist())}
+#     # nx.set_node_attributes(gpm, name='fitness', values=values)
+#
+#
+# def peaks(gpm):
+#     """
+#     Find nodes without neighbors of higher fitness. Equal fitness allowed.
+#
+#     Parameters
+#     ----------
+#     gpm : A gpmap object.
+#         gpmap object. Function will calculate transition matrix
+#         if it hasn't been calculated yet.
+#
+#     Returns
+#     -------
+#     _peaks : list of sets.
+#         List of peaks. Each peak is a set and can contain multiple nodes if
+#         it's a flat peak of nodes with identical
+#         fitness.
+#     """
+#     # Check minimum requirements (is it gpmap object, does it have tmatrix)
+#     gpm_sanity(gpm)
+#
+#     # Check transition matrix is present
+#     check_tmatrix(gpm)
+#
+#     if gpm._peaks:
+#         return gpm._peaks
+#     else:
+#         peak_list = []
+#         for node, fitness in enumerate(gpm.data.fitnesses):
+#             # Get neighbors.
+#             neighbors = list(neighbors(node))
+#             # Remove self.
+#             neighbors.remove(node)
+#             # If fitness is higher than or equal to fitness of neighbors, it's a peak.
+#             if fitness >= max([gpm.data.fitnesses[neighbor] for neighbor in neighbors]):
+#                 peak_list.append(node)
+#
+#         # Find connected peaks.
+#         new = nx.graph.Graph()
+#         new.add_nodes_from(peak_list)
+#         new.add_edges_from(gpm.edges)
+#         peak_graph = new.subgraph(peak_list)
+#         peaks = list(nx.connected_components(peak_graph.to_undirected()))
+#         gpm._peaks = peaks
+#
+#         return gpm._peaks
+#
+#
+# def soft_peaks(gpm, error):
+#     """Find nodes without neighbors of higher fitness. Equal fitness
+#     allowed. Takes into account error, e.g. if fitness1 has one neighbor
+#     (fitness2) with higher fitness, fitness1 is still considered a peak if
+#     fitness1 + error is higher than or equal to fitness2 - error.
+#
+#     Parameters
+#     ----------
+#     gpm : EvoMSM object.
+#         EvoMSM object with transition matrix.
+#
+#     error : list
+#         List with one error value for each fitness. Must be in same order as
+#         fitness/phenotypes array.
+#
+#     Returns
+#     -------
+#     peaks : list of sets.
+#         List of peaks. Each peak is a set and can contain multiple nodes if
+#         it's a flat peak of nodes with identical fitness or nodes with
+#         indistinguishable fitness within the margin of error.
+#     """
+#     # Check minimum requirements (is it gpmap object, does it have tmatrix)
+#     gpm_sanity(gpm)
+#
+#     # Check transition matrix is present
+#     check_tmatrix(gpm)
+#
+#     peak_list = []
+#     fitnesses = pow(gpm.data.fitnesses, 10)
+#     error = pow(error, 10)
+#     floor_fitnesses = fitnesses - error
+#     for node, fitness in enumerate(fitnesses):
+#         # Get neighbors.
+#         neighbors = list(neighbors(node))
+#         # Remove self.
+#         neighbors.remove(node)
+#         # If fitness is higher than or equal to fitness of neighbors, it's a peak.
+#         if fitness + error[node] >= max([floor_fitnesses[neighbor] for neighbor in neighbors]):
+#             peak_list.append(node)
+#
+#     # 10/1/21 - Finding best compatible method to find conn. peaks without NetworkX
+#     # Find connected peaks.
+#     # peak_graph = gpm.tmatrix.subgraph(peak_list)
+#     # peaks = list(nx.connected_components(peak_graph.to_undirected()))
+#
+#     return peaks
 
 
 ###################################################################################################

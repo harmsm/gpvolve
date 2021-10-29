@@ -5,19 +5,17 @@ Run Wright Fisher simulation on a genotype phentoype map.
 __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
-from .wright_fisher import wf_engine
+import multiprocessing as mp
+import os
+import warnings
+
+import numpy as np
+from tqdm.auto import tqdm
 
 import gpvolve.check as check
 import gpvolve.utils as utils
+from .wright_fisher import wf_engine
 
-import gpmap
-
-import numpy as np
-import pandas as pd
-from tqdm.auto import tqdm
-
-import multiprocessing as mp
-import warnings, os
 
 def _sim_on_thread(args):
     """
