@@ -12,3 +12,5 @@ from gpvolve import cluster
 from gpvolve import markov
 from gpvolve import analysis
 from gpvolve import phenotype_to_fitness
+# Import fixation models with simpler names
+import gpvolve.markov.utils._generate_tmatrix.fixation as fixation_models

@@ -1,16 +1,26 @@
 import numpy as np
 
 
-def sigmoidal(P, K, n, a=0, b=1):
+def sigmoid(P, a=0, b=1):
     """
+    Apply sigmoid fitness function to phenotypes. Applies model:
+
+    $$F = a* \frac{1}{1+e^{-P}} + b$$
+
+    Parameters
+    ----------
+    phenotypes : 1D numpy.ndarray.
+        Phenotype values (dtype=float).
+    a,b : float,float,float
+        transform parameters.
+
+    Returns
+    -------
+    fitness : 1D numpy.ndarray.
+        List of fitness values.
     """
 
-    x = np.power(P, n)
-    y = np.power(K, n)
+    fitness = a*(1/(1+np.exp(-P)))+b
 
-    F = a * (x / (x + y)) + b
+    return fitness
 
-    if np.sum(np.isnan(F)) != 0 or \
-            np.sum(np.isinf(F)) != 0 or \
-            np.sum(F < 0) != 0:
-        print(yo)

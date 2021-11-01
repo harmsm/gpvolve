@@ -11,6 +11,7 @@ def split_clusters(clusters, new):
     """
     pass
 
+
 def coarse_grain_transition_matrix(T, clusters):
     """Coarse-grain a transition matrix based on clusters.
 
