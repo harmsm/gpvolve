@@ -2,7 +2,7 @@
 matplotlib>=3.2.2
 tqdm>=4.62.3
 numpy>=1.15.2
-pandas>=0.24.2
+pandas
 pytest>=3.8.1
 cython>=0.29.20
 msmtools>=1.2.6
