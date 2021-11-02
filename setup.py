@@ -25,7 +25,7 @@ URL = 'https://github.com/harmslab/gpvolve'
 EMAIL = 'harmsm@gmail.com'
 AUTHOR = 'Leander D. Goldbach, Michael J. Harms'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.2.0'
+VERSION = '0.3.0'
 
 # What packages are required for this module to be executed?
 REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'gpmap', 'matplotlib']
