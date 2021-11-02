@@ -1,5 +1,6 @@
 -i https://pypi.org/simple
 matplotlib>=3.2.2
+tqdm>=4.62.3
 numpy>=1.15.2
 pandas>=0.24.2
 pytest>=3.8.1
@@ -15,4 +16,3 @@ ipython>=7.28.0
 zlib>=1.2.11
 pygments>=2.10.0
 scipy>=1.7.1
-tqdm>=4.62.3
