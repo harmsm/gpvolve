@@ -1,7 +1,7 @@
 import pytest
 import gpmap
 import gpvolve
-from gpvolve.markov import utils
+from gpvolve.markov import base
 
 import numpy as np
 
@@ -19,10 +19,10 @@ def test_generate_tmatrix():
     for use_cython in [False, True]:
         print("Using cython?", use_cython)
 
-        T = utils.generate_tmatrix(fitness,
-                                   neighbor_slicer,
-                                   neighbors,
-                                   use_cython=use_cython)
+        T = base.generate_tmatrix(fitness,
+                                  neighbor_slicer,
+                                  neighbors,
+                                  use_cython=use_cython)
 
         assert T.shape == (4, 4)
 
@@ -37,39 +37,39 @@ def test_generate_tmatrix():
                        [1, 1, 1], None]
         for b in bad_fitness:
             with pytest.raises(ValueError):
-                T = utils.generate_tmatrix(b,
-                                           neighbor_slicer,
-                                           neighbors,
-                                           use_cython=use_cython)
+                T = base.generate_tmatrix(b,
+                                          neighbor_slicer,
+                                          neighbors,
+                                          use_cython=use_cython)
 
         bad_population_size = ["stupid", None, -1, 0]
         for b in bad_population_size:
             with pytest.raises(ValueError):
-                T = utils.generate_tmatrix(fitness,
-                                           neighbor_slicer,
-                                           neighbors,
-                                           population_size=b,
-                                           use_cython=use_cython)
+                T = base.generate_tmatrix(fitness,
+                                          neighbor_slicer,
+                                          neighbors,
+                                          population_size=b,
+                                          use_cython=use_cython)
 
         bad_model = ["stupid", None, -1, (), []]
         for b in bad_model:
             with pytest.raises(ValueError):
-                T = utils.generate_tmatrix(fitness,
-                                           neighbor_slicer,
-                                           neighbors,
-                                           fixation_model=b,
-                                           use_cython=use_cython)
+                T = base.generate_tmatrix(fitness,
+                                          neighbor_slicer,
+                                          neighbors,
+                                          fixation_model=b,
+                                          use_cython=use_cython)
 
         models = ["moran", "mcclandish", "sswm"]
         population_size = 10 ** np.arange(0, 15, dtype=int)
         for p in population_size:
             for m in models:
-                T = utils.generate_tmatrix(fitness,
-                                           neighbor_slicer,
-                                           neighbors,
-                                           population_size=p,
-                                           fixation_model=m,
-                                           use_cython=use_cython)
+                T = base.generate_tmatrix(fitness,
+                                          neighbor_slicer,
+                                          neighbors,
+                                          population_size=p,
+                                          fixation_model=m,
+                                          use_cython=use_cython)
                 S = np.sum(T, axis=1)
                 for i in range(4):
                     assert np.isclose(S[i], 1.0)
@@ -90,12 +90,12 @@ def test_generate_tmatrix():
         for m in ["moran", "mcclandish"]:
 
             # Set pop size relatively low to allow mutations...
-            T = utils.generate_tmatrix(gpm.fitness,
-                                       neighbor_slicer,
-                                       neighbors,
-                                       population_size=10,
-                                       fixation_model=m,
-                                       use_cython=use_cython)
+            T = base.generate_tmatrix(gpm.fitness,
+                                      neighbor_slicer,
+                                      neighbors,
+                                      population_size=10,
+                                      fixation_model=m,
+                                      use_cython=use_cython)
 
             # Make sure it has the right shape
             assert T.shape == (num_genotypes, num_genotypes)
@@ -120,11 +120,11 @@ def test_generate_tmatrix():
 
             # With pop size of 1, this should make diagonal zero. *Some*
             # mutation will happen and fix...
-            T = utils.generate_tmatrix(gpm.fitness,
-                                       neighbor_slicer,
-                                       neighbors,
-                                       population_size=1,
-                                       fixation_model=m,
-                                       use_cython=use_cython)
+            T = base.generate_tmatrix(gpm.fitness,
+                                      neighbor_slicer,
+                                      neighbors,
+                                      population_size=1,
+                                      fixation_model=m,
+                                      use_cython=use_cython)
             for i in range(num_genotypes):
                 assert np.isclose(T[i, i], 0)

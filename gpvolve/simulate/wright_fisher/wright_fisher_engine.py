@@ -28,7 +28,7 @@ def wf_engine(pops,
               fitness,
               neighbor_slicer,
               neighbors,
-              use_cython=True):
+              use_cython=False):
     """
     Simulate evolution across a GenotypePhenotypeMap using a Wright-Fisher
     process. This engine should generally be called via the .simulate function.
@@ -60,13 +60,13 @@ def wf_engine(pops,
         of each genotype for each step in the simulation.
     """
 
-    if use_cython:
+    try:
         return cy.wf_engine_cython(pops,
                                    mutation_rate,
                                    fitness,
                                    neighbor_slicer,
                                    neighbors)
-    else:
+    except NameError:
         return py.wf_engine_python(pops,
                                    mutation_rate,
                                    fitness,

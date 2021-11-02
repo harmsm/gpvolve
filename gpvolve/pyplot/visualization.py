@@ -1,5 +1,5 @@
 # import matplotlib.pyplot as plt
-# from gpvolve.utils import *
+# from gpvolve.base import *
 #
 #
 # def plot_timescales(timescales, figsize=None, n=None, color='orange'):

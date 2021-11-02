@@ -24,3 +24,42 @@
 
 Meeting 10/29/21
 1.
+
+Proposed hierarchy of gpvolve
+
+    # Main functions (T matrix, cluster trajectories)
+    gpvolve.build_transition_matrix(gpm)
+           .cluster_trajectories(gpm)
+
+    # Utils
+    gpvolve.utils.apply_fitness_function  (create 'fitness' category wrt given phenotype, any name)
+                 .find_max
+                 .find_peaks
+                 .find_soft_peaks
+                 .eigenvalues
+                 .eigenvectors
+                 .flatten_neighbors
+
+    # Simulations
+    gpvolve.simulate.wright_fisher(gpm)
+                    .random_walk(gpm)
+                    .enumerate_all(gpm)
+
+    # Functions related to clustering
+    gpvolve.cluster.add_to_gpm(gpm, clusters)
+                    .coarse_grain_transition_matrix(T, clusters)
+                    .cluster_to_assignments
+                    .sort_cluster_by_nodes
+
+New functions written:
+    gpvolve.utils.apply_fitness_function(gpm, fitness_function, **params)
+                  .find_peaks (compatible with gpmap dataframe)
+                  .find_soft_peaks (compatible with gpmap dataframe)
+                  .eigenvalues
+                  .eigenvectors
+    gpvolve.cluster.add_to_gpm (add cluster data to gpmap dataframe)
+
+    gpvolve.simulate.random_walk(gpm) (create a simulation of a random walk)
+
+    gpvolve.phenotype_to_fitness.linear
+                                .sigmoid (fixed)

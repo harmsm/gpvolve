@@ -97,8 +97,8 @@ class UploadCommand(Command):
 # list of cython extensions as tuples of (module,path)
 extensions = [('gpvolve.simulate.wright_fisher.wright_fisher_engine_cython',
                'gpvolve/simulate/wright_fisher/'),
-              ('gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython',
-               'gpvolve/markov/utils/_generate_tmatrix')]
+              ('gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython',
+               'gpvolve/markov/base/_generate_tmatrix')]
 
 # Create extensions to compile
 ext_modules = []

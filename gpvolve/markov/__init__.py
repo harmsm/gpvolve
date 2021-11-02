@@ -1,1 +1,1 @@
-from gpvolve.markov import utils
+from . import base

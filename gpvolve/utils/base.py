@@ -3,6 +3,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import shortest_path
 
+
 def get_sub_paths(paths, start, end):
     """Get part of path between 'start' node and 'end' node.
     Parameters
@@ -39,7 +40,6 @@ def get_sub_paths(paths, start, end):
         except KeyError:
             subpaths[tuple(p[s:e + 1])] = prob
 
-
     return subpaths
 
 
@@ -63,7 +63,7 @@ def paths_and_probs_to_dict(paths, probs, normalize=False):
 
     if normalize:
         psum = sum(probs)
-        pathproblist = [prob/psum for prob in probs]
+        pathproblist = [prob / psum for prob in probs]
     else:
         pathproblist = list(probs)
 
@@ -188,8 +188,8 @@ def rm_self_prob(tm):
 
 def path_prob(path, T):
     prob = 1
-    for i in range(len(path)-1):
-        prob = prob * T[path[i], path[i+1]]
+    for i in range(len(path) - 1):
+        prob = prob * T[path[i], path[i + 1]]
     return prob
 
 
@@ -210,8 +210,8 @@ def monotonic_incr(sequence, values):
         True if sequence is monotonically increasing. Allows for neutral steps. False if not monotonically increasing.
     """
 
-    for i in range(len(sequence)-1):
-        if values[sequence[i]] > values[sequence[i+1]]:
+    for i in range(len(sequence) - 1):
+        if values[sequence[i]] > values[sequence[i + 1]]:
             return False
     return True
 
@@ -285,8 +285,8 @@ def cluster_peaks(network, clusters):
 def cluster_centers(M, peaks):
     new = {0: M.source[0]}
     for key, value in peaks.items():
-        new[key+1] = value
-    new[len(peaks)+1] = M.target[0]
+        new[key + 1] = value
+    new[len(peaks) + 1] = M.target[0]
     return new
 
 
@@ -350,7 +350,7 @@ def cluster_positions(network, clusters, xaxis, yaxis, scale=None):
 def max_prob_matrix(T, source=None, target=None):
     """Transition matrix that only allows the step with maximum probability"""
     indices = np.argmax(T, axis=1)
-    indptr = np.array(range(T.shape[0]+1))
+    indptr = np.array(range(T.shape[0] + 1))
     data = np.ones(T.shape[0])
     M = csr_matrix((data, indices, indptr), shape=T.shape).toarray()
     return M
@@ -373,9 +373,9 @@ def paths_prob_to_edges_flux(paths_prob):
     edge_flux = {}
     for path, prob in paths_prob.items():
 
-        for i in range(len(path)-1):
+        for i in range(len(path) - 1):
             # Get edge
-            edge = (path[i], path[i+1])
+            edge = (path[i], path[i + 1])
 
             # Get path probability to edge.
             if edge in edge_flux:

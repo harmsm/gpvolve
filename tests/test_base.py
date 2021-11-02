@@ -4,7 +4,7 @@ import gpmap
 import numpy as np
 from gpvolve.base import apply_fitness_function
 from gpvolve.phenotype_to_fitness import linear
-from gpvolve import find_peaks
+from gpvolve.utils import find_peaks
 
 
 def test_check_gpm():

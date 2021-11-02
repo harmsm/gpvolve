@@ -1,7 +1,7 @@
 import gpmap
 import numpy as np
 import pytest
-from gpvolve.simulate import simulate
+from gpvolve.simulate import simulate as simulate
 
 
 def test_simulate_argpass():
