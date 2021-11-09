@@ -67,10 +67,17 @@ def test_find_peaks():
     gpm = gpmap.simulate.generate_random()
 
     # Find maximum values
-    find_peaks(gpm,name_of_phenotype='phenotype')
+    find_peaks(gpm)
 
     # Check that 'peaks' column was created and added to dataframe
-    assert 'peaks' in list(gpm.data)
+    assert 'peaks' in list(gpm.neighbors)
 
     # Check that maximum value of phenotypes is one of the peaks
-    assert np.max(gpm.data.loc[:, 'phenotype']) in list(gpm.data.loc[:, 'peaks'])
+    # Collect index of neighbors on main dataframe (source edge)
+    edges = []
+    for i, v in enumerate(gpm.neighbors.peaks):
+        if v:
+            edges.append(gpm.neighbors.loc[i, 'edge'][0])
+
+    # Check max phenotype is one of the peaks
+    assert np.max(gpm.data.loc[:, 'phenotype']) <= any(gpm.data.loc[edges, 'phenotype'])

@@ -22,8 +22,14 @@
 # Goals for 10/5/21
 1. Rewrite "cluster" functions so they're more useful
 
-Meeting 10/29/21
-1.
+Meeting 11/2/21
+# Options for loading data on gpm
+1. adding assignment as column
+2. each "genotype" in the gpm is a cluster - would have to calculate the transition betwen each of them and load them into the neighbors
+*** Use neighbors, not index, to find the local peaks.
+*** What is the output of the simulations, and is it the same for all of them?
+*** Proposed by mike: the output of all simulations could be a transition matrix
+    and next step would be clustering
 
 Proposed hierarchy of gpvolve
 

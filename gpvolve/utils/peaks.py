@@ -2,51 +2,86 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 
-def find_peaks(gpm, name_of_phenotype='phenotype', return_plot=False):
+def find_peaks(gpm, return_peaks=False):
     """
-    Finds local maxima and add to underlying dataframe for any phenotypic
-    data passed to function (i.e.,'fitness','phenotype').
-    Can return a plot of the local peaks found.
+    Finds local maxima and adds a binary column to neighbors
+    dataframe showing whether given source node is a peak.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     gpm : GenotypePhenotypeMap object
+    return_peaks : Whether to return binary list indicating
+                   nodes are a peak or not.
+
+    Returns
+    -------
+    is_peak : Binary list indicating whether node with given
+              index is a peak. Only returned if return_peaks
+              is set to 'True'.
     """
-    gpm.data['peaks'] = gpm.data.loc[:, name_of_phenotype][
-        (gpm.data.loc[:, name_of_phenotype].shift(1) < gpm.data.loc[:, name_of_phenotype]) & (
-                    gpm.data.loc[:, name_of_phenotype].shift(-1) < gpm.data.loc[:, name_of_phenotype])]
+    gpm.get_neighbors()
+    is_peak = []
 
-    if return_plot:
-        # Plot results
-        plt.scatter(plt.data.index, plt.data['peaks'], c='g')
-        gpm.data.loc[:, name_of_phenotype].plot()
-    else:
-        pass
+    for count, i in enumerate(gpm.neighbors.source):
+
+        # Phenotypes of everybody that is adjacent to genotype i
+        adjacent = list(gpm.data.loc[gpm.neighbors.loc[gpm.neighbors.source == i, "target"], "phenotype"])
+
+        # Is genotype i a peak? False = No
+        if np.max(adjacent) <= gpm.data.loc[i, 'phenotype']:
+            # If it's a peak, turn binary entry into True
+            is_peak.append(True)
+        else:
+            is_peak.append(False)
+
+    gpm.neighbors['peaks'] = is_peak
+
+    if return_peaks:
+        return is_peak
 
 
-def soft_peaks(gpm, error, name_of_phenotype='phenotype', return_plot=False):
+def soft_peaks(gpm, error, return_peaks=False):
     """
-    Finds local maxima and add to underlying dataframe for any phenotypic
-    data passed to function (i.e.,'fitness','phenotype').
+    Finds local maxima and adds a binary column to neighbors
+    dataframe showing whether given source node is a peak.
+
     Takes into account error, e.g. if fitness1 has one neighbor
     (fitness2) with higher fitness, fitness1 is still considered a peak if
     fitness1 + error is higher than or equal to fitness2 - error.
     Can return a plot of the local peaks found.
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
     gpm : GenotypePhenotypeMap object
-    """
-    gpm.data['soft_peaks'] = gpm.data.loc[:, name_of_phenotype][
-        (gpm.data.loc[:, name_of_phenotype].shift(1)+error < gpm.data.loc[:, name_of_phenotype]-error) & (
-                    gpm.data.loc[:, name_of_phenotype].shift(-1)+error < gpm.data.loc[:, name_of_phenotype]-error)]
+    error : Error in phenotypic measurement.
+    return_peaks : Whether to return binary list indicating
+                   nodes are a peak or not.
 
-    if return_plot:
-        # Plot results
-        plt.scatter(plt.data.index, plt.data['soft_peaks'], c='g')
-        gpm.data.loc[:, name_of_phenotype].plot()
-    else:
-        pass
+    Returns
+    -------
+    is_peak : Binary list indicating whether node with given
+              index is a peak. Only returned if return_peaks
+              is set to 'True'.
+    """
+    gpm.get_neighbors()
+    is_peak = []
+
+    for count, i in enumerate(gpm.neighbors.source):
+
+        # Phenotypes of everybody that is adjacent to genotype i
+        adjacent = list(gpm.data.loc[gpm.neighbors.loc[gpm.neighbors.source == i, "target"], "phenotype"])
+
+        # Is genotype i a peak? False = No
+        if np.max(adjacent) - error <= gpm.data.loc[i, 'phenotype'] + error:
+            # If it's a peak, turn binary entry into True
+            is_peak.append(True)
+        else:
+            is_peak.append(False)
+
+    gpm.neighbors['soft_peaks'] = is_peak
+
+    if return_peaks:
+        return is_peak
 
 
 def eigenvalues(T):
