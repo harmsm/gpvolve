@@ -43,7 +43,7 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
         super().__init__(gpm, *args, **kwargs)
 
         # Add self-looping edges (Not done by default in GenotypePhenotypeGraph)
-        self.self_edges = zip(*np.diag_indices(len(self.gpm.data.genotypes)))
+        self.self_edges = zip(*np.diag_indices(len(self.gpm.data.genotype)))
         self.add_edges_from(self.self_edges)
 
         # Give every node an 'index' attribute, so nodes can be labeled with their index.
@@ -82,7 +82,7 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             self.gpm.data.fitnesses.
         """
         # Add fitnesses column to gpm.data pandas data frame.
-        self.gpm.data['fitnesses'] = fitness_function(self.gpm.data.phenotypes, **params)
+        self.gpm.data['fitnesses'] = fitness_function(self.gpm.data.phenotype, **params)
 
         # Add node attribute.
         values = {node: fitness for node, fitness in enumerate(self.gpm.data.fitnesses.tolist())}
@@ -365,7 +365,7 @@ class GenotypePhenotypeMSM(GenotypePhenotypeGraph):
             return self._backward_committor
 
     @staticmethod
-    def calc_committor(self,T, source, target, forward=None):
+    def calc_committor(self, T, source, target, forward=None):
         """
         Calculate forward or backward committor for each node between source
         and target.
