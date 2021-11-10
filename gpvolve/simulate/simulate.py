@@ -325,6 +325,16 @@ def random_walk(gpm, M=10, steps=10):
     T : probability transition matrix calculated based on how many
         times a starting node i ended in j.
     """
+    # Add neighbors and check sanity
+    gpm.get_neighbors()
+    check.gpm_sanity(gpm)
+
+    # Check for poor connectivity and throw a warning if such nodes exist.
+    utils.check_neighbor_connectivity(gpm, warn=True)
+
+    # Get neighbors into useful form
+    neighbor_slicer, neighbors = utils.flatten_neighbors(gpm)
+
     # Simulate M random walks of n steps each and get results as
     # probability transition matrix (from i to j)
     # Parameters
