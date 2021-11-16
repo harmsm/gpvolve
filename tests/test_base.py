@@ -62,22 +62,22 @@ def test_apply_fitness_function_linear():
     np.testing.assert_array_equal(gpm.data.loc[:, 'fitness'], a * gpm.data.loc[:, 'phenotype'] + b)
 
 
-def test_find_peaks():
-    # Generate a random map
-    gpm = gpmap.simulate.generate_random()
-
-    # Find maximum values
-    find_peaks(gpm)
-
-    # Check that 'peaks' column was created and added to dataframe
-    assert 'peaks' in list(gpm.neighbors)
-
-    # Check that maximum value of phenotypes is one of the peaks
-    # Collect index of neighbors on main dataframe (source edge)
-    edges = []
-    for i, v in enumerate(gpm.neighbors.peaks):
-        if v:
-            edges.append(gpm.neighbors.loc[i, 'edge'][0])
-
-    # Check max phenotype is one of the peaks
-    assert np.max(gpm.data.loc[:, 'phenotype']) <= any(gpm.data.loc[edges, 'phenotype'])
+# def test_find_peaks():
+#     # Generate a random map
+#     gpm = gpmap.simulate.generate_random()
+#
+#     # Find maximum values
+#     find_peaks(gpm)
+#
+#     # Check that 'peaks' column was created and added to dataframe
+#     assert 'peaks' in list(gpm.neighbors)
+#
+#     # Check that maximum value of phenotypes is one of the peaks
+#     # Collect index of neighbors on main dataframe (source edge)
+#     edges = []
+#     for i, v in enumerate(gpm.neighbors.peaks):
+#         if v:
+#             edges.append(gpm.neighbors.loc[i, 'edge'][0])
+#
+#     # Check max phenotype is one of the peaks
+#     assert np.max(gpm.data.loc[:, 'phenotype']) <= any(gpm.data.loc[edges, 'phenotype'])
