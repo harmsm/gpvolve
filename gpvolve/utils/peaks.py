@@ -23,7 +23,7 @@ def find_peaks(gpm, return_peaks=False):
     is_peak = []
 
     # Enumerate over genotypes here, not neighbors.
-    for count, i in enumerate(gpm.data.genotypes):
+    for count, i in enumerate(gpm.data.genotype):
 
         # Phenotypes of everybody that is adjacent to genotype i
         adjacent = list(gpm.data.loc[gpm.neighbors.loc[gpm.neighbors.source == i, "target"], "phenotype"])
@@ -68,7 +68,7 @@ def soft_peaks(gpm, error, return_peaks=False):
     is_peak = []
 
     # Enumerate over genotypes here, not neighbors.
-    for count, i in enumerate(gpm.data.genotypes):
+    for count, i in enumerate(gpm.data.genotype):
 
         # Phenotypes of everybody that is adjacent to genotype i
         adjacent = list(gpm.data.loc[gpm.neighbors.loc[gpm.neighbors.source == i, "target"], "phenotype"])
