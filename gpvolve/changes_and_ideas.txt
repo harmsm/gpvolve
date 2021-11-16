@@ -69,3 +69,5 @@ New functions written:
 
     gpvolve.phenotype_to_fitness.linear
                                 .sigmoid (fixed)
+                                .exponential
+

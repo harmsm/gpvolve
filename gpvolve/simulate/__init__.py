@@ -1,2 +1,2 @@
 from .simulate import simulate
-from gpvolve.simulate.simulate import random_walk
+from .simulate import random_walk
