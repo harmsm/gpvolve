@@ -3,13 +3,12 @@ from gpvolve.cluster.utils import cluster_sets
 import msmtools.analysis as mana
 
 
-def cluster_trajectories(gpm, T, m):
+def cluster_trajectories(T, m):
     # Find clusters using transition matrix and PCCA
     """Runs PCCA++ [1] to compute a metastable decomposition of MSM states.
 
     Parameters
     ----------
-    gpm : GenotypePhenotypeMap object.
     T: a probability transition matrix.
     m : Desired number of metastable sets (int).
 

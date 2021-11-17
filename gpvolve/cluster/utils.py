@@ -192,7 +192,7 @@ def cluster_sets(assignments):
     for cluster in clusters:
         sets.append(np.where(a == cluster)[0])
 
-    return np.array(sets)
+    return np.array(sets, dtype=object)
 
 
 def cluster_assignments(memberships):
