@@ -1,1 +1,1 @@
-# from .visualization import plot_matrix, plot_timescales, plot_eigenvalues
+from gpvolve.pyplot.visualization import plot_clusters

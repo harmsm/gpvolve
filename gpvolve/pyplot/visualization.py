@@ -1,3 +1,58 @@
+from gpmap import GenotypePhenotypeGraph,plot
+
+
+def plot_clusters(gpm, fig_title, figsize=(5, 5), cmap='Accent'):
+    """
+    Simple plotting function. Removes self-looping edges, and
+
+    Parameters
+    ----------
+    gpm : A GenotypePhenotypeMap object with a "fitness" and "assignment" column.
+    fig_title : Title of the figure, default is None
+    figsize : size of figure, default is (5,5)
+    cmap : colormap for the node colors, default is Accent (a qualitative colormap)
+
+    Returns
+    -------
+    fig, ax : matplotlib figure
+    """
+    # Check a fitness and assignment column is present in dataframe
+    if 'fitness' in gpm.data.columns:
+        pass
+    else:
+        err = f"fitness column not in gpm.data\n"
+        err += "dataframe\n"
+        raise KeyError(err)
+
+    if 'assignment' in gpm.data.columns:
+        pass
+    else:
+        err = f"assignment column not in gpm.data\n"
+        err += "dataframe\n"
+        raise KeyError(err)
+
+    # Remove self-looping edges
+    gpm.neighbors.loc[gpm.neighbors.direction != 1, "include"] = False
+
+    # Create genotype-phenotype grab and use assignments for colors and labels
+    G = GenotypePhenotypeGraph()
+    G.add_gpm(gpm)
+    G.add_node_cmap(data_column="assignment", cmap=cmap)
+    G.add_node_labels(data_column="assignment")
+
+    # Plot using Linux-compatible settings
+    # If default edge options are used, plots won't show in some operating systems
+    G, fig, ax = plot(G,
+                      figsize=figsize,
+                      plot_node_labels=True,
+                      edge_options={'arrows': 'black',
+                                    'arrowsize': 1})
+    if fig_title:
+        ax.set_title(fig_title)
+
+    return fig, ax
+
+
 # import matplotlib.pyplot as plt
 # from gpvolve.base import *
 #
