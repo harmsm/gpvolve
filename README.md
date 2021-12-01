@@ -2,7 +2,7 @@
 
 [![PyPI version](https://badge.fury.io/py/gpvolve.svg)](https://badge.fury.io/py/gpvolve)
 [![](https://readthedocs.org/projects/gpvolve/badge/?version=latest)](https://gpvolve.readthedocs.io/en/latest/?badge=latest)
-[![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/harmslab/gpvolve/blob/master/examples/Introduction%20to%20gpvolve.ipynb)
+[![nbviewer](https://nbviewer.org/github/lperezmo/gpvolve/blob/master/examples/introduction.ipynb)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/harmslab/gpvolve.git/master?filepath=examples%2FIntroduction%20to%20gpvolve.ipynb)
 
 **A python package for extracting evolutionary trajectories from genotype-phenotype-maps**
