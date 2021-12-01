@@ -1,5 +1,5 @@
-from gpvolve.cluster.utils import *
-from gpvolve.cluster.pcca import *
-from gpvolve.cluster.from_paths import *
-from gpvolve.cluster.opt import *
-from gpvolve.cluster.criteria import *
+from gpvolve.cluster.utils import assignment, membership, crispness, cluster_assignments
+from gpvolve.cluster.pcca import cluster
+from gpvolve.cluster.opt import optimize
+import gpvolve.cluster.criteria as criteria
+

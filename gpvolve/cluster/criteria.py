@@ -1,6 +1,6 @@
 from gpvolve.cluster.utils import crispness
 from gpvolve.utils import eigenvalues
-from gpvolve.cluster import membership, cluster_trajectories
+from gpvolve.cluster import membership, cluster
 import numpy as np
 
 
@@ -74,7 +74,7 @@ def optimality(T, z=None):
     crisps = []
     for i in range(1, z):
         memberships = membership(T, i)
-        clusters = cluster_trajectories(T, i)
+        clusters = cluster(T, i)
         crisps.append(crispness(memberships, clusters))
 
     # Invert crispness because otherwise answer is always zero
@@ -88,8 +88,7 @@ def optimality(T, z=None):
     return nc
 
 
-
-def minChi(T, z=None):
+def minchi(T, z=None):
     """
     Finding minChi criterion value for each n in range(2,z) to
     obtain optimal number of clusters [1].

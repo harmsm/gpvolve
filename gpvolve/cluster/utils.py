@@ -69,9 +69,15 @@ def membership(T, n, gpm=False):
     """
     _membership = mana.pcca_memberships(T, n)
     if gpm:
-        gpm.data['membership'] = _membership
+        gpm.data['membership'] = list(_membership)
 
     return _membership
+
+
+def cluster_assignments(memberships):
+    """Assign each node to a cluster based on that nodes highest membership value."""
+    cl_assign = np.argmax(memberships, axis=1)
+    return cl_assign
 
 
 def sets(T, n):
@@ -195,10 +201,6 @@ def cluster_sets(assignments):
     return np.array(sets, dtype=object)
 
 
-def cluster_assignments(memberships):
-    """Assign each node to a cluster based on that nodes highest membership value."""
-    cl_assign = np.argmax(memberships, axis=1)
-    return cl_assign
 
 
 def sort_clusters_by_nodes(clusters, nodes):
