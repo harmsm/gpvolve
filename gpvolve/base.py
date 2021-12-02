@@ -14,8 +14,7 @@ def apply_fitness_function(gpm, fitness_function, **params):
 
     Parameters
     ----------
-    gpm : a GenotypePhenotypeMap object with with a phenotype values specified
-            beforehand.
+    gpm : a GenotypePhenotypeMap object
     fitness_function: function.
         A python function that takes phenotypes and additional parameters
         (optional) and returns a list of fitness values (type=float).
@@ -39,7 +38,7 @@ def apply_fitness_function(gpm, fitness_function, **params):
     return gpm
 
 
-def build_transition_matrix(gpm, fixation_model='moran', fitness_model='linear', **params):
+def build_transition_matrix(gpm, fixation_model='moran', **params):
     """
     Calculate fixation probability along all edges and build transition
     matrix. Tries to use cython first, and falls back to python if needed.
@@ -61,21 +60,18 @@ def build_transition_matrix(gpm, fixation_model='moran', fitness_model='linear',
     gpm.get_neighbors()
     gpm_sanity(gpm)
 
-    # Get parameters
-    if 'fitness' in list(gpm.data):
-        fitness = np.array(gpm.fitness)
-    if fitness_model == 'linear':
-        apply_fitness_function(gpm, fitness_function=linear)
-        fitness = np.array(gpm.fitness)
-    elif fitness_model == 'exponential':
-        apply_fitness_function(gpm, fitness_function=exponential)
-        fitness = np.array(gpm.fitness)
-    elif fitness_model == 'sigmoid':
-        apply_fitness_function(gpm, fitness_function=sigmoid)
-        fitness = np.array(gpm.fitness)
+    # Check a fitness column is present in gpm.data dataframe
+    if 'fitness' in gpm.data.columns:
+        pass
     else:
-        print("Unexpected name for phenotype-to-fitness function. Valid"
-              "options include: 'linear','exponential','sigmoid',and 'step'.")
+        err = f"fitness column not in gpm.data\n"
+        err += "dataframe\n"
+        raise KeyError(err)
+
+    # Convert fitness to an array
+    fitness = np.array(gpm.fitness)
+
+    # Get flat neighbors
     neighbor_slicer, neighbors = flatten_neighbors(gpm)
 
     try:
@@ -84,14 +80,16 @@ def build_transition_matrix(gpm, fixation_model='moran', fitness_model='linear',
                                   neighbor_slicer,
                                   neighbors,
                                   fixation_model=fixation_model,
-                                  use_cython=use_cython)
+                                  use_cython=use_cython,
+                                  **params)
     except ImportError:
         use_cython = False
         t = base.generate_tmatrix(fitness,
                                   neighbor_slicer,
                                   neighbors,
                                   fixation_model=fixation_model,
-                                  use_cython=use_cython)
+                                  use_cython=use_cython,
+                                  **params)
 
     return t
 
