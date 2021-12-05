@@ -296,7 +296,7 @@ def plot_network(
         vmax=vmax,
         node_shape=node_shape,
         node_size=node_size,
-        node_color=[network.nodes[n][attribute] for n in nodelist],
+        node_color=node_color,#[network.nodes[n][attribute] for n in nodelist],
         linewidths=linewidths,
         edgecolors=edgecolors,
         cmap=cmap,
