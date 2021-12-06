@@ -6,17 +6,28 @@
 
 import io, os, sys, glob
 from shutil import rmtree
-
-from setuptools import find_packages, setup, Command, dist
-from setuptools.extension import Extension
+from setuptools import dist
 
 # hack necessary to allow setup.py install..
 dist.Distribution().fetch_build_eggs(['Cython>=3.0.0a9', 'numpy>=1.21.1'])
 
 import numpy as np
 import Cython.Compiler.Options
+from Cython.Build import cythonize, build_ext
+from setuptools.extension import Extension
+from os.path import join, dirname
+import glob
+from setuptools import find_packages, setup, Command
+
 Cython.Compiler.Options.annotate = True
-from Cython.Distutils import build_ext
+
+# Very annoying way of linking random libraries from numpy that works on all operating systems
+path = dirname(__file__)
+src_dir = join(dirname(path), '..', 'src')
+defs = [('NPY_NO_DEPRECATED_API', 0)]
+inc_path = np.get_include()
+# not so nice. We need the random/lib library from numpy
+lib_path = join(np.get_include(), '..', '..', 'random', 'lib')
 
 # Package meta-data.
 NAME = 'gpvolve'
@@ -25,7 +36,7 @@ URL = 'https://github.com/harmslab/gpvolve'
 EMAIL = 'harmsm@gmail.com'
 AUTHOR = 'Leander D. Goldbach, Michael J. Harms'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.3.0'
+VERSION = '0.2.0'
 
 # What packages are required for this module to be executed?
 REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'gpmap', 'matplotlib']
@@ -94,37 +105,41 @@ class UploadCommand(Command):
 
         sys.exit()
 
+
 # list of cython extensions as tuples of (module,path)
 extensions = [('gpvolve.simulate.wright_fisher.wright_fisher_engine_cython',
                'gpvolve/simulate/wright_fisher/'),
-              ('gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython',
-               'gpvolve/markov/base/_generate_tmatrix')]
+              ('gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython',
+               'gpvolve/markov/utils/_generate_tmatrix')]
 
 # Create extensions to compile
 ext_modules = []
 for e in extensions:
     # Get pyx files
-    model_pyx_files = glob.glob(os.path.join(e[1],"*.pyx"))
+    model_pyx_files = glob.glob(os.path.join(e[1], "*.pyx"))
 
     # Get c files, making sure not to grab .c files corresponding to .pyx files
     # that may have been generated previously by cython commands. If we
     # include those, we get duplicate definitions of functions
-    for c in glob.glob(os.path.join(e[1],"*.c")):
+    for c in glob.glob(os.path.join(e[1], "*.c")):
         if ".".join(c.split(".")[:-1]) + ".pyx" not in model_pyx_files:
             model_pyx_files.append(c)
 
-    ext_modules.append(
-        Extension(e[0],
-                  model_pyx_files,
-                  include_dirs=[np.get_include()],
-                  define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')])
-    )
+    ext_modules.append(Extension(e[0],
+                                 model_pyx_files,
+                                 include_dirs=[inc_path,
+                                               np.get_include(),
+                                               join(path, '..', '..')],
+                                 library_dirs=[lib_path],
+                                 libraries=['npyrandom'],
+                                 define_macros=[('NPY_NO_DEPRECATED_API', 'NPY_1_7_API_VERSION')]),
+                       )
 
 # Make sure these are included with the package
-all_c_files = list(glob.glob("**/*.c",recursive=True))
-all_c_files.extend(list(glob.glob("**/*.h",recursive=True)))
-all_c_files.extend(list(glob.glob("**/*.pyx",recursive=True)))
-all_c_files.extend(list(glob.glob("**/*.pxd",recursive=True)))
+all_c_files = list(glob.glob("**/*.c", recursive=True))
+all_c_files.extend(list(glob.glob("**/*.h", recursive=True)))
+all_c_files.extend(list(glob.glob("**/*.pyx", recursive=True)))
+all_c_files.extend(list(glob.glob("**/*.pxd", recursive=True)))
 
 # Where the magic happens:
 setup(
@@ -146,7 +161,7 @@ setup(
     # },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
-    package_data={"":all_c_files},
+    package_data={"": all_c_files},
     include_package_data=True,
     license='MIT',
     classifiers=[
