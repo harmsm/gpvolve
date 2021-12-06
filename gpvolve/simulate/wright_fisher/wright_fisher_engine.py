@@ -59,16 +59,14 @@ def wf_engine(pops,
         num_steps + 1 x num_genotypes 2D int array that stores the population
         of each genotype for each step in the simulation.
     """
-    #################
-    # CHANGE PY TO CY
-    #################
-    if use_cython:
-        return py.wf_engine_cython(pops,
+
+    try:
+        return cy.wf_engine_cython(pops,
                                    mutation_rate,
                                    fitness,
                                    neighbor_slicer,
                                    neighbors)
-    else:
+    except NameError:
         return py.wf_engine_python(pops,
                                    mutation_rate,
                                    fitness,
