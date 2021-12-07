@@ -98,3 +98,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Ignore cythonized files produced in bad Ubuntu
+gpvolve/gpvolve/simulate/wright_fisher/*.c
+gpvolve/gpvolve/simulate/wright_fisher/*.so
