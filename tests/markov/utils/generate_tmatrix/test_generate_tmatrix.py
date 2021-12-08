@@ -67,7 +67,7 @@ def test_generate_tmatrix():
                 T = base.generate_tmatrix(fitness,
                                           neighbor_slicer,
                                           neighbors,
-                                          population_size=p,
+                                          population_size=abs(p),
                                           fixation_model=m,
                                           use_cython=use_cython)
                 S = np.sum(T, axis=1)
