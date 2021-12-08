@@ -1,21 +1,23 @@
 __description__ = \
 """
-Run Wright Fisher simulation on a genotype phenotype map.
+Run Wright Fisher simulation on a genotype phentoype map.
 """
 __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
-import multiprocessing as mp
-import os
-import warnings
-
-import numpy as np
-from tqdm.auto import tqdm
+from .wright_fisher import wf_engine
 
 import gpvolve.check as check
 import gpvolve.utils as utils
-from .wright_fisher import wf_engine
 
+import gpmap
+
+import numpy as np
+import pandas as pd
+from tqdm.auto import tqdm
+
+import multiprocessing as mp
+import warnings, os
 
 def _sim_on_thread(args):
     """
@@ -306,61 +308,3 @@ def simulate(gpm,
 
     # Otherwise, return a list of sims
     return results
-
-
-def random_walk(gpm, M=10, steps=10):
-    """
-    Simulate a random walk across a given GenotypePhenotypeMap
-    and return a probability transition matrix based on how many
-    times genotype i transition to j after n steps for M simulations.
-
-    Parameters
-    ----------
-    gpm : a GenotypePhenotypeMap object
-    num_steps : number of steps to take in each random walk
-    M : number of simulated random walks to take for each genotype
-
-    Returns
-    -------
-    T : probability transition matrix calculated based on how many
-        times a starting node i ended in j.
-    """
-    # Add neighbors and check sanity
-    gpm.get_neighbors()
-    check.gpm_sanity(gpm)
-
-    # Check for poor connectivity and throw a warning if such nodes exist.
-    utils.check_neighbor_connectivity(gpm, warn=True)
-
-    # Get neighbors into useful form
-    neighbor_slicer, neighbors = utils.flatten_neighbors(gpm)
-
-    # Simulate M random walks of n steps each and get results as
-    # probability transition matrix (from i to j)
-    # Parameters
-    steps = 5
-    M = 10
-    nodes = len(gpm.data)
-    count_matrix = np.zeros((len(gpm.data), len(gpm.data)))
-
-    # Simulate simple random walk given starting genotype
-    # and number of steps to "walk" across gpmap
-    for start in range(nodes):
-        for nsim in range(M):
-            # First step is the start
-            if _next == None:
-                _next = start
-            else:
-                for i in range(steps):
-                    # Choose one of the neighbors of the next genotype to move to
-                    _next = np.random.choice(neighbors[neighbor_slicer[_next, 0]:neighbor_slicer[_next, 1]])
-            # Add a one to the index of given genotype if walk ended there
-            count_matrix[start, _next] += 1
-
-    # Normalized number of counts (i.e. prob of transitioning from start to end)
-    tmatrix = count_matrix / M
-
-    # Check transition matrix is right stochastic (rows sum to one)
-    np.testing.assert_almost_equal(np.sum(tmatrix, axis=1), np.ones(len(gpm.data)))
-
-    return tmatrix

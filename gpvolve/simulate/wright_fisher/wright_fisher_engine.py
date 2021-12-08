@@ -1,5 +1,5 @@
 __description__ = \
-    """
+"""
 Code for simulating evolution using a Wright-Fisher process.
 """
 __author__ = "Michael J. Harms"
@@ -10,10 +10,8 @@ import numpy as np
 import warnings
 
 import gpvolve.simulate.wright_fisher.wright_fisher_engine_python as py
-
 try:
     import gpvolve.simulate.wright_fisher.wright_fisher_engine_cython as cy
-
     cy_available = True
 except ImportError:
 
@@ -21,7 +19,6 @@ except ImportError:
     w = "Could not load cython version of wright_fisher_engine. Falling\n"
     w += "back on python version (same functionality, much slower)\n."
     warnings.warn(w)
-
 
 def wf_engine(pops,
               mutation_rate,
@@ -60,13 +57,13 @@ def wf_engine(pops,
         of each genotype for each step in the simulation.
     """
 
-    try:
+    if use_cython:
         return cy.wf_engine_cython(pops,
                                    mutation_rate,
                                    fitness,
                                    neighbor_slicer,
                                    neighbors)
-    except NameError:
+    else:
         return py.wf_engine_python(pops,
                                    mutation_rate,
                                    fitness,
