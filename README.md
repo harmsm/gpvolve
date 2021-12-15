@@ -49,6 +49,9 @@ optimal_num_clusters = optimize(T, criterion='Spectral gap')
 ```
 Plot and color the nodes of the genotypes using any attribute within the genotype-phenotype map.
 ```python
+from matplotlib import pyplot as plt
+from gpmap import GenotypePhenotypeGraph
+
 # Remove self-looping edges
 gpm.neighbors.loc[gpm.neighbors.direction != 1,"include"] = False
 
@@ -61,8 +64,14 @@ G.add_node_cmap(data_column="phenotype")
 G.add_node_labels(data_column="genotype")
 
 # Plot map
-G, fig, ax = plot(G,figsize=(15,10),plot_node_labels=True, node_options={'node_size':5000}, edge_options={'arrows':'black','arrowsize':1})
-ax.set_title("Map nodes labeled by genotype and colored by fitness", fontsize=20)
+G, fig, ax = plot(G,
+                  figsize=(15,10),
+                  plot_node_labels=True, 
+                  node_options={'node_size':5000}, 
+                  edge_options={'arrows':'black',
+                                'arrowsize':1})
+ax.set_title("Map nodes labeled by genotype and colored by fitness", 
+             fontsize=20)
 plt.show()
 ```
 
