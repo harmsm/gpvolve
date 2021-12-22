@@ -1,10 +1,11 @@
 __description__ = \
 """
+Functions for interfacing with SLiM. (Developed using SLiM version 3.7)
 """
 __date__ = "2021-12-10"
 __author__ = "Clara Rehmann"
 
-from gpvolve.simulate import SimulationResult
+from gpvolve.simulate.base import SimulationResult
 from gpvolve.simulate import utils
 import gpvolve.check as check
 
@@ -153,11 +154,11 @@ def _write_slim(L_sites, generations, out, haploid=False):
         f.write('\tsim.treeSeqOutput(OUTPATH+".trees");\n')
         f.write('\tsim.simulationFinished();\n')
         f.write('}')
-    return None
 
 def _make_gpm(gpm, out, fitness_column='fitness'):
     """
-    write SLiM-readable gpmap (just a tsv with an extra column defining the fitness values that SLiM should use)
+    write SLiM-readable gpmap (just a tsv with an extra column defining the
+    fitness values that SLiM should use)
 
     PARAMETERS:
     -----------
@@ -174,7 +175,6 @@ def _make_gpm(gpm, out, fitness_column='fitness'):
     gpm.data['slim_fitness'] = gpm.data[fitness_column]
     # save
     gpm.data.to_csv(out+'_gpmap_SLiM.txt', sep='\t')
-    return None
 
 
 def _get_gtcount(filepath, gpm):
@@ -342,6 +342,7 @@ def _get_hist(filepath, treeseq):
                 pathdict.update({tuple(order):sum(np.array(counts)[np.where((morders == order).all(axis=1))[0]])})
 
             histdict.update({gt:pathdict})
+
     return histdict
 
 

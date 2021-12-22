@@ -1,1 +1,1 @@
-from .slimsim import simulate
+from .slim_interface import simulate
