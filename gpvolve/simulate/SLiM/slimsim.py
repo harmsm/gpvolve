@@ -5,8 +5,8 @@ __date__ = "2021-12-10"
 __author__ = "Clara Rehmann"
 
 from gpvolve.simulate import SimulationResult
+from gpvolve.simulate import utils
 import gpvolve.check as check
-from . import utils
 
 import pyslim, tskit
 import numpy as np

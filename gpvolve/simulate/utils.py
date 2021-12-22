@@ -13,7 +13,7 @@ import numpy as np, pandas as pd
 import os
 
 def make_stepframe(stpdict,num_generations):
-    
+
     # establish dataframe for transition counts each generation
     stepframe = pd.DataFrame(columns = [str(k) for k in stpdict.keys()], index = range(num_generations+1))
     stepframe = stepframe.fillna(0)

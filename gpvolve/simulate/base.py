@@ -1,3 +1,17 @@
+__description__ = \
+"""
+"""
+__date__ = "2021-12-10"
+__author__ = "Clara Rehmann"
+
+import gpmap
+from gpvolve.simulate import utils
+
+import imageio
+
+from matplotlib import pyplot as plt
+import numpy as np
+import pandas as pd
 
 ## PLOTTING FUNCTIONS
 
@@ -67,7 +81,7 @@ class SimulationResult:
         self._edge_counts = edge_counts
         self._node_history = node_history
 
-        self._generations = max(self._node_counts.keys())
+        self._generations = len(self._node_counts) #max(self._node_counts.keys())
         self._edge_weights = utils.make_fluxdict(self._gpm, self._node_history)
 
 
@@ -149,7 +163,7 @@ class SimulationResult:
         plot : MatPlotLib object (?)
 
         """
-        df = pd.DataFrame.from_dict(self._node_counts, orient = 'index')
+        df = self.node_counts
         plot = plt.stackplot(df.index, df.values.T, labels = df.index)
         plt.legend()
         return plot
@@ -160,13 +174,13 @@ class SimulationResult:
         """
 
         # load data
-        countframe = pd.DataFrame.from_dict(self._node_counts, orient = 'index')
+        countframe = self.node_counts
         stepframe = utils.make_stepframe(self._edge_counts, self._generations)
         gpm = self._gpm
 
         # make plots
         for gen in range(1, len(countframe)):
-            p = utils.plot_gen(gen, gpm, countframe, stepframe, cmap=cmap)
+            p = plot_gen(gen, gpm, countframe, stepframe, cmap=cmap)
             plt.savefig(outpath+'_'+str(gen)+'.png')
             plt.close()
 
