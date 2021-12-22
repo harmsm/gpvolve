@@ -1,9 +1,9 @@
-__description__ = \
-"""
-
-"""
-__author__ = "Michael J. Harms"
-__date__ = "2021-09-15"
+# __description__ = \
+# """
+#
+# """
+# __author__ = "Michael J. Harms"
+# __date__ = "2021-09-15"
 
 import gpmap
 from gpvolve import check

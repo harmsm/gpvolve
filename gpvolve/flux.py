@@ -1,5 +1,6 @@
 from msmtools.flux import tpt
 
+
 def paths_prob_to_edges_flux(paths_prob):
     """Chops a list of paths into its edges, and calculate the probability
     of that edge across all paths.

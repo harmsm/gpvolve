@@ -1,11 +1,8 @@
-import pytest
-
 import gpmap
-
-import gpvolve
+import numpy as np
+import pytest
 from gpvolve.utils import flatten_neighbors
 
-import numpy as np
 
 def test_flatten_neighbors():
 

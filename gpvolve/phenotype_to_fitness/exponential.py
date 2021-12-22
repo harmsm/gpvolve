@@ -6,7 +6,8 @@ fitness.
 
 import numpy as np
 
-def exponential(phenotypes, a=1,b=0,k=1):
+
+def exponential(phenotypes, a=1, b=0, k=1):
     r"""
     Apply exponential fitness function to phenotypes. Applies model:
 
@@ -21,13 +22,12 @@ def exponential(phenotypes, a=1,b=0,k=1):
 
     Returns
     -------
-    fitnesses : 1D numpy.ndarray.
-        List of fitnesses.
+    fitness : 1D numpy.ndarray.
+        List of fitness values.
     """
 
-    
-
     # Raising 0 phenotypes to a power will result in NaN, hence we change any NaN to 0.
-    fitnesses = np.nan_to_num(fitnesses ** exponent)
+    # Calculating fitness
+    fitness = a * np.nan_to_num(phenotypes ** k) + b
 
-    return fitnesses
+    return fitness

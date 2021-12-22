@@ -1,5 +1,113 @@
 import numpy as np
 import itertools
+import msmtools.analysis as mana
+
+
+def assignment(T, n, gpm=False):
+    """
+    Computes the assignment to metastable sets for active set states using the PCCA++ method _[1]
+    Optional: adds a column to gpm.neighbors dataframe called "assignments".
+
+    Parameters
+    ----------
+    T: a probability transition matrix.
+    n : Desired number of metastable sets (int).
+    gpm : GenotypePhenotypeMap object. If given, adds an "assignment" column to neighbors dataframe.
+
+
+    Notes
+    -----
+    The metastable decomposition is done using the pcca method of the pyemma.msm.MSM class.
+    For more details and references: https://github.com/markovmodel/PyEMMA/blob/devel/pyemma/msm/models/msm.py
+
+    References
+    ----------
+    .. [1] Roeblitz, S and M Weber. 2013. Fuzzy spectral clustering by
+        PCCA+: application to Markov state models and data
+    """
+    _assignment = mana.pcca_assignments(T, n)
+    if gpm:
+        gpm.data['assignment'] = _assignment
+
+    return _assignment
+
+
+def membership(T, n, gpm=False):
+    """
+    Compute meta-stable sets using PCCA++ _[1] and return the membership of all states to these sets.
+    Adds a column to gpm.neighbors dataframe called "membership".
+
+    Parameters
+    ----------
+    T : (n, n) ndarray or scipy.sparse matrix
+        Transition matrix
+    n : int
+        Number of metastable sets
+    gpm : GenotypePhenotypeMap object. If given, adds a "membership" column to neighbors dataframe.
+
+    Returns
+    -------
+    clusters : (n, m) ndarray
+        Membership vectors. clusters[i, j] contains the membership of state i to metastable state j
+
+    Notes
+    -----
+    Perron cluster center analysis assigns each microstate a vector of
+    membership probabilities. This assignement is performed using the
+    right eigenvectors of the transition matrix. Membership
+    probabilities are computed via numerical optimization of the
+    entries of a membership matrix.
+    For more details and references: https://github.com/markovmodel/PyEMMA/blob/devel/pyemma/msm/models/msm.py
+
+
+    References
+    ----------
+    .. [1] Roeblitz, S and M Weber. 2013. Fuzzy spectral clustering by
+        PCCA+: application to Markov state models and data
+        classification. Advances in Data Analysis and Classification 7
+        (2): 147-179
+    """
+    _membership = mana.pcca_memberships(T, n)
+    if gpm:
+        gpm.data['membership'] = list(_membership)
+
+    return _membership
+
+
+def cluster_assignments(memberships):
+    """Assign each node to a cluster based on that nodes highest membership value."""
+    cl_assign = np.argmax(memberships, axis=1)
+    return cl_assign
+
+
+def sets(T, n):
+    """
+    Computes the metastable sets given transition matrix T using the PCCA++ method _[1]
+
+    This is only recommended for visualization purposes. You *cannot* compute any
+    actual quantity of the coarse-grained kinetics without employing the fuzzy memberships!
+
+    Parameters
+    ----------
+    T : (n, n) ndarray or scipy.sparse matrix
+        Transition matrix
+    n : int
+        Number of metastable sets
+
+    Returns
+    -------
+    A list of length equal to metastable states. Each element is an array with microstate indexes contained in it
+
+    References
+    ----------
+    .. [1] Roeblitz, S and M Weber. 2013. Fuzzy spectral clustering by
+        PCCA+: application to Markov state models and data
+        classification. Advances in Data Analysis and Classification 7
+        (2): 147-179
+    """
+    _sets = mana.pcca_sets(T, n)
+
+    return _sets
 
 
 def split_clusters(clusters, new):
@@ -10,6 +118,7 @@ def split_clusters(clusters, new):
     have been added to clusters for which the first and last cluster of 'clusters' had to be split.
     """
     pass
+
 
 def coarse_grain_transition_matrix(T, clusters):
     """Coarse-grain a transition matrix based on clusters.
@@ -89,13 +198,9 @@ def cluster_sets(assignments):
     for cluster in clusters:
         sets.append(np.where(a == cluster)[0])
 
-    return np.array(sets)
+    return np.array(sets, dtype=object)
 
 
-def cluster_assignments(memberships):
-    """Assign each node to a cluster based on that nodes highest membership value."""
-    cl_assign = np.argmax(memberships, axis=1)
-    return cl_assign
 
 
 def sort_clusters_by_nodes(clusters, nodes):
@@ -208,7 +313,7 @@ def crispness(membership_matrix, clusters):
     # Reorder M, so that rows belonging to the same cluster are next to each other.
     M = membership_matrix.copy()
     cluster_order = list(itertools.chain(*clusters))
-    S = M[cluster_order,:]
+    S = M[cluster_order, :]
 
     trace = 0
     start = 0

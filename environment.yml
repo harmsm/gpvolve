@@ -7,5 +7,3 @@ dependencies:
   - pip
   - pip:
     - gpmap
-    - gpgraph
-    - gpvolve

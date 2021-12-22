@@ -1,8 +1,7 @@
 import pytest
-
 from gpmap import GenotypePhenotypeMap
-
 import numpy as np
+
 
 @pytest.fixture(scope="module")
 def gpvolve_gpm():
