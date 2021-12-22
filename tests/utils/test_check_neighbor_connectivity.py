@@ -11,7 +11,7 @@ def test_check_neighbor_connectivity():
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[1.0,1.0,1.0,1.0])
 
-    # Bad gpm
+    # Bad gpm (no neighbors yet)
     with pytest.raises(ValueError):
         utils.check_neighbor_connectivity(gpm)
 
@@ -39,11 +39,10 @@ def test_check_neighbor_connectivity():
                                      fitness=[1.0,1.0,1.0,1.0])
     gpm.get_neighbors()
     mask = gpm.neighbors.source == 0
-    pred_num_no_source = np.sum(mask)
     gpm.neighbors.loc[mask,"include"] = False
 
     not_a_source, not_targeted, isolated = utils.check_neighbor_connectivity(gpm,warn=False)
-    assert np.array_equal(not_a_source,[0])
+    assert len(not_a_source) == 1
     assert len(not_targeted) == 0
     assert len(isolated) == 0
 
