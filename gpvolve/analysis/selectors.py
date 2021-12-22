@@ -1,3 +1,8 @@
+from itertools import combinations
+from gpmap.utils import hamming_distance
+from gpvolve.utils import monotonic_incr
+
+
 def adaptive_paths(paths, fitnesses):
     
     adaptive_paths = []

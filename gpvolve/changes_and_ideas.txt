@@ -1,0 +1,73 @@
+# Changes as of 10/12/21
+
+1. gpmsm (GenotypePhenotypeMSM), which was a subclass of gpgraph, was scrapped.
+2. Package is being refactored as a collection of tools that can be used
+    directly on a gpmap object (since gpmap + gpgraph are now one).
+3. Usages of NetworkX are being phased out (main use was making transition matrix,
+    which the program now does using cython).
+    Note: unless necessary, 'markov' and 'simulate' submodules won't require much meddling
+    since they are working fine.
+4. 'Utils' was combined in a single folder
+5. '__init__.py' files inside each submodule were fixed
+6. "GenotypePhenotypeClusters" class was deleted because it was a subclass of gpmsm.
+7. Redundant functions deleted and
+[Week of 10/29:]
+8. Fixed linking for submodules inside of gpvolve
+9. Windows compiler error fixed
+10. All relative imports replaced by absolute imports
+
+# Troubleshooting
+1. Wright-fisher simulation still not compiling on mingw compiler
+
+# Goals for 10/5/21
+1. Rewrite "cluster" functions so they're more useful
+
+Meeting 11/2/21
+# Options for loading data on gpm
+1. adding assignment as column
+2. each "genotype" in the gpm is a cluster - would have to calculate the transition betwen each of them and load them into the neighbors
+*** Use neighbors, not index, to find the local peaks.
+*** What is the output of the simulations, and is it the same for all of them?
+*** Proposed by mike: the output of all simulations could be a transition matrix
+    and next step would be clustering
+
+Proposed hierarchy of gpvolve
+
+    # Main functions (T matrix, cluster trajectories)
+    gpvolve.build_transition_matrix(gpm)
+           .cluster_trajectories(gpm)
+
+    # Utils
+    gpvolve.utils.apply_fitness_function  (create 'fitness' category wrt given phenotype, any name)
+                 .find_max
+                 .find_peaks
+                 .find_soft_peaks
+                 .eigenvalues
+                 .eigenvectors
+                 .flatten_neighbors
+
+    # Simulations
+    gpvolve.simulate.wright_fisher(gpm)
+                    .random_walk(gpm)
+                    .enumerate_all(gpm)
+
+    # Functions related to clustering
+    gpvolve.cluster.add_to_gpm(gpm, clusters)
+                    .coarse_grain_transition_matrix(T, clusters)
+                    .cluster_to_assignments
+                    .sort_cluster_by_nodes
+
+New functions written:
+    gpvolve.utils.apply_fitness_function(gpm, fitness_function, **params)
+                  .find_peaks (compatible with gpmap dataframe)
+                  .find_soft_peaks (compatible with gpmap dataframe)
+                  .eigenvalues
+                  .eigenvectors
+    gpvolve.cluster.add_to_gpm (add cluster data to gpmap dataframe)
+
+    gpvolve.simulate.random_walk(gpm) (create a simulation of a random walk)
+
+    gpvolve.phenotype_to_fitness.linear
+                                .sigmoid (fixed)
+                                .exponential
+

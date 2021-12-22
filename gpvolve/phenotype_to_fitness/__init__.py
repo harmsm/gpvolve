@@ -1,0 +1,3 @@
+from gpvolve.phenotype_to_fitness.exponential import exponential
+from gpvolve.phenotype_to_fitness.sigmoidal import sigmoid
+from gpvolve.phenotype_to_fitness.linear import linear

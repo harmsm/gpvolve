@@ -3,6 +3,7 @@ import pytest
 import gpvolve.check as check
 import gpmap
 
+
 def test_check_gpm():
 
     with pytest.raises(TypeError):
