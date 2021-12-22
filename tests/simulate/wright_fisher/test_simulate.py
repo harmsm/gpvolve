@@ -53,7 +53,7 @@ def test_simulate_argpass():
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,0.2,0.2,0.3])
     gpm.get_neighbors()
-    pops = simulate(gpm,num_steps=1)
+    pops = simulate(gpm,num_generations=1)
     assert pops.shape == (2,4)
 
     # ------------------------------------------------------------------------
@@ -71,7 +71,7 @@ def test_simulate_argpass():
             simulate(gpm,engine=b)
 
     # This should work
-    pops = simulate(gpm,num_steps=1,engine="wf")
+    pops = simulate(gpm,num_generations=1,engine="wf")
 
     # ------------------------------------------------------------------------
     # Check mutation rate
@@ -82,22 +82,22 @@ def test_simulate_argpass():
             simulate(gpm,mutation_rate=m)
 
     # Should work
-    simulate(gpm,num_steps=1,mutation_rate=0.1)
+    simulate(gpm,num_generations=1,mutation_rate=0.1)
 
     # ------------------------------------------------------------------------
     # Check num step
     # ------------------------------------------------------------------------
-    bad_num_steps = ["stupid",-1,(1,3)]
-    for n in bad_num_steps:
+    bad_num_generations = ["stupid",-1,(1,3)]
+    for n in bad_num_generations:
         with pytest.raises(ValueError):
-            simulate(gpm,num_steps=n)
+            simulate(gpm,num_generations=n)
 
-    # Make sure num_steps translated correctly
-    pops = simulate(gpm,num_steps=10)
+    # Make sure num_generations translated correctly
+    pops = simulate(gpm,num_generations=10)
     pops.shape == (11,4)
 
-    # Make sure num_steps translated correctly
-    pops = simulate(gpm,num_steps=0)
+    # Make sure num_generations translated correctly
+    pops = simulate(gpm,num_generations=0)
     pops.shape == (1,4)
 
     # ------------------------------------------------------------------------
@@ -130,7 +130,7 @@ def test_simulate_argpass():
     gpm.get_neighbors()
     gpm.data.drop(labels="name",axis=1,inplace=True)
     with pytest.raises(ValueError):
-        pops = simulate(gpm,pop_size=10,initial_pop_column=None)
+        pops = simulate(gpm,population_size=10,initial_pop_column=None)
 
     # No pops, should die b/c wildtype not in data df
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
@@ -138,38 +138,38 @@ def test_simulate_argpass():
     gpm.get_neighbors()
     gpm.data.loc[:,"name"] = ["not","good","name","scheme"]
     with pytest.raises(ValueError):
-        pops = simulate(gpm,pop_size=10,initial_pop_column=None)
+        pops = simulate(gpm,population_size=10,initial_pop_column=None)
 
     # Make sure pops passed in correctly if specified by column
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,0.2,0.2,0.3],
                                      pops=[100,100,0,0])
     gpm.get_neighbors()
-    pops = simulate(gpm,num_steps=10,initial_pop_column="pops")
+    pops = simulate(gpm,num_generations=10,initial_pop_column="pops")
     assert pops.shape == (11,4)
     assert np.sum(pops[0,:]) == 200
     assert np.sum(pops[-1,:]) == 200
     assert np.array_equal(pops[0,:],[100,100,0,0])
 
-    # Make sure we get all pop on wildtype if we specify a pop_size but no
+    # Make sure we get all pop on wildtype if we specify a population_size but no
     # initial pop column.
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,0.2,0.2,0.3],wildtype="00")
     gpm.get_neighbors()
-    pop_size = 10
-    pops = simulate(gpm,num_steps=10,pop_size=pop_size)
-    assert np.array_equal(pops[0,:],[pop_size,0,0,0])
+    population_size = 10
+    pops = simulate(gpm,num_generations=10,population_size=population_size)
+    assert np.array_equal(pops[0,:],[population_size,0,0,0])
 
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,0.2,0.2,0.3],wildtype="11")
     gpm.get_neighbors()
-    pop_size = 10
-    pops = simulate(gpm,num_steps=10,pop_size=pop_size)
-    assert np.array_equal(pops[0,:],[0,0,0,pop_size])
+    population_size = 10
+    pops = simulate(gpm,num_generations=10,population_size=population_size)
+    assert np.array_equal(pops[0,:],[0,0,0,population_size])
 
 
     # ------------------------------------------------------------------------
-    # pop_size
+    # population_size
     # ------------------------------------------------------------------------
 
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
@@ -179,9 +179,9 @@ def test_simulate_argpass():
     bad_pops = [-1,0,"stupid",(1,1)]
     for p in bad_pops:
         with pytest.raises(ValueError):
-            simulate(gpm,pop_size=p)
+            simulate(gpm,population_size=p)
 
-    pops = simulate(gpm,num_steps=1,pop_size=10)
+    pops = simulate(gpm,num_generations=1,population_size=10)
     assert np.sum(pops[0,:]) == 10
     assert np.sum(pops[1,:]) == 10
 
@@ -208,7 +208,7 @@ def test_simulate_argpass():
     gpm = gpmap.GenotypePhenotypeMap(genotype=["00","10","01","11"],
                                      fitness=[0.1,100,0.1,0.1])
     gpm.get_neighbors()
-    pops = simulate(gpm,fitness_column="fitness",pop_size=100,num_steps=100,
+    pops = simulate(gpm,fitness_column="fitness",population_size=100,num_generations=100,
                     mutation_rate=0.1)
     assert np.argmax(pops[0,:]) == 0
     assert np.argmax(pops[-1,:]) == 1
@@ -224,7 +224,7 @@ def test_simulate_argpass():
     bad_num_replicate_sims = ["test",(1,3),0]
     for n in bad_num_replicate_sims:
         with pytest.raises(ValueError):
-            simulate(gpm,num_steps=1,pop_size=10,num_replicate_sims=n)
+            simulate(gpm,num_generations=1,population_size=10,num_replicate_sims=n)
 
     results = simulate(gpm,num_replicate_sims=2)
     assert type(results) is list
@@ -244,7 +244,7 @@ def test_simulate_argpass():
             simulate(gpm,num_threads=n)
 
     # Run multithreaded. Other runs tested default (num_threads = 1)
-    results = simulate(gpm,num_steps=1,pop_size=1,num_threads=2,num_replicate_sims=2)
+    results = simulate(gpm,num_generations=1,population_size=1,num_threads=2,num_replicate_sims=2)
     assert type(results) is list
     assert len(results) == 2
 
@@ -256,10 +256,10 @@ def test_simulate_argpass():
                                      fitness=[0.1,0.2,0.2,0.3])
     gpm.get_neighbors()
 
-    pops = simulate(gpm,num_steps=10,pop_size=10,use_cython=False)
+    pops = simulate(gpm,num_generations=10,population_size=10,use_cython=False)
     assert pops.shape == (11,4)
     assert np.sum(pops[-1,:]) == 10
 
-    pops = simulate(gpm,num_steps=10,pop_size=10,use_cython=True)
+    pops = simulate(gpm,num_generations=10,population_size=10,use_cython=True)
     assert pops.shape == (11,4)
     assert np.sum(pops[-1,:]) == 10

@@ -33,7 +33,7 @@ def wf_engine(pops,
     Parameters
     ----------
     pops : numpy.ndarray
-        num_steps + 1 by num_genotypes 2D int array that stores the population
+        num_generations + 1 by num_genotypes 2D int array that stores the population
         of each genotype for each step in the simulation. The first row holds
         the initial population of all genotypes.
     mutation_rate : float
@@ -53,7 +53,7 @@ def wf_engine(pops,
     Returns
     -------
     pops : numpy.ndarray
-        num_steps + 1 x num_genotypes 2D int array that stores the population
+        num_generations + 1 x num_genotypes 2D int array that stores the population
         of each genotype for each step in the simulation.
     """
 

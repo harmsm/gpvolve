@@ -26,12 +26,12 @@ def wf_engine_python(pops,
     # Get number of genoptypes, population size, and expected number of mutations
     # each generation
     num_genotypes = len(fitness)
-    pop_size = sum(pops[0,:])
-    expected_num_mutations = mutation_rate*pop_size
-    num_steps = len(pops)
+    population_size = sum(pops[0,:])
+    expected_num_mutations = mutation_rate*population_size
+    num_generations = len(pops)
 
     indexes = np.arange(num_genotypes,dtype=int)
-    for i in range(1,num_steps):
+    for i in range(1,num_generations):
 
         # Look at non-zero genotypes
         mask = indexes[pops[i-1,:] != 0]
@@ -52,15 +52,15 @@ def wf_engine_python(pops,
         prob = prob/np.sum(prob)
 
         # New population selected based on relative fitness
-        new_pop = np.random.choice(mask,size=pop_size,p=prob,replace=True)
+        new_pop = np.random.choice(mask,size=population_size,p=prob,replace=True)
 
         # Introduce mutations
         num_to_mutate = np.random.poisson(expected_num_mutations)
 
         # If we have a ridiculously high mutation rate, do not mutate each
         # genotype more than once.
-        if num_to_mutate > pop_size:
-            num_to_mutate = pop_size
+        if num_to_mutate > population_size:
+            num_to_mutate = population_size
 
         for j in range(num_to_mutate):
             k = new_pop[j]

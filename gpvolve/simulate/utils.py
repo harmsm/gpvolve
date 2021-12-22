@@ -4,10 +4,10 @@ __description__ = \
 __date__ = "2021-12-10"
 __author__ = "Clara Rehmann"
 
-import pyslim, tskit, gpmap
-from pathlib import Path
+import gpvolve.check as check
 from gpmap import GenotypePhenotypeMap
 
+import pyslim, tskit, gpmap
 import numpy as np, pandas as pd
 
 import os
@@ -75,3 +75,59 @@ def make_fluxdict(gpm, genotypehistory):
         fluxdict.update(counts)
 
     return fluxdict
+
+def check_simulation_parameter_sanity(gpm,
+                                      max_generations,
+                                      mutation_rate,
+                                      population_size,
+                                      fitness_column):
+
+    # Check gpm sanity
+    check.gpm_sanity(gpm)
+    gpm.get_neighbors()
+
+    # Check number of steps
+    try:
+        max_generations = int(max_generations)
+        if max_generations < 0:
+            raise ValueError
+    except (ValueError,TypeError):
+        err = "num_generations must be an integer >= 0.\n"
+        raise ValueError(err)
+
+    # Check mutation_rate
+    try:
+        mutation_rate = float(mutation_rate)
+        if mutation_rate < 0 or mutation_rate > 1:
+            raise ValueError
+    except (ValueError,TypeError):
+        err = "mutation_rate must be a float >= 0 and <= 1.\n"
+        raise ValueError(err)
+
+    # Check population_size
+    try:
+        population_size = int(population_size)
+        if population_size < 1:
+            raise ValueError
+    except (ValueError,TypeError):
+        err = f"population_size must be an integer > 0.\n"
+        raise ValueError(err)
+
+    # Get fitness data
+    try:
+        fitness = np.array(gpm.data.loc[:,fitness_column],dtype=float)
+        if np.min(fitness) < 0:
+            raise ValueError
+        if np.sum(np.isnan(fitness)) > 0:
+            raise ValueError
+    except KeyError:
+        err = f"fitness_column '{fitness_column}' not in gpm.data\n"
+        err += "dataframe\n"
+        raise KeyError(err)
+    except (TypeError,ValueError):
+        err = "fitness_column must point to a column in gpm.data that can\n"
+        err += "be coerced as a float, where the minimum is >= 0 and that does\n"
+        err += "not have nan.\n"
+        raise ValueError(err)
+
+    return gpm, max_generations, mutation_rate, population_size, fitness

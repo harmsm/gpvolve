@@ -5,6 +5,7 @@ Functions for interfacing with SLiM. (Developed using SLiM version 3.7)
 __date__ = "2021-12-10"
 __author__ = "Clara Rehmann"
 
+import gpvolve
 from gpvolve.simulate.base import SimulationResult
 from gpvolve.simulate import utils
 import gpvolve.check as check
@@ -387,16 +388,20 @@ def simulate(gpm,
         Mutation rate used in the simulation
     """
 
-    check.gpm_sanity(gpm)
-    gpm.get_neighbors()
-
-
     # Make sure slim is installed
     try:
         subprocess.run([slim_path])
     except FileNotFoundError:
         err = "SLiM not in path. Is it installed?"
         raise RuntimeError(err)
+
+    # Make sure simulation parameters are sane
+    gpm, max_generations, mutation_rate, population_size, fitness = \
+        gpvolve.simulate.utils.check_simulation_parameter_sanity(gpm,
+                                                                 max_generations,
+                                                                 mutation_rate,
+                                                                 population_size,
+                                                                 fitness_column)
 
     # If no output path is specified, make one with a unique name
     if outpath is None:
@@ -441,10 +446,10 @@ def simulate(gpm,
         err.append("\n\n")
         raise RuntimeError("".join(err))
 
-    # save outputs
+    # Parse outputs
     node_counts = _get_gtcount(outpath+'_gtcount.txt', gpm)
-    num_generations = max(node_counts.keys())
     node_counts = pd.DataFrame.from_dict(node_counts, orient = 'index')
+    num_generations = len(node_counts)
     edge_counts = _get_stpdict(outpath+'_gttransitions.txt')
     edge_counts = utils.make_stepframe(edge_counts,num_generations)
 

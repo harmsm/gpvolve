@@ -6,8 +6,9 @@ __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
 from .engine import wf_engine
-
 import gpvolve.check as check
+
+import gpvolve
 import gpvolve.utils as utils
 
 import gpmap
@@ -40,10 +41,10 @@ def _sim_on_thread(args):
     queue = args[1]
     index = args[2]
     initial_pop = args[3]
-    num_steps = args[4]
+    num_generations = args[4]
 
     # Make pops array to store results
-    pops = np.zeros((num_steps+1,len(initial_pop)),dtype=int)
+    pops = np.zeros((num_generations+1,len(initial_pop)),dtype=int)
     pops[0] = initial_pop
 
     # Construct args to send to wf_engine, making appopriate pops array
@@ -64,9 +65,9 @@ def _sim_on_thread(args):
 
 def simulate(gpm,
              engine="wf",
-             num_steps=1000,
+             num_generations=1000,
              mutation_rate=0.001,
-             pop_size=100,
+             population_size=100,
              fitness_column="fitness",
              initial_pop_column=None,
              num_replicate_sims=1,
@@ -82,18 +83,18 @@ def simulate(gpm,
     engine : str
         simulation engine to use. "wf": Wright-Fisher. Currently only engine
         available.
-    num_steps : int
+    num_generations : int
         number of steps to run the simulation (must be >= 0)
     mutation_rate : float
         how probable is it that a genotype mutates over a generation?
-    pop_size : int
+    population_size : int
         population size. must be int > 0. if initial_pop_column is set, this
         overrides the population size
     fitness_column : str
         column in gpm.data that has fitness value for each genotype
     initial_pop_column : str
         column in gpm.data that has initial population for each genotype. If
-        None, assign the wildtype genotype a population pop_size and set rest
+        None, assign the wildtype genotype a population population_size and set rest
         to 0.
     num_replicate_sims : int
         number of replicate simulations to run. must be int > 0.
@@ -106,7 +107,7 @@ def simulate(gpm,
     Returns
     -------
     results : np.ndarray or list
-        if num_replicate_sims == 1 (default), return num_steps + 1 x num_genotypes
+        if num_replicate_sims == 1 (default), return num_generations + 1 x num_genotypes
         array with genotype counts over steps. If num_replicate_sims > 1, return
         a list of arrays, one for each replicate simulation.
     """
@@ -121,24 +122,6 @@ def simulate(gpm,
         err = f"engine '{engine}' not recognized. Should be one of:\n"
         for k in engine_functions:
             err += "    {k}\n"
-        raise ValueError(err)
-
-    # Check number of steps
-    try:
-        num_steps = int(num_steps)
-        if num_steps < 0:
-            raise ValueError
-    except (ValueError,TypeError):
-        err = "num_steps must be an integer >= 0.\n"
-        raise ValueError(err)
-
-    # Check mutation_rate
-    try:
-        mutation_rate = float(mutation_rate)
-        if mutation_rate < 0 or mutation_rate > 1:
-            raise ValueError
-    except (ValueError,TypeError):
-        err = "mutation_rate must be a float >= 0 and <= 1.\n"
         raise ValueError(err)
 
     # Get initial population vector
@@ -163,36 +146,18 @@ def simulate(gpm,
             raise ValueError(err)
 
         # Population size from column overwrites whatever came in as a kwarg
-        pop_size  = np.sum(initial_pop)
+        population_size  = np.sum(initial_pop)
 
-    # Check pop_size
-    try:
-        pop_size = int(pop_size)
-        if pop_size < 1:
-            raise ValueError
-    except (ValueError,TypeError):
-        err = f"pop_size must be an integer > 0.\n"
-        raise ValueError(err)
-
-    # Get fitness data
-    try:
-        fitness = np.array(gpm.data.loc[:,fitness_column],dtype=float)
-        if np.min(fitness) < 0:
-            raise ValueError
-        if np.sum(np.isnan(fitness)) > 0:
-            raise ValueError
-    except KeyError:
-        err = f"fitness_column '{fitness_column}' not in gpm.data\n"
-        err += "dataframe\n"
-        raise KeyError(err)
-    except (TypeError,ValueError):
-        err = "fitness_column must point to a column in gpm.data that can\n"
-        err += "be coerced as a float, where the minimum is >= 0 and that does\n"
-        err += "not have nan.\n"
-        raise ValueError(err)
+    # Make sure simulation parameters are sane
+    gpm, num_generations, mutation_rate, population_size, fitness = \
+        gpvolve.simulate.utils.check_simulation_parameter_sanity(gpm,
+                                                                 num_generations,
+                                                                 mutation_rate,
+                                                                 population_size,
+                                                                 fitness_column)
 
     # If we have not made an initial_pop array above, make one with the wildtype
-    # genotype as pop_size and all other genotypes as 0
+    # genotype as population_size and all other genotypes as 0
     if initial_pop is None:
 
         initial_pop = np.zeros(len(gpm.data),dtype=int)
@@ -207,11 +172,11 @@ def simulate(gpm,
 
         if err is not None:
             err += "If no initial_pop_column is specified, the 'wildtype'\n"
-            err += "genotype is assigned a population of 'pop_size' and all\n"
+            err += "genotype is assigned a population of 'population_size' and all\n"
             err += "other genotypes are assigned population of 0.\n"
             raise ValueError(err)
 
-        initial_pop[wt_index] = pop_size
+        initial_pop[wt_index] = population_size
 
     # Figure out number of threads to use
     if num_threads is None:
@@ -272,7 +237,7 @@ def simulate(gpm,
     all_args = []
     for i in range(num_replicate_sims):
 
-        args = [engine_function,queue,i,initial_pop,num_steps,
+        args = [engine_function,queue,i,initial_pop,num_generations,
                 mutation_rate,fitness,neighbor_slicer,neighbors,
                 use_cython]
 
