@@ -1,4 +1,4 @@
 
 from .base import SimulationResult
-from .simulate import simulate
-from .SLiM import slimulate
+from . import slim
+from . import wright_fisher

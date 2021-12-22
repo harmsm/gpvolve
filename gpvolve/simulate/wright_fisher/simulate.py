@@ -5,7 +5,7 @@ Run Wright Fisher simulation on a genotype phentoype map.
 __author__ = "Michael J. Harms"
 __date__ = "2021-09-15"
 
-from .wright_fisher import wf_engine
+from .engine import wf_engine
 
 import gpvolve.check as check
 import gpvolve.utils as utils

@@ -345,16 +345,16 @@ def _get_hist(filepath, treeseq):
     return histdict
 
 
-def slimulate(gpm,
-              max_generations,
-              mutation_rate,
-              population_size,
-              fitness_column='fitness',
-              outpath=None,
-              overwrite=False,
-              keep_raw_output=False,
-              slim_path='slim',
-              haploid=False):
+def simulate(gpm,
+             max_generations,
+             mutation_rate,
+             population_size,
+             fitness_column='fitness',
+             outpath=None,
+             overwrite=False,
+             keep_raw_output=False,
+             slim_path='slim',
+             haploid=False):
     """
     run one SLiM simulation
 
@@ -429,6 +429,16 @@ def slimulate(gpm,
     with open(outpath+'_stdout.txt', 'wb') as out, open(outpath+'_stderr.txt', 'wb') as err:
         print(command)
         p = subprocess.run(command, stdout=out, stderr=err, shell=True)
+
+    # Check for failed run and throw error (slim does not use useful return
+    # codes)
+    if p.returncode != 0: #not os.path.exists(f"{outpath}_gtcount.txt"):
+        err = [f"\nSLiM run failed. Wrote following to standard error:\n\n"]
+        f = open(f"{outpath}_stderr.txt")
+        err.extend(f.readlines())
+        f.close()
+        err.append("\n\n")
+        raise RuntimeError("".join(err))
 
     # save outputs
     node_counts = _get_gtcount(outpath+'_gtcount.txt', gpm)

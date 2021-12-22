@@ -2,7 +2,7 @@
 import pytest
 
 import gpvolve
-from gpvolve.simulate import simulate
+from gpvolve.simulate.wright_fisher import simulate
 import gpmap
 
 import numpy as np

@@ -9,9 +9,9 @@ import numpy as np
 
 import warnings
 
-import gpvolve.simulate.wright_fisher.wright_fisher_engine_python as py
+import gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_python as py
 try:
-    import gpvolve.simulate.wright_fisher.wright_fisher_engine_cython as cy
+    import gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython as cy
     cy_available = True
 except ImportError:
 

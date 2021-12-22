@@ -1,1 +1,1 @@
-from .slimsim import slimulate
+from .slimsim import simulate

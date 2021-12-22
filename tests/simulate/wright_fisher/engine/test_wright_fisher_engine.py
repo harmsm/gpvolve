@@ -3,7 +3,7 @@ import pytest
 
 import gpmap
 from gpvolve import utils
-from gpvolve.simulate import wright_fisher as wf
+from gpvolve.simulate.wright_fisher import engine as wf
 
 import numpy as np
 
