@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --account=ACCOUNT
+#SBATCH --partition=PARTITION
+#SBATCH --job-name=slim
+#SBATCH --output=slim.out
+#SBATCH --error=slim.err
+#SBATCH --cpus-per-task=10
+#SBATCH --nodes=1
+#SBATCH --time=4-00:00:00
+
+L=$1
+N=$2
+u=$3
+rf=$4
+
+# directory for SLiM json outputs
+mkdir slim_dir/$L\_site_fuji_N$N\_u$u\_r_$rf
+
+# slimpath, working directory path, path for output
+spath=slim_dir/$L\_site_fuji_N$N\_u$u\_r_$rf\/$L\_site_fuji_N$N\_u$u\_r_$rf
+wpath=working_dir/$L\_site_fuji_N$N\_u$u\_r$rf
+opath=out/$L\_site_fuji_N$N\_u$u\_r_$rf
+
+# run simulations to equilibrium for each map
+for n in {0..9}; do
+    gpm=gpmaps/$L\_site_fuji_r$rf\_$n\_gpmap.txt
+    python run_multiple.py --gpmap $gpm --N $N --u $u --slim_out $spath\_$n --working_dir $wpath\_$n --outpath $opath\_$n --cutoff 0.0001 &
+
+done
+wait

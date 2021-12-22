@@ -6,7 +6,7 @@ from matplotlib import colors
 from numpy import inf
 from scipy import sparse
 
-from .utils import *
+from ..utils import *
 
 
 def plot_timescales(timescales, figsize=None, n=None, color='orange'):
@@ -119,13 +119,13 @@ def plot_network(
         ax=None,
         figsize=(15, 10),
         nodelist=[],
-        attribute="phenotypes",
+        attribute="phenotype",
         vmin=None,
         vmax=None,
         cmap="YlOrRd",
         cmap_truncate=False,
         colorbar=False,
-        node_labels="genotypes",
+        node_labels="genotype",
         edge_scalar=15.0,
         edge_labels=False,
         edge_color='k',
@@ -296,12 +296,12 @@ def plot_network(
         vmax=vmax,
         node_shape=node_shape,
         node_size=node_size,
-        node_color=[network.nodes[n][attribute] for n in nodelist],
+        node_color=node_color,#[network.nodes[n][attribute] for n in nodelist],
         linewidths=linewidths,
         edgecolors=edgecolors,
         cmap=cmap,
-        labels=labels,
-        cmap_truncate=False,
+        #labels=labels,
+        #cmap_truncate=False,
     )
 
     # Draw edges

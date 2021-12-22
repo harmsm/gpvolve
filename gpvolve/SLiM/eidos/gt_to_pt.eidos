@@ -1,0 +1,208 @@
+// Eidos functions for incorporating gpmap into SLiM
+
+
+// reading gpmap
+
+function(object<Dictionary>$)gpmap_load(string$ gpmap_file) {
+    /*
+
+    function to read genotype-phenotype map text file.
+    
+    Parameters:
+    -----------
+    gpmap_file: path to genotype-phenotype map tsv. minimum required 
+            columns are 'binary' (representing the binary genotype) and 'slim_fitness'
+            (what SLiM will interpret as fitness value). NOTE: 1.0 is neutral fitness 
+            in SLiM; this script assumes your column is scaled to that value.
+
+    Returns:
+    --------
+    gpmap: Eidos dictionary. keys are binary genotypes as string objects, 
+            values are phenotype values as floats    
+    */
+
+	lines = readFile(gpmap_file);
+	if (isNULL(lines)) {
+		stop('failed to load model');
+	}
+	gpmap = Dictionary();
+
+    hd = strsplit(lines[0], '\t');
+    geno = which(hd == 'binary');
+    pheno = which(hd == 'slim_fitness');
+    
+    for (line in lines[1:(length(lines)-1)])	{
+		col = strsplit(line, '\t');
+		gt = col[geno];
+		//muts = gt_to_mut(gt);
+		pt = asFloat(col[pheno]);
+		gpmap.setValue(gt,pt);
+	}	
+	return gpmap;
+}
+
+function(object<Dictionary>$)gt_list(string$ gpmap_file) {
+    /*
+
+    function to assign float values to each binary genotype
+
+    Parameters:
+    -----------
+    gpmap_file: path to genotype-phenotype map tsv. minimum required 
+            columns are 'binary' (representing the binary genotype) and 'slim_fitness'
+            (what SLiM will interpret as fitness value). NOTE: 1.0 is neutral fitness 
+            in SLiM; this script assumes your column is scaled to that value.
+
+    Returns:
+    --------
+    gtdict: Eidos dictonary. keys are binary genotypes as string objects, values are integer IDs
+    
+    */
+
+    lines = readFile(gpmap_file);
+    if (isNULL(lines)) {
+        stop('failed to load');
+    }
+    gtdict = Dictionary();
+
+    hd = strsplit(lines[0], '\t');
+    geno = which(hd == 'binary');
+
+    for (i in (1:(length(lines)-1))) {
+        line = lines[i];
+        col = strsplit(line, '\t');
+        gt = col[geno];
+        gtdict.setValue(gt,asString(i-1));
+    }
+    return gtdict;
+}
+
+
+// file output functions
+
+function(void)outpath_check(void) {
+    /*
+    make sure the output files do not already exit at the specified path
+    */
+    for (out in c("_gtcount.txt", "_gttransitions.txt", "_treeinds.txt")) {
+        if (fileExists(OUTPATH+out)) {
+            stop('outpath is already occupied');
+        }
+    }
+}
+
+function(void)gt_count(integer$ generation, object$ population, object<Dictionary>$ gtdict) {
+    /*
+    write number of genomes occupying each genotype, every generation
+    
+    Parameters:
+    -----------
+    generation: integer
+    population: SLiM population object
+    gtdict: gt_list output
+
+    outfile format:
+    (generation)('\t')(array of present genotype IDs)('\t')(array of corresponding genotype counts)('\n')
+
+    outpath = OUTPATH + '_gtcount.txt'
+    */
+
+    gts = integer(0);
+    for (genome in population.genomes) {
+        muts = c(genome.mutations.mutationType.id);
+        gt = slim_to_mut(muts);
+        gtID = asInteger(gtdict.getValue(gt));
+        gts = c(gts, gtID);
+    }
+    gt_uniq = unique(gts, preserveOrder = F);
+    counts = integer(0);
+    for (gt in gt_uniq) {
+        count = size(which(gts == gt));
+        counts = c(counts, count);
+    }
+    op = paste(asString(generation),"\t",c(gt_uniq),"\t",c(counts));
+    writeFile(paste0(OUTPATH,"_gtcount.txt"), op, append = T);
+}
+
+function(void)background_check(integer$ generation, object$ population, object$ mutation) {
+    /*
+    write mutational steps taken between genotypes in each generation
+
+    Parameters:
+    -----------
+    generation: integer
+    populaton: SLiM population object
+    mutation: SLiM mutation object
+
+    outfile format:
+    (generation)(' ')(ancestral genotype)('/')(derived genotype)('\n')
+
+    outpath = OUTPATH + '_gttransitions.txt'
+    */   
+ 
+    if (generation == 1 & mutation.mutationType.id == 1000) {
+        return;
+    }
+    bg = mutation.tag;
+    id = mutation.id;
+    for (genome in population.genomes) {
+        for (ID in genome.mutations.id) {
+            if (ID == id) {
+                gt = slim_to_mut(c(genome.mutations.mutationType.id));
+                fg = gtdict.getValue(gt);
+                writeFile(paste0(OUTPATH,"_gttransitions.txt"), paste(generation, paste(c(bg, fg), sep="/")), append = T);
+            }
+        }
+    }
+}
+
+function(void)tree_deets(object$ population, object<Dictionary>$ gtdict) {
+    /*
+    write relevant information about final generation for tree sequence reference
+    
+    Parameters:
+    ----------
+    population: SLiM population object
+    gtdict: gtlist dictionary output
+
+    outfile format:
+    (individual pedigree ID)('\t')(individual genotype ID)('\t')(space-delimited list of unique mutation IDs)('\n')
+
+    outpath = OUTPATH + '_gttransitions.txt'
+    */
+
+    for (genome in population.genomes) {
+        pID = genome.individual.pedigreeID;
+        muts = c(genome.mutations.mutationType.id);
+        gt = slim_to_mut(muts);
+        gtID = asInteger(gtdict.getValue(gt));
+        writeFile(paste0(OUTPATH,"_treeinds.txt"), paste(pID, gtID, c(genome.mutations.id)), append = T);
+    }
+}
+         
+
+// utility functions
+
+// convert SLiM mutation list to string
+function (string$)slim_to_mut(* mut_ints)   {
+    slimM = integer(size(mut_ints));
+    for (m in mut_ints) {
+        if (m != 1000) {
+            slimM[m] = 1;
+        }
+    }
+    slimM = paste0(asString(slimM));
+    return slimM;
+}
+
+// check if all mutations have fixed
+function (logical$)check_fix(object$ population)   {
+    for (mutation in population.genomes.mutations) {
+        if (mutation.mutationType.id == 1000) {
+            return F;
+        }
+    }
+    return T;
+}
+
+    
