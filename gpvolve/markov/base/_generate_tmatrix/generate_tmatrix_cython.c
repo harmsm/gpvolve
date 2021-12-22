@@ -791,8 +791,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__gpvolve__markov__utils___generate_tmatrix__generate_tmatrix_cython
-#define __PYX_HAVE_API__gpvolve__markov__utils___generate_tmatrix__generate_tmatrix_cython
+#define __PYX_HAVE__gpvolve__markov__base___generate_tmatrix__generate_tmatrix_cython
+#define __PYX_HAVE_API__gpvolve__markov__base___generate_tmatrix__generate_tmatrix_cython
 /* Early includes */
 #include "fixation.h"
 #include <string.h>
@@ -1051,7 +1051,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx",
+  "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx",
   "__init__.cython-30.pxd",
   "stringsource",
   "type.pxd",
@@ -1424,14 +1424,14 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":24
+/* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":24
  * 
  * # Make a type for passing functions
  * ctypedef double (*f_type)(double, double, long)             # <<<<<<<<<<<<<<
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking
  */
-typedef double (*__pyx_t_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_f_type)(double, double, long);
+typedef double (*__pyx_t_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_f_type)(double, double, long);
 
 /* "View.MemoryView":109
  * 
@@ -2608,7 +2608,7 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 #if !CYTHON_USE_MODULE_STATE
 #endif
 
-/* Module declarations from "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython" */
+/* Module declarations from "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython" */
 #if !CYTHON_USE_MODULE_STATE
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
@@ -2661,11 +2661,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 static __Pyx_TypeInfo __Pyx_TypeInfo_long = { "long", NULL, sizeof(long), { 0 }, 0, IS_UNSIGNED(long) ? 'U' : 'I', IS_UNSIGNED(long), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython"
-extern int __pyx_module_is_main_gpvolve__markov__utils___generate_tmatrix__generate_tmatrix_cython;
-int __pyx_module_is_main_gpvolve__markov__utils___generate_tmatrix__generate_tmatrix_cython = 0;
+#define __Pyx_MODULE_NAME "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython"
+extern int __pyx_module_is_main_gpvolve__markov__base___generate_tmatrix__generate_tmatrix_cython;
+int __pyx_module_is_main_gpvolve__markov__base___generate_tmatrix__generate_tmatrix_cython = 0;
 
-/* Implementation of "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython" */
+/* Implementation of "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_range;
@@ -2833,11 +2833,11 @@ static const char __pyx_k_Out_of_bounds_on_buffer_access_a[] = "Out of bounds on
 static const char __pyx_k_Should_be_one_of_moran_mcclandis[] = "Should be one of 'moran', 'mcclandish', or 'sswm'.\n";
 static const char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item to object";
 static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension ";
-static const char __pyx_k_gpvolve_markov_utils__generate_t[] = "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx";
+static const char __pyx_k_gpvolve_markov_base__generate_tm[] = "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
-static const char __pyx_k_gpvolve_markov_utils__generate_t_2[] = "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython";
+static const char __pyx_k_gpvolve_markov_base__generate_tm_2[] = "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython";
 #if !CYTHON_USE_MODULE_STATE
 static PyObject *__pyx_kp_u_2021_09_15;
 static PyObject *__pyx_n_s_ASCII;
@@ -2926,8 +2926,8 @@ static PyObject *__pyx_n_s_generate_tmatrix_cython;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_kp_u_got;
 static PyObject *__pyx_kp_u_got_differing_extents_in_dimensi;
-static PyObject *__pyx_kp_s_gpvolve_markov_utils__generate_t;
-static PyObject *__pyx_n_s_gpvolve_markov_utils__generate_t_2;
+static PyObject *__pyx_kp_s_gpvolve_markov_base__generate_tm;
+static PyObject *__pyx_n_s_gpvolve_markov_base__generate_tm_2;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_id;
 static PyObject *__pyx_n_s_import;
@@ -3003,10 +3003,10 @@ static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_n_s_zeros;
 #endif
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_population_size, PyObject *__pyx_v_fixation_model); /* proto */
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_population_size, PyObject *__pyx_v_fixation_model); /* proto */
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -3206,8 +3206,8 @@ typedef struct {
   PyObject *__pyx_n_s_getstate;
   PyObject *__pyx_kp_u_got;
   PyObject *__pyx_kp_u_got_differing_extents_in_dimensi;
-  PyObject *__pyx_kp_s_gpvolve_markov_utils__generate_t;
-  PyObject *__pyx_n_s_gpvolve_markov_utils__generate_t_2;
+  PyObject *__pyx_kp_s_gpvolve_markov_base__generate_tm;
+  PyObject *__pyx_n_s_gpvolve_markov_base__generate_tm_2;
   PyObject *__pyx_n_s_i;
   PyObject *__pyx_n_s_id;
   PyObject *__pyx_n_s_import;
@@ -3448,8 +3448,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_getstate);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_gpvolve_markov_utils__generate_t);
-  Py_CLEAR(clear_module_state->__pyx_n_s_gpvolve_markov_utils__generate_t_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_gpvolve_markov_base__generate_tm);
+  Py_CLEAR(clear_module_state->__pyx_n_s_gpvolve_markov_base__generate_tm_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_i);
   Py_CLEAR(clear_module_state->__pyx_n_s_id);
   Py_CLEAR(clear_module_state->__pyx_n_s_import);
@@ -3677,8 +3677,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_getstate);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_gpvolve_markov_utils__generate_t);
-  Py_VISIT(traverse_module_state->__pyx_n_s_gpvolve_markov_utils__generate_t_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_gpvolve_markov_base__generate_tm);
+  Py_VISIT(traverse_module_state->__pyx_n_s_gpvolve_markov_base__generate_tm_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_i);
   Py_VISIT(traverse_module_state->__pyx_n_s_id);
   Py_VISIT(traverse_module_state->__pyx_n_s_import);
@@ -3903,8 +3903,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_getstate __pyx_mstate_global->__pyx_n_s_getstate
 #define __pyx_kp_u_got __pyx_mstate_global->__pyx_kp_u_got
 #define __pyx_kp_u_got_differing_extents_in_dimensi __pyx_mstate_global->__pyx_kp_u_got_differing_extents_in_dimensi
-#define __pyx_kp_s_gpvolve_markov_utils__generate_t __pyx_mstate_global->__pyx_kp_s_gpvolve_markov_utils__generate_t
-#define __pyx_n_s_gpvolve_markov_utils__generate_t_2 __pyx_mstate_global->__pyx_n_s_gpvolve_markov_utils__generate_t_2
+#define __pyx_kp_s_gpvolve_markov_base__generate_tm __pyx_mstate_global->__pyx_kp_s_gpvolve_markov_base__generate_tm
+#define __pyx_n_s_gpvolve_markov_base__generate_tm_2 __pyx_mstate_global->__pyx_n_s_gpvolve_markov_base__generate_tm_2
 #define __pyx_n_s_i __pyx_mstate_global->__pyx_n_s_i
 #define __pyx_n_s_id __pyx_mstate_global->__pyx_n_s_id
 #define __pyx_n_s_import __pyx_mstate_global->__pyx_n_s_import
@@ -4004,7 +4004,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":26
+/* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":26
  * ctypedef double (*f_type)(double, double, long)
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -4013,16 +4013,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython, "\n    Generate a stochastic transition matrix for evolution across between genotypes\n    given the fitness of each genotype, their connectivity, the population size\n    and a fixation model.\n\n    This function should not be called directly. Instead, use generate_tmatrix\n    wrapper. Wrapper has argument docs and does argument sanity checking.\n    ");
-static PyMethodDef __pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython = {"generate_tmatrix_cython", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython};
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython, "\n    Generate a stochastic transition matrix for evolution across between genotypes\n    given the fitness of each genotype, their connectivity, the population size\n    and a fixation model.\n\n    This function should not be called directly. Instead, use generate_tmatrix\n    wrapper. Wrapper has argument docs and does argument sanity checking.\n    ");
+static PyMethodDef __pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython = {"generate_tmatrix_cython", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython};
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4125,20 +4125,20 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("generate_tmatrix_cython", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 26, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(__pyx_self, __pyx_v_fitness, __pyx_v_neighbor_slicer, __pyx_v_neighbors, __pyx_v_population_size, __pyx_v_fixation_model);
+  __pyx_r = __pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(__pyx_self, __pyx_v_fitness, __pyx_v_neighbor_slicer, __pyx_v_neighbors, __pyx_v_population_size, __pyx_v_fixation_model);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_population_size, PyObject *__pyx_v_fixation_model) {
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_generate_tmatrix_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors, PyObject *__pyx_v_population_size, PyObject *__pyx_v_fixation_model) {
   long __pyx_v_population_size_int;
-  __pyx_t_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_f_type __pyx_v_fixation_model_ftype;
+  __pyx_t_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_f_type __pyx_v_fixation_model_ftype;
   PyObject *__pyx_v_err = NULL;
   Py_ssize_t __pyx_v_num_genotypes;
   long __pyx_v_num_genotypes_int;
@@ -4183,7 +4183,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("generate_tmatrix_cython", 0);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":44
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":44
  *     """
  * 
  *     cdef long population_size_int = <long>population_size             # <<<<<<<<<<<<<<
@@ -4193,7 +4193,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __Pyx_PyInt_As_long(__pyx_v_population_size); if (unlikely((__pyx_t_1 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
   __pyx_v_population_size_int = ((long)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":48
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":48
  *     # Fixation model (external c function; see f_type def above)
  *     cdef f_type fixation_model_ftype
  *     if fixation_model == "moran":             # <<<<<<<<<<<<<<
@@ -4203,16 +4203,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_fixation_model, __pyx_n_u_moran, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":49
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":49
  *     cdef f_type fixation_model_ftype
  *     if fixation_model == "moran":
  *         fixation_model_ftype = <f_type>moran             # <<<<<<<<<<<<<<
  *     elif fixation_model == "mcclandish":
  *         fixation_model_ftype = <f_type>mcclandish
  */
-    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_f_type)moran);
+    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_f_type)moran);
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":48
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":48
  *     # Fixation model (external c function; see f_type def above)
  *     cdef f_type fixation_model_ftype
  *     if fixation_model == "moran":             # <<<<<<<<<<<<<<
@@ -4222,7 +4222,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     goto __pyx_L3;
   }
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":50
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":50
  *     if fixation_model == "moran":
  *         fixation_model_ftype = <f_type>moran
  *     elif fixation_model == "mcclandish":             # <<<<<<<<<<<<<<
@@ -4232,16 +4232,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_fixation_model, __pyx_n_u_mcclandish, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 50, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":51
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":51
  *         fixation_model_ftype = <f_type>moran
  *     elif fixation_model == "mcclandish":
  *         fixation_model_ftype = <f_type>mcclandish             # <<<<<<<<<<<<<<
  *     elif fixation_model == "sswm":
  *         fixation_model_ftype = <f_type>sswm
  */
-    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_f_type)mcclandish);
+    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_f_type)mcclandish);
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":50
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":50
  *     if fixation_model == "moran":
  *         fixation_model_ftype = <f_type>moran
  *     elif fixation_model == "mcclandish":             # <<<<<<<<<<<<<<
@@ -4251,7 +4251,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     goto __pyx_L3;
   }
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":52
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":52
  *     elif fixation_model == "mcclandish":
  *         fixation_model_ftype = <f_type>mcclandish
  *     elif fixation_model == "sswm":             # <<<<<<<<<<<<<<
@@ -4261,16 +4261,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = (__Pyx_PyUnicode_Equals(__pyx_v_fixation_model, __pyx_n_u_sswm, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 52, __pyx_L1_error)
   if (likely(__pyx_t_2)) {
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":53
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":53
  *         fixation_model_ftype = <f_type>mcclandish
  *     elif fixation_model == "sswm":
  *         fixation_model_ftype = <f_type>sswm             # <<<<<<<<<<<<<<
  *     else:
  *         err = f"fixation model '{fixation_model}' not recognized.\n"
  */
-    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_f_type)sswm);
+    __pyx_v_fixation_model_ftype = ((__pyx_t_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_f_type)sswm);
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":52
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":52
  *     elif fixation_model == "mcclandish":
  *         fixation_model_ftype = <f_type>mcclandish
  *     elif fixation_model == "sswm":             # <<<<<<<<<<<<<<
@@ -4280,7 +4280,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     goto __pyx_L3;
   }
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":55
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":55
  *         fixation_model_ftype = <f_type>sswm
  *     else:
  *         err = f"fixation model '{fixation_model}' not recognized.\n"             # <<<<<<<<<<<<<<
@@ -4313,7 +4313,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     __pyx_v_err = ((PyObject*)__pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":56
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":56
  *     else:
  *         err = f"fixation model '{fixation_model}' not recognized.\n"
  *         err += "Should be one of 'moran', 'mcclandish', or 'sswm'.\n"             # <<<<<<<<<<<<<<
@@ -4325,7 +4325,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     __Pyx_DECREF_SET(__pyx_v_err, ((PyObject*)__pyx_t_6));
     __pyx_t_6 = 0;
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":57
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":57
  *         err = f"fixation model '{fixation_model}' not recognized.\n"
  *         err += "Should be one of 'moran', 'mcclandish', or 'sswm'.\n"
  *         raise ValueError(err)             # <<<<<<<<<<<<<<
@@ -4340,7 +4340,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   }
   __pyx_L3:;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":60
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":60
  * 
  *     # Get number of genotypes
  *     num_genotypes = len(fitness)             # <<<<<<<<<<<<<<
@@ -4350,7 +4350,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_4 = PyObject_Length(__pyx_v_fitness); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
   __pyx_v_num_genotypes = __pyx_t_4;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":61
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":61
  *     # Get number of genotypes
  *     num_genotypes = len(fitness)
  *     cdef long num_genotypes_int = <long>num_genotypes             # <<<<<<<<<<<<<<
@@ -4359,7 +4359,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
   __pyx_v_num_genotypes_int = ((long)__pyx_v_num_genotypes);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":64
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":64
  * 
  *     # Create output transition matrix
  *     T = np.zeros((num_genotypes,num_genotypes),dtype=float)             # <<<<<<<<<<<<<<
@@ -4399,7 +4399,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_v_T = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":72
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":72
  * 
  *     # efficient views of numpy arrays
  *     cdef long[:] neighbors_view = neighbors             # <<<<<<<<<<<<<<
@@ -4411,7 +4411,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":73
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":73
  *     # efficient views of numpy arrays
  *     cdef long[:] neighbors_view = neighbors
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer             # <<<<<<<<<<<<<<
@@ -4423,7 +4423,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_10.memview = NULL;
   __pyx_t_10.data = NULL;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":74
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":74
  *     cdef long[:] neighbors_view = neighbors
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer
  *     cdef double[:] fitness_view = fitness             # <<<<<<<<<<<<<<
@@ -4435,7 +4435,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":75
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":75
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer
  *     cdef double[:] fitness_view = fitness
  *     cdef double[:,:] T_view = T             # <<<<<<<<<<<<<<
@@ -4447,7 +4447,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":78
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":78
  * 
  *     # Go through every genotype
  *     for i in range(num_genotypes_int):             # <<<<<<<<<<<<<<
@@ -4459,7 +4459,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
     __pyx_v_i = __pyx_t_14;
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":82
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":82
  *         # Go through its neighbors. If no neighbors, set prob staying self to
  *         # 1.0.
  *         num_neighbors = neighbor_slicer_view[i,1] - neighbor_slicer_view[i,0]             # <<<<<<<<<<<<<<
@@ -4472,7 +4472,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     __pyx_t_18 = 0;
     __pyx_v_num_neighbors = ((*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_15 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_16 * __pyx_v_neighbor_slicer_view.strides[1]) ))) - (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_17 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_18 * __pyx_v_neighbor_slicer_view.strides[1]) ))));
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":83
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":83
  *         # 1.0.
  *         num_neighbors = neighbor_slicer_view[i,1] - neighbor_slicer_view[i,0]
  *         if num_neighbors == 0:             # <<<<<<<<<<<<<<
@@ -4482,7 +4482,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     __pyx_t_2 = ((__pyx_v_num_neighbors == 0) != 0);
     if (__pyx_t_2) {
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":84
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":84
  *         num_neighbors = neighbor_slicer_view[i,1] - neighbor_slicer_view[i,0]
  *         if num_neighbors == 0:
  *             T_view[i,i] = 1.0             # <<<<<<<<<<<<<<
@@ -4493,7 +4493,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
       __pyx_t_17 = __pyx_v_i;
       *((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_T_view.data + __pyx_t_18 * __pyx_v_T_view.strides[0]) ) + __pyx_t_17 * __pyx_v_T_view.strides[1]) )) = 1.0;
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":83
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":83
  *         # 1.0.
  *         num_neighbors = neighbor_slicer_view[i,1] - neighbor_slicer_view[i,0]
  *         if num_neighbors == 0:             # <<<<<<<<<<<<<<
@@ -4503,7 +4503,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
       goto __pyx_L6;
     }
 
-    /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":91
+    /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":91
  *             # transitions. We have to do this in its own loop because we divide
  *             # by num_neighbors every iteration fo the main loop.
  *             num_to_iterate_over = num_neighbors             # <<<<<<<<<<<<<<
@@ -4513,7 +4513,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     /*else*/ {
       __pyx_v_num_to_iterate_over = __pyx_v_num_neighbors;
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":92
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":92
  *             # by num_neighbors every iteration fo the main loop.
  *             num_to_iterate_over = num_neighbors
  *             for j in range(num_to_iterate_over):             # <<<<<<<<<<<<<<
@@ -4525,7 +4525,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
       for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
         __pyx_v_j = __pyx_t_21;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":93
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":93
  *             num_to_iterate_over = num_neighbors
  *             for j in range(num_to_iterate_over):
  *                 j_n = neighbors[neighbor_slicer[i,0] + j]             # <<<<<<<<<<<<<<
@@ -4558,7 +4558,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_v_j_n = __pyx_t_22;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":94
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":94
  *             for j in range(num_to_iterate_over):
  *                 j_n = neighbors[neighbor_slicer[i,0] + j]
  *                 if i == j_n:             # <<<<<<<<<<<<<<
@@ -4568,7 +4568,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __pyx_t_2 = ((__pyx_v_i == __pyx_v_j_n) != 0);
         if (__pyx_t_2) {
 
-          /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":95
+          /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":95
  *                 j_n = neighbors[neighbor_slicer[i,0] + j]
  *                 if i == j_n:
  *                     num_neighbors = num_neighbors - 1             # <<<<<<<<<<<<<<
@@ -4577,7 +4577,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
           __pyx_v_num_neighbors = (__pyx_v_num_neighbors - 1);
 
-          /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":96
+          /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":96
  *                 if i == j_n:
  *                     num_neighbors = num_neighbors - 1
  *                     break             # <<<<<<<<<<<<<<
@@ -4586,7 +4586,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
           goto __pyx_L8_break;
 
-          /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":94
+          /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":94
  *             for j in range(num_to_iterate_over):
  *                 j_n = neighbors[neighbor_slicer[i,0] + j]
  *                 if i == j_n:             # <<<<<<<<<<<<<<
@@ -4597,7 +4597,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
       }
       __pyx_L8_break:;
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":98
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":98
  *                     break
  * 
  *             Pi_out = 0.0             # <<<<<<<<<<<<<<
@@ -4606,7 +4606,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
       __pyx_v_Pi_out = 0.0;
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":99
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":99
  * 
  *             Pi_out = 0.0
  *             for j in range(num_to_iterate_over):             # <<<<<<<<<<<<<<
@@ -4618,7 +4618,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
       for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
         __pyx_v_j = __pyx_t_21;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":101
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":101
  *             for j in range(num_to_iterate_over):
  * 
  *                 j_n = neighbors[neighbor_slicer[i,0] + j]             # <<<<<<<<<<<<<<
@@ -4651,7 +4651,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __pyx_v_j_n = __pyx_t_22;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":104
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":104
  * 
  *                 # skip self neighbors.
  *                 if i == j_n:             # <<<<<<<<<<<<<<
@@ -4661,7 +4661,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __pyx_t_2 = ((__pyx_v_i == __pyx_v_j_n) != 0);
         if (__pyx_t_2) {
 
-          /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":105
+          /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":105
  *                 # skip self neighbors.
  *                 if i == j_n:
  *                     continue             # <<<<<<<<<<<<<<
@@ -4670,7 +4670,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
           goto __pyx_L10_continue;
 
-          /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":104
+          /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":104
  * 
  *                 # skip self neighbors.
  *                 if i == j_n:             # <<<<<<<<<<<<<<
@@ -4679,7 +4679,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
         }
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":108
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":108
  * 
  *                 # Calculate fixation probability for i -> j
  *                 Pij_fix = fixation_model_ftype(fitness_view[i],             # <<<<<<<<<<<<<<
@@ -4688,7 +4688,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
         __pyx_t_17 = __pyx_v_i;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":109
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":109
  *                 # Calculate fixation probability for i -> j
  *                 Pij_fix = fixation_model_ftype(fitness_view[i],
  *                                                fitness_view[j_n],             # <<<<<<<<<<<<<<
@@ -4697,7 +4697,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
         __pyx_t_18 = __pyx_v_j_n;
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":108
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":108
  * 
  *                 # Calculate fixation probability for i -> j
  *                 Pij_fix = fixation_model_ftype(fitness_view[i],             # <<<<<<<<<<<<<<
@@ -4706,7 +4706,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
         __pyx_v_Pij_fix = __pyx_v_fixation_model_ftype((*((double *) ( /* dim=0 */ (__pyx_v_fitness_view.data + __pyx_t_17 * __pyx_v_fitness_view.strides[0]) ))), (*((double *) ( /* dim=0 */ (__pyx_v_fitness_view.data + __pyx_t_18 * __pyx_v_fitness_view.strides[0]) ))), __pyx_v_population_size_int);
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":113
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":113
  * 
  *                 # Pij is Pmutate * Pfix = 1/n*Pfix
  *                 T_view[i,j_n] = Pij_fix/num_neighbors             # <<<<<<<<<<<<<<
@@ -4717,7 +4717,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __pyx_t_17 = __pyx_v_j_n;
         *((double *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_T_view.data + __pyx_t_18 * __pyx_v_T_view.strides[0]) ) + __pyx_t_17 * __pyx_v_T_view.strides[1]) )) = (__pyx_v_Pij_fix / ((double)__pyx_v_num_neighbors));
 
-        /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":114
+        /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":114
  *                 # Pij is Pmutate * Pfix = 1/n*Pfix
  *                 T_view[i,j_n] = Pij_fix/num_neighbors
  *                 Pi_out += T_view[i,j_n]             # <<<<<<<<<<<<<<
@@ -4730,7 +4730,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
         __pyx_L10_continue:;
       }
 
-      /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":117
+      /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":117
  * 
  *             # Probability of remaining is 1 - total probability of leaving.
  *             T_view[i,i] = 1.0 - Pi_out             # <<<<<<<<<<<<<<
@@ -4744,7 +4744,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
     __pyx_L6:;
   }
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":119
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":119
  *             T_view[i,i] = 1.0 - Pi_out
  * 
  *     return T             # <<<<<<<<<<<<<<
@@ -4756,7 +4756,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_r = __pyx_v_T;
   goto __pyx_L0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":26
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":26
  * ctypedef double (*f_type)(double, double, long)
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -4774,7 +4774,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_10, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_11, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_12, 1);
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_err);
@@ -4788,7 +4788,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   return __pyx_r;
 }
 
-/* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":121
+/* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":121
  *     return T
  * 
  * def _moran_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -4797,16 +4797,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester, "\n    Wrap moran C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
-static PyMethodDef __pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester = {"_moran_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester};
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester, "\n    Wrap moran C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
+static PyMethodDef __pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester = {"_moran_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester};
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4885,18 +4885,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("_moran_tester", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 121, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._moran_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._moran_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
+  __pyx_r = __pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_2_moran_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
   double __pyx_v_f1_dbl;
   double __pyx_v_f2_dbl;
   long __pyx_v_N_long;
@@ -4910,7 +4910,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_moran_tester", 0);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":127
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":127
  *     """
  * 
  *     cdef double f1_dbl = <double>f1             # <<<<<<<<<<<<<<
@@ -4920,7 +4920,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f1); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L1_error)
   __pyx_v_f1_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":128
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":128
  * 
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2             # <<<<<<<<<<<<<<
@@ -4930,7 +4930,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f2); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L1_error)
   __pyx_v_f2_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":129
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":129
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2
  *     cdef long N_long = <long>N             # <<<<<<<<<<<<<<
@@ -4940,7 +4940,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = __Pyx_PyInt_As_long(__pyx_v_N); if (unlikely((__pyx_t_2 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
   __pyx_v_N_long = ((long)__pyx_t_2);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":131
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":131
  *     cdef long N_long = <long>N
  * 
  *     return moran(f1_dbl,f2_dbl,N_long)             # <<<<<<<<<<<<<<
@@ -4954,7 +4954,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":121
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":121
  *     return T
  * 
  * def _moran_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -4965,7 +4965,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._moran_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._moran_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4973,7 +4973,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   return __pyx_r;
 }
 
-/* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":133
+/* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":133
  *     return moran(f1_dbl,f2_dbl,N_long)
  * 
  * def _mcclandish_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -4982,16 +4982,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester, "\n    Wrap mcclandish C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
-static PyMethodDef __pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester = {"_mcclandish_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester};
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester, "\n    Wrap mcclandish C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
+static PyMethodDef __pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester = {"_mcclandish_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester};
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5070,18 +5070,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("_mcclandish_tester", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 133, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._mcclandish_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._mcclandish_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
+  __pyx_r = __pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_4_mcclandish_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
   double __pyx_v_f1_dbl;
   double __pyx_v_f2_dbl;
   long __pyx_v_N_long;
@@ -5095,7 +5095,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_mcclandish_tester", 0);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":139
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":139
  *     """
  * 
  *     cdef double f1_dbl = <double>f1             # <<<<<<<<<<<<<<
@@ -5105,7 +5105,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f1); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 139, __pyx_L1_error)
   __pyx_v_f1_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":140
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":140
  * 
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2             # <<<<<<<<<<<<<<
@@ -5115,7 +5115,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f2); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L1_error)
   __pyx_v_f2_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":141
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":141
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2
  *     cdef long N_long = <long>N             # <<<<<<<<<<<<<<
@@ -5125,7 +5125,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = __Pyx_PyInt_As_long(__pyx_v_N); if (unlikely((__pyx_t_2 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L1_error)
   __pyx_v_N_long = ((long)__pyx_t_2);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":143
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":143
  *     cdef long N_long = <long>N
  * 
  *     return mcclandish(f1_dbl,f2_dbl,N_long)             # <<<<<<<<<<<<<<
@@ -5139,7 +5139,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":133
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":133
  *     return moran(f1_dbl,f2_dbl,N_long)
  * 
  * def _mcclandish_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -5150,7 +5150,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._mcclandish_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._mcclandish_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5158,7 +5158,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   return __pyx_r;
 }
 
-/* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":145
+/* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":145
  *     return mcclandish(f1_dbl,f2_dbl,N_long)
  * 
  * def _sswm_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -5167,16 +5167,16 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester, "\n    Wrap sswm C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
-static PyMethodDef __pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester = {"_sswm_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester};
-static PyObject *__pyx_pw_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester, "\n    Wrap sswm C-implementation to allow pytest to access. Not generally used\n    by users.\n    ");
+static PyMethodDef __pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester = {"_sswm_tester", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester};
+static PyObject *__pyx_pw_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5255,18 +5255,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("_sswm_tester", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 145, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._sswm_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._sswm_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
+  __pyx_r = __pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(__pyx_self, __pyx_v_f1, __pyx_v_f2, __pyx_v_N);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
+static PyObject *__pyx_pf_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_6_sswm_tester(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f1, PyObject *__pyx_v_f2, PyObject *__pyx_v_N) {
   double __pyx_v_f1_dbl;
   double __pyx_v_f2_dbl;
   long __pyx_v_N_long;
@@ -5280,7 +5280,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_sswm_tester", 0);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":151
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":151
  *     """
  * 
  *     cdef double f1_dbl = <double>f1             # <<<<<<<<<<<<<<
@@ -5290,7 +5290,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f1); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 151, __pyx_L1_error)
   __pyx_v_f1_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":152
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":152
  * 
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2             # <<<<<<<<<<<<<<
@@ -5300,7 +5300,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_f2); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
   __pyx_v_f2_dbl = ((double)__pyx_t_1);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":153
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":153
  *     cdef double f1_dbl = <double>f1
  *     cdef double f2_dbl = <double>f2
  *     cdef long N_long = <long>N             # <<<<<<<<<<<<<<
@@ -5310,7 +5310,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_2 = __Pyx_PyInt_As_long(__pyx_v_N); if (unlikely((__pyx_t_2 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 153, __pyx_L1_error)
   __pyx_v_N_long = ((long)__pyx_t_2);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":155
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":155
  *     cdef long N_long = <long>N
  * 
  *     return sswm(f1_dbl,f2_dbl,N_long)             # <<<<<<<<<<<<<<
@@ -5322,7 +5322,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":145
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":145
  *     return mcclandish(f1_dbl,f2_dbl,N_long)
  * 
  * def _sswm_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -5333,7 +5333,7 @@ static PyObject *__pyx_pf_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._sswm_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._sswm_tester", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -20158,7 +20158,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.array",
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -20204,7 +20204,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.""array", /*tp_name*/
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -20343,7 +20343,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.Enum",
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20353,7 +20353,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.""Enum", /*tp_name*/
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -20626,7 +20626,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.memoryview",
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20672,7 +20672,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.""memoryview", /*tp_name*/
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -20820,7 +20820,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython._memoryviewslice",
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20830,7 +20830,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython.""_memoryviewslice", /*tp_name*/
+  "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -21014,8 +21014,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {0, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
   {0, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 1, 0, 0},
-  {0, __pyx_k_gpvolve_markov_utils__generate_t, sizeof(__pyx_k_gpvolve_markov_utils__generate_t), 0, 0, 1, 0},
-  {0, __pyx_k_gpvolve_markov_utils__generate_t_2, sizeof(__pyx_k_gpvolve_markov_utils__generate_t_2), 0, 0, 1, 1},
+  {0, __pyx_k_gpvolve_markov_base__generate_tm, sizeof(__pyx_k_gpvolve_markov_base__generate_tm), 0, 0, 1, 0},
+  {0, __pyx_k_gpvolve_markov_base__generate_tm_2, sizeof(__pyx_k_gpvolve_markov_base__generate_tm_2), 0, 0, 1, 1},
   {0, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {0, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {0, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
@@ -21177,8 +21177,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_kp_u_got, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
   {&__pyx_kp_u_got_differing_extents_in_dimensi, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 1, 0, 0},
-  {&__pyx_kp_s_gpvolve_markov_utils__generate_t, __pyx_k_gpvolve_markov_utils__generate_t, sizeof(__pyx_k_gpvolve_markov_utils__generate_t), 0, 0, 1, 0},
-  {&__pyx_n_s_gpvolve_markov_utils__generate_t_2, __pyx_k_gpvolve_markov_utils__generate_t_2, sizeof(__pyx_k_gpvolve_markov_utils__generate_t_2), 0, 0, 1, 1},
+  {&__pyx_kp_s_gpvolve_markov_base__generate_tm, __pyx_k_gpvolve_markov_base__generate_tm, sizeof(__pyx_k_gpvolve_markov_base__generate_tm), 0, 0, 1, 0},
+  {&__pyx_n_s_gpvolve_markov_base__generate_tm_2, __pyx_k_gpvolve_markov_base__generate_tm_2, sizeof(__pyx_k_gpvolve_markov_base__generate_tm_2), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_id, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
@@ -21324,7 +21324,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__7);
   __Pyx_GIVEREF(__pyx_slice__7);
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":26
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":26
  * ctypedef double (*f_type)(double, double, long)
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -21334,9 +21334,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__10 = PyTuple_Pack(22, __pyx_n_s_fitness, __pyx_n_s_neighbor_slicer, __pyx_n_s_neighbors, __pyx_n_s_population_size, __pyx_n_s_fixation_model, __pyx_n_s_population_size_int, __pyx_n_s_fixation_model_ftype, __pyx_n_s_err, __pyx_n_s_num_genotypes, __pyx_n_s_num_genotypes_int, __pyx_n_s_T, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_j_n, __pyx_n_s_num_neighbors, __pyx_n_s_Pi_out, __pyx_n_s_Pij_fix, __pyx_n_s_neighbors_view, __pyx_n_s_neighbor_slicer_view, __pyx_n_s_fitness_view, __pyx_n_s_T_view, __pyx_n_s_num_to_iterate_over); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 22, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_utils__generate_t, __pyx_n_s_generate_tmatrix_cython, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 22, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_base__generate_tm, __pyx_n_s_generate_tmatrix_cython, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 26, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":121
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":121
  *     return T
  * 
  * def _moran_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -21346,9 +21346,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__12 = PyTuple_Pack(6, __pyx_n_s_f1, __pyx_n_s_f2, __pyx_n_s_N, __pyx_n_s_f1_dbl, __pyx_n_s_f2_dbl, __pyx_n_s_N_long); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_utils__generate_t, __pyx_n_s_moran_tester, 121, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_base__generate_tm, __pyx_n_s_moran_tester, 121, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 121, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":133
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":133
  *     return moran(f1_dbl,f2_dbl,N_long)
  * 
  * def _mcclandish_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -21358,9 +21358,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__14 = PyTuple_Pack(6, __pyx_n_s_f1, __pyx_n_s_f2, __pyx_n_s_N, __pyx_n_s_f1_dbl, __pyx_n_s_f2_dbl, __pyx_n_s_N_long); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_utils__generate_t, __pyx_n_s_mcclandish_tester, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_base__generate_tm, __pyx_n_s_mcclandish_tester, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 133, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":145
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":145
  *     return mcclandish(f1_dbl,f2_dbl,N_long)
  * 
  * def _sswm_tester(f1,f2,N):             # <<<<<<<<<<<<<<
@@ -21370,7 +21370,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__16 = PyTuple_Pack(6, __pyx_n_s_f1, __pyx_n_s_f2, __pyx_n_s_N, __pyx_n_s_f1_dbl, __pyx_n_s_f2_dbl, __pyx_n_s_N_long); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_utils__generate_t, __pyx_n_s_sswm_tester, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_markov_base__generate_tm, __pyx_n_s_sswm_tester, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 145, __pyx_L1_error)
 
   /* "View.MemoryView":300
  *         return self.name
@@ -21553,8 +21553,8 @@ if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_InitString(__pyx_string_tab[84], &__pyx_n_s_getstate) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[85], &__pyx_kp_u_got) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[86], &__pyx_kp_u_got_differing_extents_in_dimensi) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[87], &__pyx_kp_s_gpvolve_markov_utils__generate_t) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[88], &__pyx_n_s_gpvolve_markov_utils__generate_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[87], &__pyx_kp_s_gpvolve_markov_base__generate_tm) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[88], &__pyx_n_s_gpvolve_markov_base__generate_tm_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[89], &__pyx_n_s_i) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[90], &__pyx_n_s_id) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[91], &__pyx_n_s_import) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -22147,14 +22147,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_gpvolve__markov__utils___generate_tmatrix__generate_tmatrix_cython) {
+  if (__pyx_module_is_main_gpvolve__markov__base___generate_tmatrix__generate_tmatrix_cython) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython")) {
-      if (unlikely((PyDict_SetItemString(modules, "gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython")) {
+      if (unlikely((PyDict_SetItemString(modules, "gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -22175,7 +22175,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":3
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":3
  * #cython: language_level=3
  * __description__ = \
  * """             # <<<<<<<<<<<<<<
@@ -22184,7 +22184,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_description, __pyx_kp_u_Cython_implementation_for_gener) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":7
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":7
  * fitness and neighbor data given some fixation model.
  * """
  * __author__ = "Michael J. Harms"             # <<<<<<<<<<<<<<
@@ -22193,7 +22193,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_u_Michael_J_Harms) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":8
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":8
  * """
  * __author__ = "Michael J. Harms"
  * __date__ = "2021-09-15"             # <<<<<<<<<<<<<<
@@ -22202,7 +22202,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_date, __pyx_kp_u_2021_09_15) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":16
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":16
  *     double sswm(double fitness_i, double fitness_j, long population_size)
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -22214,55 +22214,55 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":26
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":26
  * ctypedef double (*f_type)(double, double, long)
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.cdivision(True) # Deactivate divide-by-zero checking
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython, 0, __pyx_n_s_generate_tmatrix_cython, NULL, __pyx_n_s_gpvolve_markov_utils__generate_t_2, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_1generate_tmatrix_cython, 0, __pyx_n_s_generate_tmatrix_cython, NULL, __pyx_n_s_gpvolve_markov_base__generate_tm_2, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_generate_tmatrix_cython, __pyx_t_1) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":121
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":121
  *     return T
  * 
  * def _moran_tester(f1,f2,N):             # <<<<<<<<<<<<<<
  *     """
  *     Wrap moran C-implementation to allow pytest to access. Not generally used
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester, 0, __pyx_n_s_moran_tester, NULL, __pyx_n_s_gpvolve_markov_utils__generate_t_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_3_moran_tester, 0, __pyx_n_s_moran_tester, NULL, __pyx_n_s_gpvolve_markov_base__generate_tm_2, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_moran_tester, __pyx_t_1) < 0) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":133
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":133
  *     return moran(f1_dbl,f2_dbl,N_long)
  * 
  * def _mcclandish_tester(f1,f2,N):             # <<<<<<<<<<<<<<
  *     """
  *     Wrap mcclandish C-implementation to allow pytest to access. Not generally used
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester, 0, __pyx_n_s_mcclandish_tester, NULL, __pyx_n_s_gpvolve_markov_utils__generate_t_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_5_mcclandish_tester, 0, __pyx_n_s_mcclandish_tester, NULL, __pyx_n_s_gpvolve_markov_base__generate_tm_2, __pyx_d, ((PyObject *)__pyx_codeobj__15)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_mcclandish_tester, __pyx_t_1) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":145
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":145
  *     return mcclandish(f1_dbl,f2_dbl,N_long)
  * 
  * def _sswm_tester(f1,f2,N):             # <<<<<<<<<<<<<<
  *     """
  *     Wrap sswm C-implementation to allow pytest to access. Not generally used
  */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_5utils_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester, 0, __pyx_n_s_sswm_tester, NULL, __pyx_n_s_gpvolve_markov_utils__generate_t_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_6markov_4base_17_generate_tmatrix_23generate_tmatrix_cython_7_sswm_tester, 0, __pyx_n_s_sswm_tester, NULL, __pyx_n_s_gpvolve_markov_base__generate_tm_2, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_sswm_tester, __pyx_t_1) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/markov/utils/_generate_tmatrix/generate_tmatrix_cython.pyx":1
+  /* "gpvolve/markov/base/_generate_tmatrix/generate_tmatrix_cython.pyx":1
  * #cython: language_level=3             # <<<<<<<<<<<<<<
  * __description__ = \
  * """
@@ -22432,13 +22432,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_COMPILING_IN_LIMITED_API
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init gpvolve.markov.utils._generate_tmatrix.generate_tmatrix_cython");
+    PyErr_SetString(PyExc_ImportError, "init gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

@@ -791,8 +791,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__gpvolve__simulate__wright_fisher__wright_fisher_engine_cython
-#define __PYX_HAVE_API__gpvolve__simulate__wright_fisher__wright_fisher_engine_cython
+#define __PYX_HAVE__gpvolve__simulate__wright_fisher__engine__wright_fisher_engine_cython
+#define __PYX_HAVE_API__gpvolve__simulate__wright_fisher__engine__wright_fisher_engine_cython
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1053,7 +1053,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx",
+  "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx",
   "__init__.cython-30.pxd",
   "stringsource",
   "type.pxd",
@@ -2668,7 +2668,7 @@ static PyTypeObject *__pyx_ptype_5numpy_6random_13bit_generator_SeedlessSequence
 #if !CYTHON_USE_MODULE_STATE
 #endif
 
-/* Module declarations from "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython" */
+/* Module declarations from "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython" */
 #if !CYTHON_USE_MODULE_STATE
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
@@ -2721,11 +2721,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_long = { "long", NULL, sizeof(long), { 0 }, 0, IS_UNSIGNED(long) ? 'U' : 'I', IS_UNSIGNED(long), 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython"
-extern int __pyx_module_is_main_gpvolve__simulate__wright_fisher__wright_fisher_engine_cython;
-int __pyx_module_is_main_gpvolve__simulate__wright_fisher__wright_fisher_engine_cython = 0;
+#define __Pyx_MODULE_NAME "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython"
+extern int __pyx_module_is_main_gpvolve__simulate__wright_fisher__engine__wright_fisher_engine_cython;
+int __pyx_module_is_main_gpvolve__simulate__wright_fisher__engine__wright_fisher_engine_cython = 0;
 
-/* Implementation of "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython" */
+/* Implementation of "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_sum;
 static PyObject *__pyx_builtin_range;
@@ -2893,11 +2893,11 @@ static const char __pyx_k_Invalid_mode_expected_c_or_fortr[] = "Invalid mode, ex
 static const char __pyx_k_Out_of_bounds_on_buffer_access_a[] = "Out of bounds on buffer access (axis ";
 static const char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item to object";
 static const char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension ";
-static const char __pyx_k_gpvolve_simulate_wright_fisher_w[] = "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx";
+static const char __pyx_k_gpvolve_simulate_wright_fisher_e[] = "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";
 static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
-static const char __pyx_k_gpvolve_simulate_wright_fisher_w_2[] = "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython";
+static const char __pyx_k_gpvolve_simulate_wright_fisher_e_2[] = "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython";
 #if !CYTHON_USE_MODULE_STATE
 static PyObject *__pyx_kp_u_2021_09_15;
 static PyObject *__pyx_n_s_ASCII;
@@ -2978,8 +2978,8 @@ static PyObject *__pyx_kp_u_gc;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_kp_u_got;
 static PyObject *__pyx_kp_u_got_differing_extents_in_dimensi;
-static PyObject *__pyx_kp_s_gpvolve_simulate_wright_fisher_w;
-static PyObject *__pyx_n_s_gpvolve_simulate_wright_fisher_w_2;
+static PyObject *__pyx_kp_s_gpvolve_simulate_wright_fisher_e;
+static PyObject *__pyx_n_s_gpvolve_simulate_wright_fisher_e_2;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_id;
 static PyObject *__pyx_n_s_import;
@@ -3062,7 +3062,7 @@ static PyObject *__pyx_n_s_wf_engine_cython;
 static PyObject *__pyx_n_s_zeros;
 #endif
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_wf_engine_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_pops, PyObject *__pyx_v_mutation_rate, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors); /* proto */
+static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_wf_engine_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_pops, PyObject *__pyx_v_mutation_rate, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -3252,8 +3252,8 @@ typedef struct {
   PyObject *__pyx_n_s_getstate;
   PyObject *__pyx_kp_u_got;
   PyObject *__pyx_kp_u_got_differing_extents_in_dimensi;
-  PyObject *__pyx_kp_s_gpvolve_simulate_wright_fisher_w;
-  PyObject *__pyx_n_s_gpvolve_simulate_wright_fisher_w_2;
+  PyObject *__pyx_kp_s_gpvolve_simulate_wright_fisher_e;
+  PyObject *__pyx_n_s_gpvolve_simulate_wright_fisher_e_2;
   PyObject *__pyx_n_s_i;
   PyObject *__pyx_n_s_id;
   PyObject *__pyx_n_s_import;
@@ -3491,8 +3491,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_getstate);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_gpvolve_simulate_wright_fisher_w);
-  Py_CLEAR(clear_module_state->__pyx_n_s_gpvolve_simulate_wright_fisher_w_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_gpvolve_simulate_wright_fisher_e);
+  Py_CLEAR(clear_module_state->__pyx_n_s_gpvolve_simulate_wright_fisher_e_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_i);
   Py_CLEAR(clear_module_state->__pyx_n_s_id);
   Py_CLEAR(clear_module_state->__pyx_n_s_import);
@@ -3717,8 +3717,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_getstate);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_gpvolve_simulate_wright_fisher_w);
-  Py_VISIT(traverse_module_state->__pyx_n_s_gpvolve_simulate_wright_fisher_w_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_gpvolve_simulate_wright_fisher_e);
+  Py_VISIT(traverse_module_state->__pyx_n_s_gpvolve_simulate_wright_fisher_e_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_i);
   Py_VISIT(traverse_module_state->__pyx_n_s_id);
   Py_VISIT(traverse_module_state->__pyx_n_s_import);
@@ -3940,8 +3940,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_getstate __pyx_mstate_global->__pyx_n_s_getstate
 #define __pyx_kp_u_got __pyx_mstate_global->__pyx_kp_u_got
 #define __pyx_kp_u_got_differing_extents_in_dimensi __pyx_mstate_global->__pyx_kp_u_got_differing_extents_in_dimensi
-#define __pyx_kp_s_gpvolve_simulate_wright_fisher_w __pyx_mstate_global->__pyx_kp_s_gpvolve_simulate_wright_fisher_w
-#define __pyx_n_s_gpvolve_simulate_wright_fisher_w_2 __pyx_mstate_global->__pyx_n_s_gpvolve_simulate_wright_fisher_w_2
+#define __pyx_kp_s_gpvolve_simulate_wright_fisher_e __pyx_mstate_global->__pyx_kp_s_gpvolve_simulate_wright_fisher_e
+#define __pyx_n_s_gpvolve_simulate_wright_fisher_e_2 __pyx_mstate_global->__pyx_n_s_gpvolve_simulate_wright_fisher_e_2
 #define __pyx_n_s_i __pyx_mstate_global->__pyx_n_s_i
 #define __pyx_n_s_id __pyx_mstate_global->__pyx_n_s_id
 #define __pyx_n_s_import __pyx_mstate_global->__pyx_n_s_import
@@ -4043,7 +4043,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 /* #### Code section: module_code ### */
 
-/* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":24
+/* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":24
  * 
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -4052,16 +4052,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_1wf_engine_cython(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_1wf_engine_cython(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_wf_engine_cython, "\n    A cython implementation of the Wright Fisher engine.\n\n    This function should not be called directly. Instead, use wf_engine\n    wrapper. Wrapper has argument docs and does argument sanity checking.\n    ");
-static PyMethodDef __pyx_mdef_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_1wf_engine_cython = {"wf_engine_cython", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_1wf_engine_cython, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_wf_engine_cython};
-static PyObject *__pyx_pw_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_1wf_engine_cython(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_wf_engine_cython, "\n    A cython implementation of the Wright Fisher engine.\n\n    This function should not be called directly. Instead, use wf_engine\n    wrapper. Wrapper has argument docs and does argument sanity checking.\n    ");
+static PyMethodDef __pyx_mdef_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_1wf_engine_cython = {"wf_engine_cython", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_1wf_engine_cython, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_wf_engine_cython};
+static PyObject *__pyx_pw_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_1wf_engine_cython(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4164,18 +4164,18 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("wf_engine_cython", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 24, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.wf_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.wf_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_wf_engine_cython(__pyx_self, __pyx_v_pops, __pyx_v_mutation_rate, __pyx_v_fitness, __pyx_v_neighbor_slicer, __pyx_v_neighbors);
+  __pyx_r = __pyx_pf_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_wf_engine_cython(__pyx_self, __pyx_v_pops, __pyx_v_mutation_rate, __pyx_v_fitness, __pyx_v_neighbor_slicer, __pyx_v_neighbors);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_wf_engine_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_pops, PyObject *__pyx_v_mutation_rate, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors) {
+static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_wf_engine_cython(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_pops, PyObject *__pyx_v_mutation_rate, PyObject *__pyx_v_fitness, PyObject *__pyx_v_neighbor_slicer, PyObject *__pyx_v_neighbors) {
   double __pyx_v_denominator;
   int __pyx_v_i;
   int __pyx_v_j;
@@ -4234,7 +4234,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("wf_engine_cython", 0);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":44
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":44
  * 
  *     # Get number of genoptypes, population size, and number of steps
  *     num_genotypes = len(fitness)             # <<<<<<<<<<<<<<
@@ -4244,7 +4244,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_1 = PyObject_Length(__pyx_v_fitness); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 44, __pyx_L1_error)
   __pyx_v_num_genotypes = __pyx_t_1;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":45
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":45
  *     # Get number of genoptypes, population size, and number of steps
  *     num_genotypes = len(fitness)
  *     pop_size = sum(pops[0,:])             # <<<<<<<<<<<<<<
@@ -4259,7 +4259,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_v_pop_size = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":46
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":46
  *     num_genotypes = len(fitness)
  *     pop_size = sum(pops[0,:])
  *     num_steps = len(pops)             # <<<<<<<<<<<<<<
@@ -4269,7 +4269,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_1 = PyObject_Length(__pyx_v_pops); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_v_num_steps = __pyx_t_1;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":49
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":49
  * 
  *     # If zero population, don't bother with simulation
  *     if pop_size == 0:             # <<<<<<<<<<<<<<
@@ -4282,7 +4282,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_4) {
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":50
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":50
  *     # If zero population, don't bother with simulation
  *     if pop_size == 0:
  *         return pops             # <<<<<<<<<<<<<<
@@ -4294,7 +4294,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     __pyx_r = __pyx_v_pops;
     goto __pyx_L0;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":49
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":49
  * 
  *     # If zero population, don't bother with simulation
  *     if pop_size == 0:             # <<<<<<<<<<<<<<
@@ -4303,7 +4303,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
   }
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":53
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":53
  * 
  *     # Create c-versions of the simulation parameters
  *     cdef int num_steps_int = <int>num_steps             # <<<<<<<<<<<<<<
@@ -4312,7 +4312,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
   __pyx_v_num_steps_int = ((int)__pyx_v_num_steps);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":54
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":54
  *     # Create c-versions of the simulation parameters
  *     cdef int num_steps_int = <int>num_steps
  *     cdef int num_genotypes_int = <int>num_genotypes             # <<<<<<<<<<<<<<
@@ -4321,7 +4321,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
   __pyx_v_num_genotypes_int = ((int)__pyx_v_num_genotypes);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":55
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":55
  *     cdef int num_steps_int = <int>num_steps
  *     cdef int num_genotypes_int = <int>num_genotypes
  *     cdef int pop_size_int = <int>pop_size             # <<<<<<<<<<<<<<
@@ -4331,7 +4331,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_pop_size); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L1_error)
   __pyx_v_pop_size_int = ((int)__pyx_t_5);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":56
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":56
  *     cdef int num_genotypes_int = <int>num_genotypes
  *     cdef int pop_size_int = <int>pop_size
  *     cdef double pop_size_dbl = <double>pop_size             # <<<<<<<<<<<<<<
@@ -4341,7 +4341,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_v_pop_size); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 56, __pyx_L1_error)
   __pyx_v_pop_size_dbl = ((double)__pyx_t_6);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":57
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":57
  *     cdef int pop_size_int = <int>pop_size
  *     cdef double pop_size_dbl = <double>pop_size
  *     cdef double expected_num_mutations = <double>(pop_size_dbl*mutation_rate)             # <<<<<<<<<<<<<<
@@ -4357,7 +4357,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_expected_num_mutations = ((double)__pyx_t_6);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":60
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":60
  * 
  *     # efficient views of numy arrays
  *     cdef double[:] fitness_view = fitness             # <<<<<<<<<<<<<<
@@ -4369,7 +4369,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":61
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":61
  *     # efficient views of numy arrays
  *     cdef double[:] fitness_view = fitness
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer             # <<<<<<<<<<<<<<
@@ -4381,7 +4381,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":62
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":62
  *     cdef double[:] fitness_view = fitness
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer
  *     cdef long[:] neighbors_view = neighbors             # <<<<<<<<<<<<<<
@@ -4393,7 +4393,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":63
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":63
  *     cdef long[:,:] neighbor_slicer_view = neighbor_slicer
  *     cdef long[:] neighbors_view = neighbors
  *     cdef long[:,:] pops_view = pops             # <<<<<<<<<<<<<<
@@ -4405,7 +4405,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":67
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":67
  *     # Initialize random number generator
  *     cdef bitgen_t *bitgen_state
  *     bitgen_state = <bitgen_t *>PyCapsule_GetPointer(PCG64().capsule,             # <<<<<<<<<<<<<<
@@ -4441,7 +4441,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_bitgen_state = ((bitgen_t *)__pyx_t_11);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":71
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":71
  * 
  *     # Some temporary vectors
  *     choice_vector = np.zeros(num_genotypes,dtype=int)             # <<<<<<<<<<<<<<
@@ -4471,7 +4471,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_v_choice_vector = __pyx_t_12;
   __pyx_t_12 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":72
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":72
  *     # Some temporary vectors
  *     choice_vector = np.zeros(num_genotypes,dtype=int)
  *     prob_vector = np.zeros(num_genotypes,dtype=float)             # <<<<<<<<<<<<<<
@@ -4501,7 +4501,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_v_prob_vector = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":73
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":73
  *     choice_vector = np.zeros(num_genotypes,dtype=int)
  *     prob_vector = np.zeros(num_genotypes,dtype=float)
  *     cdef long[:] choice_vector_view = choice_vector             # <<<<<<<<<<<<<<
@@ -4513,7 +4513,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":74
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":74
  *     prob_vector = np.zeros(num_genotypes,dtype=float)
  *     cdef long[:] choice_vector_view = choice_vector
  *     cdef double[:] prob_vector_view = prob_vector             # <<<<<<<<<<<<<<
@@ -4525,7 +4525,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":76
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":76
  *     cdef double[:] prob_vector_view = prob_vector
  * 
  *     for i in range(1,num_steps_int,1):             # <<<<<<<<<<<<<<
@@ -4537,7 +4537,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   for (__pyx_t_14 = 1; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
     __pyx_v_i = __pyx_t_14;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":78
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":78
  *     for i in range(1,num_steps_int,1):
  * 
  *         denominator = 0;             # <<<<<<<<<<<<<<
@@ -4546,7 +4546,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
     __pyx_v_denominator = 0.0;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":79
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":79
  * 
  *         denominator = 0;
  *         k = 0;             # <<<<<<<<<<<<<<
@@ -4555,7 +4555,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
     __pyx_v_k = 0;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":80
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":80
  *         denominator = 0;
  *         k = 0;
  *         for j in range(0,num_genotypes_int,1):             # <<<<<<<<<<<<<<
@@ -4567,7 +4567,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
       __pyx_v_j = __pyx_t_17;
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":82
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":82
  *         for j in range(0,num_genotypes_int,1):
  * 
  *             if pops_view[i-1,j] >  0:             # <<<<<<<<<<<<<<
@@ -4579,7 +4579,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       __pyx_t_4 = (((*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_pops_view.data + __pyx_t_18 * __pyx_v_pops_view.strides[0]) ) + __pyx_t_19 * __pyx_v_pops_view.strides[1]) ))) > 0) != 0);
       if (__pyx_t_4) {
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":83
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":83
  * 
  *             if pops_view[i-1,j] >  0:
  *                 choice_vector_view[k] = j             # <<<<<<<<<<<<<<
@@ -4589,7 +4589,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_19 = __pyx_v_k;
         *((long *) ( /* dim=0 */ (__pyx_v_choice_vector_view.data + __pyx_t_19 * __pyx_v_choice_vector_view.strides[0]) )) = __pyx_v_j;
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":84
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":84
  *             if pops_view[i-1,j] >  0:
  *                 choice_vector_view[k] = j
  *                 prob_vector_view[k] = fitness_view[j]*pops_view[i-1,j]             # <<<<<<<<<<<<<<
@@ -4602,7 +4602,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_21 = __pyx_v_k;
         *((double *) ( /* dim=0 */ (__pyx_v_prob_vector_view.data + __pyx_t_21 * __pyx_v_prob_vector_view.strides[0]) )) = ((*((double *) ( /* dim=0 */ (__pyx_v_fitness_view.data + __pyx_t_19 * __pyx_v_fitness_view.strides[0]) ))) * (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_pops_view.data + __pyx_t_18 * __pyx_v_pops_view.strides[0]) ) + __pyx_t_20 * __pyx_v_pops_view.strides[1]) ))));
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":85
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":85
  *                 choice_vector_view[k] = j
  *                 prob_vector_view[k] = fitness_view[j]*pops_view[i-1,j]
  *                 denominator = denominator + prob_vector_view[k]             # <<<<<<<<<<<<<<
@@ -4612,7 +4612,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_20 = __pyx_v_k;
         __pyx_v_denominator = (__pyx_v_denominator + (*((double *) ( /* dim=0 */ (__pyx_v_prob_vector_view.data + __pyx_t_20 * __pyx_v_prob_vector_view.strides[0]) ))));
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":86
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":86
  *                 prob_vector_view[k] = fitness_view[j]*pops_view[i-1,j]
  *                 denominator = denominator + prob_vector_view[k]
  *                 k += 1             # <<<<<<<<<<<<<<
@@ -4621,7 +4621,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
         __pyx_v_k = (__pyx_v_k + 1);
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":82
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":82
  *         for j in range(0,num_genotypes_int,1):
  * 
  *             if pops_view[i-1,j] >  0:             # <<<<<<<<<<<<<<
@@ -4631,7 +4631,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       }
     }
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":89
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":89
  * 
  *         # These are how many genotypes were populated
  *         num_populated_genotypes = k;             # <<<<<<<<<<<<<<
@@ -4640,7 +4640,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
     __pyx_v_num_populated_genotypes = __pyx_v_k;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":91
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":91
  *         num_populated_genotypes = k;
  * 
  *         if abs(denominator) < 1E-20:             # <<<<<<<<<<<<<<
@@ -4650,7 +4650,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     __pyx_t_4 = ((fabs(__pyx_v_denominator) < 1E-20) != 0);
     if (__pyx_t_4) {
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":92
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":92
  * 
  *         if abs(denominator) < 1E-20:
  *             for j in range(0,num_populated_genotypes,1):             # <<<<<<<<<<<<<<
@@ -4662,7 +4662,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
         __pyx_v_j = __pyx_t_17;
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":93
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":93
  *         if abs(denominator) < 1E-20:
  *             for j in range(0,num_populated_genotypes,1):
  *                 prob_vector_view[j] = pops_view[i-1,choice_vector_view[j]]/pop_size_dbl             # <<<<<<<<<<<<<<
@@ -4676,7 +4676,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         *((double *) ( /* dim=0 */ (__pyx_v_prob_vector_view.data + __pyx_t_21 * __pyx_v_prob_vector_view.strides[0]) )) = (((double)(*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_pops_view.data + __pyx_t_18 * __pyx_v_pops_view.strides[0]) ) + __pyx_t_19 * __pyx_v_pops_view.strides[1]) )))) / __pyx_v_pop_size_dbl);
       }
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":91
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":91
  *         num_populated_genotypes = k;
  * 
  *         if abs(denominator) < 1E-20:             # <<<<<<<<<<<<<<
@@ -4686,7 +4686,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       goto __pyx_L9;
     }
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":95
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":95
  *                 prob_vector_view[j] = pops_view[i-1,choice_vector_view[j]]/pop_size_dbl
  *         else:
  *             for j in range(0,num_populated_genotypes,1):             # <<<<<<<<<<<<<<
@@ -4699,7 +4699,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
         __pyx_v_j = __pyx_t_17;
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":96
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":96
  *         else:
  *             for j in range(0,num_populated_genotypes,1):
  *                 prob_vector_view[j] = prob_vector_view[j]/denominator             # <<<<<<<<<<<<<<
@@ -4713,7 +4713,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     }
     __pyx_L9:;
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":99
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":99
  * 
  *         # How many to mutate this generation?
  *         num_to_mutate_int = random_poisson(bitgen_state, expected_num_mutations)             # <<<<<<<<<<<<<<
@@ -4722,7 +4722,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
     __pyx_v_num_to_mutate_int = random_poisson(__pyx_v_bitgen_state, __pyx_v_expected_num_mutations);
 
-    /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":102
+    /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":102
  * 
  *         # Go through the population
  *         for j in range(0,pop_size_int,1):             # <<<<<<<<<<<<<<
@@ -4734,7 +4734,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
       __pyx_v_j = __pyx_t_17;
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":106
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":106
  *             # Use random weighted number to choose which genotype this new
  *             # critter will have
  *             cum_sum = 0.0             # <<<<<<<<<<<<<<
@@ -4743,7 +4743,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
       __pyx_v_cum_sum = 0.0;
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":107
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":107
  *             # critter will have
  *             cum_sum = 0.0
  *             rand_value = random_standard_uniform(bitgen_state)             # <<<<<<<<<<<<<<
@@ -4752,7 +4752,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
       __pyx_v_rand_value = random_standard_uniform(__pyx_v_bitgen_state);
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":108
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":108
  *             cum_sum = 0.0
  *             rand_value = random_standard_uniform(bitgen_state)
  *             for k in range(0,num_populated_genotypes,1):             # <<<<<<<<<<<<<<
@@ -4764,7 +4764,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       for (__pyx_t_24 = 0; __pyx_t_24 < __pyx_t_23; __pyx_t_24+=1) {
         __pyx_v_k = __pyx_t_24;
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":109
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":109
  *             rand_value = random_standard_uniform(bitgen_state)
  *             for k in range(0,num_populated_genotypes,1):
  *                 cum_sum += prob_vector_view[k]             # <<<<<<<<<<<<<<
@@ -4774,7 +4774,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_20 = __pyx_v_k;
         __pyx_v_cum_sum = (__pyx_v_cum_sum + (*((double *) ( /* dim=0 */ (__pyx_v_prob_vector_view.data + __pyx_t_20 * __pyx_v_prob_vector_view.strides[0]) ))));
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":110
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":110
  *             for k in range(0,num_populated_genotypes,1):
  *                 cum_sum += prob_vector_view[k]
  *                 if cum_sum >= rand_value:             # <<<<<<<<<<<<<<
@@ -4784,7 +4784,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_4 = ((__pyx_v_cum_sum >= __pyx_v_rand_value) != 0);
         if (__pyx_t_4) {
 
-          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":111
+          /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":111
  *                 cum_sum += prob_vector_view[k]
  *                 if cum_sum >= rand_value:
  *                     break             # <<<<<<<<<<<<<<
@@ -4793,7 +4793,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
           goto __pyx_L17_break;
 
-          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":110
+          /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":110
  *             for k in range(0,num_populated_genotypes,1):
  *                 cum_sum += prob_vector_view[k]
  *                 if cum_sum >= rand_value:             # <<<<<<<<<<<<<<
@@ -4804,7 +4804,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       }
       __pyx_L17_break:;
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":113
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":113
  *                     break
  * 
  *             k = choice_vector_view[k]             # <<<<<<<<<<<<<<
@@ -4814,7 +4814,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       __pyx_t_20 = __pyx_v_k;
       __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_choice_vector_view.data + __pyx_t_20 * __pyx_v_choice_vector_view.strides[0]) )));
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":116
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":116
  * 
  *             # If this critter is slated to mutate...
  *             if j < num_to_mutate_int:             # <<<<<<<<<<<<<<
@@ -4824,7 +4824,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
       __pyx_t_4 = ((__pyx_v_j < __pyx_v_num_to_mutate_int) != 0);
       if (__pyx_t_4) {
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":120
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":120
  *                 # Figure out the minimal and maximum values for this genotype's
  *                 # neighbors
  *                 min_index = neighbor_slicer_view[k,0]             # <<<<<<<<<<<<<<
@@ -4835,7 +4835,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_19 = 0;
         __pyx_v_min_index = (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_20 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_19 * __pyx_v_neighbor_slicer_view.strides[1]) )));
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":121
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":121
  *                 # neighbors
  *                 min_index = neighbor_slicer_view[k,0]
  *                 max_index = neighbor_slicer_view[k,1]             # <<<<<<<<<<<<<<
@@ -4846,7 +4846,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_20 = 1;
         __pyx_v_max_index = (*((long *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_neighbor_slicer_view.data + __pyx_t_19 * __pyx_v_neighbor_slicer_view.strides[0]) ) + __pyx_t_20 * __pyx_v_neighbor_slicer_view.strides[1]) )));
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":125
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":125
  *                 # If min_index == -1, this genotype *has* no neighbors. Mutation
  *                 # should lead to self.
  *                 if min_index != -1:             # <<<<<<<<<<<<<<
@@ -4856,7 +4856,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
         __pyx_t_4 = ((__pyx_v_min_index != -1L) != 0);
         if (__pyx_t_4) {
 
-          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":129
+          /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":129
  *                     # Get random integer between 0 and max_index - min_index --
  *                     # which neighbor to grab
  *                     k = random_bounded_uint64(bitgen_state,             # <<<<<<<<<<<<<<
@@ -4865,7 +4865,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
           __pyx_v_k = random_bounded_uint64(__pyx_v_bitgen_state, __pyx_v_min_index, ((__pyx_v_max_index - __pyx_v_min_index) - 1), 0, 0);
 
-          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":133
+          /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":133
  *                                               0,0)
  *                     # Get genotype index corresponding to that neighbor choice
  *                     k = neighbors_view[k]             # <<<<<<<<<<<<<<
@@ -4875,7 +4875,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
           __pyx_t_20 = __pyx_v_k;
           __pyx_v_k = (*((long *) ( /* dim=0 */ (__pyx_v_neighbors_view.data + __pyx_t_20 * __pyx_v_neighbors_view.strides[0]) )));
 
-          /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":125
+          /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":125
  *                 # If min_index == -1, this genotype *has* no neighbors. Mutation
  *                 # should lead to self.
  *                 if min_index != -1:             # <<<<<<<<<<<<<<
@@ -4884,7 +4884,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
         }
 
-        /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":116
+        /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":116
  * 
  *             # If this critter is slated to mutate...
  *             if j < num_to_mutate_int:             # <<<<<<<<<<<<<<
@@ -4893,7 +4893,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
  */
       }
 
-      /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":136
+      /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":136
  * 
  *             # Update next generation population with new genotype k
  *             pops_view[i,k] += 1             # <<<<<<<<<<<<<<
@@ -4906,7 +4906,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
     }
   }
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":138
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":138
  *             pops_view[i,k] += 1
  * 
  *     return pops             # <<<<<<<<<<<<<<
@@ -4916,7 +4916,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __pyx_r = __pyx_v_pops;
   goto __pyx_L0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":24
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":24
  * 
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -4933,7 +4933,7 @@ static PyObject *__pyx_pf_7gpvolve_8simulate_13wright_fisher_27wright_fisher_eng
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_9, 1);
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_12);
-  __Pyx_AddTraceback("gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.wf_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.wf_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_pop_size);
@@ -19767,7 +19767,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.array",
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE,
@@ -19813,7 +19813,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.""array", /*tp_name*/
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -19952,7 +19952,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.Enum",
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -19962,7 +19962,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.""Enum", /*tp_name*/
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -20235,7 +20235,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.memoryview",
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20281,7 +20281,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.""memoryview", /*tp_name*/
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -20429,7 +20429,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython._memoryviewslice",
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20439,7 +20439,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython.""_memoryviewslice", /*tp_name*/
+  "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -20615,8 +20615,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {0, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
   {0, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 1, 0, 0},
-  {0, __pyx_k_gpvolve_simulate_wright_fisher_w, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_w), 0, 0, 1, 0},
-  {0, __pyx_k_gpvolve_simulate_wright_fisher_w_2, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_w_2), 0, 0, 1, 1},
+  {0, __pyx_k_gpvolve_simulate_wright_fisher_e, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_e), 0, 0, 1, 0},
+  {0, __pyx_k_gpvolve_simulate_wright_fisher_e_2, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_e_2), 0, 0, 1, 1},
   {0, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {0, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {0, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
@@ -20777,8 +20777,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_kp_u_got, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
   {&__pyx_kp_u_got_differing_extents_in_dimensi, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 1, 0, 0},
-  {&__pyx_kp_s_gpvolve_simulate_wright_fisher_w, __pyx_k_gpvolve_simulate_wright_fisher_w, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_w), 0, 0, 1, 0},
-  {&__pyx_n_s_gpvolve_simulate_wright_fisher_w_2, __pyx_k_gpvolve_simulate_wright_fisher_w_2, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_w_2), 0, 0, 1, 1},
+  {&__pyx_kp_s_gpvolve_simulate_wright_fisher_e, __pyx_k_gpvolve_simulate_wright_fisher_e, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_e), 0, 0, 1, 0},
+  {&__pyx_n_s_gpvolve_simulate_wright_fisher_e_2, __pyx_k_gpvolve_simulate_wright_fisher_e_2, sizeof(__pyx_k_gpvolve_simulate_wright_fisher_e_2), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_id, __pyx_k_id, sizeof(__pyx_k_id), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
@@ -20885,7 +20885,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":45
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":45
  *     # Get number of genoptypes, population size, and number of steps
  *     num_genotypes = len(fitness)
  *     pop_size = sum(pops[0,:])             # <<<<<<<<<<<<<<
@@ -20935,7 +20935,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   PyTuple_SET_ITEM(__pyx_tuple__8, 0, __pyx_int_neg_1);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":24
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":24
  * 
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -20945,7 +20945,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__11 = PyTuple_Pack(32, __pyx_n_s_pops, __pyx_n_s_mutation_rate, __pyx_n_s_fitness, __pyx_n_s_neighbor_slicer, __pyx_n_s_neighbors, __pyx_n_s_denominator, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_k, __pyx_n_s_num_populated_genotypes, __pyx_n_s_min_index, __pyx_n_s_max_index, __pyx_n_s_num_to_mutate_int, __pyx_n_s_num_genotypes, __pyx_n_s_pop_size, __pyx_n_s_num_steps, __pyx_n_s_num_steps_int, __pyx_n_s_num_genotypes_int, __pyx_n_s_pop_size_int, __pyx_n_s_pop_size_dbl, __pyx_n_s_expected_num_mutations, __pyx_n_s_fitness_view, __pyx_n_s_neighbor_slicer_view, __pyx_n_s_neighbors_view, __pyx_n_s_pops_view, __pyx_n_s_bitgen_state, __pyx_n_s_choice_vector, __pyx_n_s_prob_vector, __pyx_n_s_choice_vector_view, __pyx_n_s_prob_vector_view, __pyx_n_s_cum_sum, __pyx_n_s_rand_value); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 32, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_simulate_wright_fisher_w, __pyx_n_s_wf_engine_cython, 24, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 32, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_gpvolve_simulate_wright_fisher_e, __pyx_n_s_wf_engine_cython, 24, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 24, __pyx_L1_error)
 
   /* "View.MemoryView":300
  *         return self.name
@@ -21120,8 +21120,8 @@ if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1, __pyx_L1_error)
   if (__Pyx_InitString(__pyx_string_tab[76], &__pyx_n_s_getstate) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[77], &__pyx_kp_u_got) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[78], &__pyx_kp_u_got_differing_extents_in_dimensi) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[79], &__pyx_kp_s_gpvolve_simulate_wright_fisher_w) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  if (__Pyx_InitString(__pyx_string_tab[80], &__pyx_n_s_gpvolve_simulate_wright_fisher_w_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[79], &__pyx_kp_s_gpvolve_simulate_wright_fisher_e) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  if (__Pyx_InitString(__pyx_string_tab[80], &__pyx_n_s_gpvolve_simulate_wright_fisher_e_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[81], &__pyx_n_s_i) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[82], &__pyx_n_s_id) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   if (__Pyx_InitString(__pyx_string_tab[83], &__pyx_n_s_import) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
@@ -21732,14 +21732,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_gpvolve__simulate__wright_fisher__wright_fisher_engine_cython) {
+  if (__pyx_module_is_main_gpvolve__simulate__wright_fisher__engine__wright_fisher_engine_cython) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython")) {
-      if (unlikely((PyDict_SetItemString(modules, "gpvolve.simulate.wright_fisher.wright_fisher_engine_cython", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython")) {
+      if (unlikely((PyDict_SetItemString(modules, "gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -21760,7 +21760,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":3
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":3
  * #cython: language_level=3
  * __description__ = \
  * """             # <<<<<<<<<<<<<<
@@ -21769,7 +21769,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_description, __pyx_kp_u_Cython_implementation_of_Wright) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":6
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":6
  * Cython implementation of Wright Fisher simulation.
  * """
  * __author__ = "Michael J. Harms"             # <<<<<<<<<<<<<<
@@ -21778,7 +21778,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_u_Michael_J_Harms) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":7
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":7
  * """
  * __author__ = "Michael J. Harms"
  * __date__ = "2021-09-15"             # <<<<<<<<<<<<<<
@@ -21787,7 +21787,7 @@ if (!__Pyx_RefNanny) {
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_date, __pyx_kp_u_2021_09_15) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":9
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":9
  * __date__ = "2021-09-15"
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -21799,7 +21799,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":17
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":17
  * 
  * from numpy.random cimport bitgen_t
  * from numpy.random import PCG64             # <<<<<<<<<<<<<<
@@ -21820,19 +21820,19 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":24
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":24
  * 
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.cdivision(True) # Deactivate divide-by-zero checking
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_8simulate_13wright_fisher_27wright_fisher_engine_cython_1wf_engine_cython, 0, __pyx_n_s_wf_engine_cython, NULL, __pyx_n_s_gpvolve_simulate_wright_fisher_w_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_7gpvolve_8simulate_13wright_fisher_6engine_27wright_fisher_engine_cython_1wf_engine_cython, 0, __pyx_n_s_wf_engine_cython, NULL, __pyx_n_s_gpvolve_simulate_wright_fisher_e_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_wf_engine_cython, __pyx_t_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "gpvolve/simulate/wright_fisher/wright_fisher_engine_cython.pyx":1
+  /* "gpvolve/simulate/wright_fisher/engine/wright_fisher_engine_cython.pyx":1
  * #cython: language_level=3             # <<<<<<<<<<<<<<
  * __description__ = \
  * """
@@ -22003,13 +22003,13 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init gpvolve.simulate.wright_fisher.wright_fisher_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_COMPILING_IN_LIMITED_API
     Py_CLEAR(__pyx_m);
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init gpvolve.simulate.wright_fisher.wright_fisher_engine_cython");
+    PyErr_SetString(PyExc_ImportError, "init gpvolve.simulate.wright_fisher.engine.wright_fisher_engine_cython");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
