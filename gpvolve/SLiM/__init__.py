@@ -1,1 +1,1 @@
-from .utils import *
+from .slimsim import GenotypePhenotypeSLiM

@@ -28,7 +28,8 @@ REQUIRES_PYTHON = '>=3.6.0'
 VERSION = '0.2.0'
 
 # What packages are required for this module to be executed?
-REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'gpmap', 'matplotlib']
+REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'matplotlib',
+            'pyslim','tskit','imageio']
 
 # What packages are optional?
 EXTRAS = {}

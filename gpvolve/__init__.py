@@ -5,9 +5,10 @@ from . import markov
 from . import utils
 from . import check
 from . import pyplot
+from . import SLiM
 
 from .markovmodel import GenotypePhenotypeMSM
-from .slimsim import GenotypePhenotypeSLiM
+
 # from .visualization import *
 #from .utils import *
 # from .fitness import *
