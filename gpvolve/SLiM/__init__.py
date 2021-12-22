@@ -1,1 +1,0 @@
-from .slimsim import GenotypePhenotypeSLiM

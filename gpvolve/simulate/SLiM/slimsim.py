@@ -4,20 +4,18 @@ __description__ = \
 __date__ = "2021-12-10"
 __author__ = "Clara Rehmann"
 
-import pyslim, tskit, gpmap
+from gpvolve.simulate import SimulationResult
+import gpvolve.check as check
+from . import utils
+
+import pyslim, tskit
+import numpy as np
+import pandas as pd
+
+import subprocess, os, shutil, random, string
 from pathlib import Path
-from gpmap import GenotypePhenotypeMap
 
-import numpy as np, pandas as pd
-
-import os
-
-
-# utility functions for writing/reading SLiM inputs and outputs
-
-## WRITING FUNCTIONS
-
-def write_slim(L_sites, generations, out, haploid=False):
+def _write_slim(L_sites, generations, out, haploid=False):
     """
     Write SLiM script for an L-site epistasis model, calling fitness values from
     a genotype-phenotype map.
@@ -157,7 +155,7 @@ def write_slim(L_sites, generations, out, haploid=False):
         f.write('}')
     return None
 
-def make_gpm(gpm, out, fitness_column='fitness'):
+def _make_gpm(gpm, out, fitness_column='fitness'):
     """
     write SLiM-readable gpmap (just a tsv with an extra column defining the fitness values that SLiM should use)
 
@@ -179,7 +177,7 @@ def make_gpm(gpm, out, fitness_column='fitness'):
     return None
 
 
-def get_gtcount(filepath, gpm):
+def _get_gtcount(filepath, gpm):
     """
     Read 'gtcount' SLiM output into a nested Python dictionary of genotype
     counts at each generation.
@@ -217,7 +215,7 @@ def get_gtcount(filepath, gpm):
 
     return gtcount
 
-def get_stpdict(filepath):
+def _get_stpdict(filepath):
     """
     Read 'gttransitions' SLiM output into a Python dictionary of generations
     each edge transition was observed in.
@@ -254,7 +252,8 @@ def get_stpdict(filepath):
 
     return mutdict
 
-def get_hist(filepath, treeseq):
+
+def _get_hist(filepath, treeseq):
     """
     Read the output tree sequence from the finished simulation, parse the
     mutational trajectories taken by final generation. Returns a nested
@@ -346,111 +345,104 @@ def get_hist(filepath, treeseq):
     return histdict
 
 
-def make_fluxdict(gpm, genotypehistory):
+def slimulate(gpm,
+              max_generations,
+              mutation_rate,
+              population_size,
+              fitness_column='fitness',
+              outpath=None,
+              overwrite=False,
+              keep_raw_output=False,
+              slim_path='slim',
+              haploid=False):
     """
-    Parse histdict output from get_hist() into a dictionary of scaled edge weights.
+    run one SLiM simulation
 
-    PARAMETERS:
-    -----------
-    gpm (GenotypePhenotypeMap object) : gpmap used to run the simulation
-    genotypehistory (dict) : histdict output from get_hist()
+    Parameters
+    ----------
+    population_size (int) : Number of individuals in the population
+    mutation_rate (float) : Mutation rate
+    max_generations (int) : Maximum number of generations to run simulation
+        (simulation will finish if derived state fixes)
+    outpath (str) : Path for SLiM working output files
+    overwrite (bool) : Overwrite existing SLiM files if they already exist at the specified outpath.
+        (default = False, function will exit without executing)
+    slim_path (str) : Path to SLiM engine (default = 'slim')
+    haploid (bool) : run SLiM on a haploid population (default = False)
 
-    RETURNS:
-    --------
-    fluxdict (dict) : nested dictionary of steps between ancestral and derived genotype,
-        edge transitions at that step, and their scaled # of observations (weights)
-        format = {step: {(ancestral, derived): weight}}
-
-    """
-    gpm.get_neighbors()
-    pwy_count = genotypehistory.get(np.where(gpm.data.n_mutations == gpm.length)[0][0])
-    pwys = list(pwy_count.keys())
-    binary = np.array([list([int(s) for s in g]) for g in gpm.data.binary])
-
-    fluxdict = {}
-
-    for i in range(gpm.length): # for each required step between ancestral and derived
-        counts = {}
-        for p in pwys: # for unique path taken, which step did they take here?
-            # establish binary derived genotype
-            gt_bin_dev = [0]*gpm.length
-            for site in range(i, -1, -1):
-                gt_bin_dev[p[site]] = 1
-            if i==0:
-                gt_bin_anc = [0]*gpm.length # binary ancestral genotype
-            else:
-                gt_bin_anc = [0]*gpm.length
-                for site in range(i-1, -1, -1):
-                    gt_bin_anc[p[site]] = 1
-            gt_dev = np.where((binary == gt_bin_dev).all(axis=1))[0][0] # derived genotype gpmap index
-            gt_anc = np.where((binary == gt_bin_anc).all(axis=1))[0][0] # ancestral genotype gpmap index
-
-            # number of individuals who took that (anc, dev) step
-            counts.update({(gt_anc,gt_dev):(int(0 if counts.setdefault((gt_anc,gt_dev)) is None
-                                            else counts.setdefault((gt_anc,gt_dev)))
-                                        +pwy_count[p])})
-        # scale
-        s = sum(counts.values())
-        for key, value in counts.items():
-            counts[key] = value / s
-        fluxdict.update(counts)
-    return fluxdict
-
-def make_stepframe(stpdict, gen):
-    """
-    function to parse stepdict into a gen-by-gen count dataframe
-    """
-    # establish dataframe for transition counts each generation
-    stepframe = pd.DataFrame(columns = [str(k) for k in stpdict.keys()], index = range(gen+1))
-    stepframe = stepframe.fillna(0)
-
-    # fill counts at each generation
-    for key, value in stpdict.items():
-        for v in value:
-            stepframe[str(key)][v] += 1
-
-    return stepframe
-
-
-## PLOTTING FUNCTIONS
-
-def plot_gen(gen, gpm, countframe, stepframe, cmap):
-    """
-    Plot one-generation snapshot of gpmap, for animate_flux() function
+    Returns
+    -------
+    _node_counts : dictionary
+        Nested dictionary of nodes (keys) and number of individuals occupying each node (values) at each generation
+    _edge_weights : dictionary
+        Dictionary of edges (keys) and the relative proportion of steps taken on that edge (values)
+    _edge_counts : dictionary
+        Dictionary of edges (keys) and the generations in which that step was observed (values)
+    _generations : int
+        Number of generations the simulation was run for
+    _population_size : int
+        Number of individuals in the simulated population
+    _mutation_rate : float
+        Mutation rate used in the simulation
     """
 
+    check.gpm_sanity(gpm)
     gpm.get_neighbors()
 
-    # get rid of self loops
-    mask = gpm.neighbors.direction != 1
-    gpm.neighbors.loc[mask, 'include'] = False
 
-    # set node size based on pop. size
-    gpm.data['slim_size'] = countframe.loc[gen]
+    # Make sure slim is installed
+    try:
+        subprocess.run([slim_path])
+    except FileNotFoundError:
+        err = "SLiM not in path. Is it installed?"
+        raise RuntimeError(err)
 
-    # set edge size based on # of steps
-    gpm.neighbors['slim_weight'] = [0]*len(gpm.neighbors)
-    maximum=0
-    for column in stepframe.columns:
-        if stepframe[column].max() > maximum:
-            maximum = stepframe[column].max()
+    # If no output path is specified, make one with a unique name
+    if outpath is None:
+        suffix = "".join([random.choice(string.ascii_letters) for _ in range(10)])
+        outpath = f"slim_output.{suffix}"
 
-    for col in stepframe.columns:
-        gpm.neighbors.loc[gpm.neighbors.edge == eval(col), 'slim_weight'] = (stepframe[col][gen]/(100*maximum))
+    # If the output path exists, either die or delete it
+    if os.path.exists(outpath):
+        if not overwrite:
+            err = f"outpath {outpath} already exists.\n"
+            raise FileExistsError(err)
+        else:
+            shutil.rmtree(outpath)
 
-    # graph parameters
-    G = gpmap.GenotypePhenotypeGraph()
-    G.add_gpm(gpm)
+    # write SLiM script and SLiM-friendly gpmap
+    _write_slim(gpm.length, max_generations, outpath, haploid=haploid)
+    _make_gpm(gpm, outpath, fitness_column=fitness_column)
 
+    # Construct command
+    command = [slim_path,
+               "-d",f"MUTATIONRATE={mutation_rate}",
+               "-d",f"POPULATIONSIZE={population_size}",
+               "-d",f"GPMAP=\\\"{outpath}_gpmap_SLiM.txt\\\"",
+               "-d",f"OUTPATH=\\\"{outpath}\\\"",
+               f"{outpath}.slim"]
 
-    if np.mean(gpm.neighbors['slim_weight']) > 0:
-        G.add_edge_sizemap(data_column='slim_weight', size_min=0.001, size_max = 5)
-    else:
-        G.edge_options['width'] = 1
-        G.edge_options['edge_color'] = 'w'
-    G.add_node_sizemap(data_column='slim_size', size_min=10, size_max=5000)
-    G.add_node_cmap(data_column='slim_fitness', cmap=cmap)
+    # wacky arg parsing in SLiM; pass as string not list
+    command = " ".join(command)
 
-    # plot
-    p = gpmap.plot(G, edge_options={'arrows':None, 'arrowsize' : .00001}, figsize=(10,10))
-    return p
+    # run SLiM!
+    with open(outpath+'_stdout.txt', 'wb') as out, open(outpath+'_stderr.txt', 'wb') as err:
+        print(command)
+        p = subprocess.run(command, stdout=out, stderr=err, shell=True)
+
+    # save outputs
+    node_counts = _get_gtcount(outpath+'_gtcount.txt', gpm)
+    num_generations = max(node_counts.keys())
+    node_counts = pd.DataFrame.from_dict(node_counts, orient = 'index')
+    edge_counts = _get_stpdict(outpath+'_gttransitions.txt')
+    edge_counts = utils.make_stepframe(edge_counts,num_generations)
+
+    node_history = _get_hist(outpath+'_treeinds.txt', pyslim.load(outpath+'.trees'))
+
+    return SimulationResult(gpm=gpm,
+                            max_generations=max_generations,
+                            mutation_rate=mutation_rate,
+                            population_size=population_size,
+                            node_counts=node_counts,
+                            edge_counts=edge_counts,
+                            node_history=node_history)
