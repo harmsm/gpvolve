@@ -143,6 +143,7 @@ all_c_files = list(glob.glob("**/*.c", recursive=True))
 all_c_files.extend(list(glob.glob("**/*.h", recursive=True)))
 all_c_files.extend(list(glob.glob("**/*.pyx", recursive=True)))
 all_c_files.extend(list(glob.glob("**/*.pxd", recursive=True)))
+all_c_files.extend(list(glob.glob("**/*.eidos", recursive=True)))
 
 # Where the magic happens:
 setup(
