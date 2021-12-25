@@ -7,4 +7,3 @@ from gpvolve import pyplot
 from gpvolve import cluster
 from gpvolve import markov
 from gpvolve import analysis
-from gpvolve import phenotype_to_fitness

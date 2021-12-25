@@ -3,7 +3,6 @@ import gpvolve.check as check
 import gpmap
 import numpy as np
 from gpvolve.base import apply_fitness_function
-from gpvolve.phenotype_to_fitness import linear
 from gpvolve.utils import find_peaks
 
 
@@ -48,18 +47,6 @@ def test_check_gpm():
     gpm.get_neighbors()
     check.gpm_sanity(gpm)
 
-
-def test_apply_fitness_function_linear():
-    # Apply random parameters, anything between 1-10
-    a = np.random.randint(1, 10)
-    b = np.random.randint(1, 10)
-    gpm = gpmap.simulate.generate_random()
-
-    # Apply linear fitness function
-    apply_fitness_function(gpm, linear, a=a, b=b)
-
-    # Check that fitness are actually linear
-    np.testing.assert_array_equal(gpm.data.loc[:, 'fitness'], a * gpm.data.loc[:, 'phenotype'] + b)
 
 
 # def test_find_peaks():

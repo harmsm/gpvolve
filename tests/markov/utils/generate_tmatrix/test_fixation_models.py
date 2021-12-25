@@ -1,7 +1,7 @@
 import pytest
 
-import gpvolve.markov.base._generate_tmatrix.generate_tmatrix_cython as cy
-import gpvolve.markov.base._generate_tmatrix.generate_tmatrix_python as py
+import gpvolve.markov._generate_tmatrix.generate_tmatrix_cython as cy
+import gpvolve.markov._generate_tmatrix.generate_tmatrix_python as py
 
 import numpy as np
 
