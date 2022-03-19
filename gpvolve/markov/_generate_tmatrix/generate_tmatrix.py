@@ -25,7 +25,7 @@ def generate_tmatrix(fitness,
                      neighbors,
                      population_size=1000,
                      fixation_model="moran",
-                     use_cython=True):
+                     use_cython=None):
     r"""
     Generate a stochastic transition matrix for evolution across between genotypes
     given the fitness of each genotype, their connectivity, the population size
@@ -48,8 +48,10 @@ def generate_tmatrix(fitness,
     fixation_model : str
         model to use for calculating fixation probabilities. should be moran,
         mcclandish, or sswm (strong-selection, weak mutation).
-    use_cython : bool
-        use faster cython implementation if available.
+    use_cython : bool or None
+        if None, use faster cython implementation if available, otherwise fall
+        back to python. if True, force using cython; if False, force using
+        python.
 
     Returns
     -------
@@ -111,12 +113,20 @@ def generate_tmatrix(fitness,
         raise ValueError(err)
 
     # Figure out which implementation to use
-    if use_cython and not cy_available:
-        w = "Could not find cython version of generate_tmatrix. Falling\n"
-        w += "back on python version (same functionality, much slower)\n."
-        warnings.warn(w)
+    if use_cython is None:
+        if cy_available:
+            use_cython = True
+        else:
+            w = "Could not find cython version of generate_tmatrix. Falling\n"
+            w += "back on python version (same functionality, much slower)\n."
+            warnings.warn(w)
+            use_cython = False
 
     if use_cython:
+        if not cy_available:
+            err = "could not find cython implementation of generate_tmatrix"
+            raise RuntimeError(err)
+
         return cy.generate_tmatrix_cython(fitness,
                                           neighbor_slicer,
                                           neighbors,

@@ -25,7 +25,7 @@ def wf_engine(pops,
               fitness,
               neighbor_slicer,
               neighbors,
-              use_cython=True):
+              use_cython=None):
     """
     Simulate evolution across a GenotypePhenotypeMap using a Wright-Fisher
     process. This engine should generally be called via the .simulate function.
@@ -47,8 +47,10 @@ def wf_engine(pops,
         1D numpy int array storing a jagged array with neighbors for each
         genotype. neighbor_slicer is used to look up where each genotype's
         neighbors are in this array
-    use_cython : bool
-        use faster cython implementation if available.
+    use_cython : bool or None
+        if None, use faster cython implementation if available, otherwise fall
+        back to python. if True, force using cython; if False, force using
+        python.
 
     Returns
     -------
@@ -57,7 +59,21 @@ def wf_engine(pops,
         of each genotype for each step in the simulation.
     """
 
+    if use_cython is None:
+        if cy_available:
+            use_cython = True
+        else:
+            w = "Could not find cython version of wf_engine. Falling\n"
+            w += "back on python version (same functionality, much slower)\n."
+            warnings.warn(w)
+            use_cython = False
+
+
     if use_cython:
+        if not cy_available:
+            err = "could not find cython implementation of wf_engine"
+            raise RuntimeError(err)
+
         return cy.wf_engine_cython(pops,
                                    mutation_rate,
                                    fitness,

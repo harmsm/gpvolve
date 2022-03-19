@@ -1,2 +1,2 @@
 
-from ._generate_tmatrix import generate_tmatrix
+from .build_transition_matrix import build_transition_matrix

@@ -2,7 +2,6 @@ import pytest
 import gpvolve.check as check
 import gpmap
 import numpy as np
-from gpvolve.base import apply_fitness_function
 from gpvolve.utils import find_peaks
 
 

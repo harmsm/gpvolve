@@ -1,7 +1,7 @@
 import pytest
 import gpmap
 import gpvolve
-from gpvolve.markov import generate_tmatrix
+from gpvolve.markov._generate_tmatrix import generate_tmatrix
 
 import numpy as np
 
