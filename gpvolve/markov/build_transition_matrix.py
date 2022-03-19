@@ -1,5 +1,10 @@
 
+from gpvolve.utils import flatten_neighbors
 from ._generate_tmatrix import generate_tmatrix
+
+import numpy as np
+
+from gpvolve.check import gpm_sanity
 
 def build_transition_matrix(gpm, fitness_column="fitness", fixation_model="moran", population_size=1000):
     """

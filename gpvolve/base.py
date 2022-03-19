@@ -1,6 +1,8 @@
 from gpvolve.check import gpm_sanity
 from gpvolve.utils import flatten_neighbors
+
 import numpy as np
+from scipy.sparse import csr_matrix
 
 def to_greedy(transition_matrix):
     """

@@ -41,7 +41,7 @@ def generate_tmatrix_python(fitness,
         # 1.0.
         num_neighbors = neighbor_slicer[i,1] - neighbor_slicer[i,0]
         if num_neighbors == 0:
-            T_view[i,i] = 1.0
+            T[i,i] = 1.0
         else:
 
             # Look for a self neighbor. If there, lower the number of real

@@ -15,3 +15,4 @@ ipython>=7.28.0
 zlib>=1.2.11
 pygments>=2.10.0
 scipy>=1.7.1
+imageio

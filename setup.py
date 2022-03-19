@@ -42,7 +42,7 @@ VERSION = '0.3.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = ['numpy', 'cython', 'networkx', 'msmtools', 'matplotlib',
-            'pyslim','tskit','imageio']
+            'pyslim','tskit','imageio','hdbscan']
 
 # What packages are optional?
 EXTRAS = {}

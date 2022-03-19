@@ -1,4 +1,9 @@
 
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
+import hdbscan
 
 def dbscan_cluster(T, min_cluster_size=50, savefig=False):
     """
@@ -47,7 +52,7 @@ def dbscan_cluster(T, min_cluster_size=50, savefig=False):
     cluster_obj = hdbscan.HDBSCAN(min_cluster_size=min_cluster_size)
 
     # Perform the clustering
-    cluster_obj.fit(measured_data)
+    cluster_obj.fit(T)
 
     # Find the number of cells in each cluster
     cluster_counts = {}
@@ -60,7 +65,7 @@ def dbscan_cluster(T, min_cluster_size=50, savefig=False):
     X = []
 
     # Make a 2d array of the vectors
-    for index, row in measured_data.iterrows():
+    for index, row in T.iterrows():
         X.append([x for x in row])
 
     # Make a dictionary for our clusters to hold their associated vectors
@@ -82,7 +87,7 @@ def dbscan_cluster(T, min_cluster_size=50, savefig=False):
             median_values.append(np.median([row[i] for row in value]))
             final_dictionary["Cluster " + str(key + 1)] = median_values
 
-    df = pd.DataFrame(final_dictionary, index=list(measured_data.columns))
+    df = pd.DataFrame(final_dictionary, index=list(T.columns))
 
     fig, ax = plt.subplots(1, 2, figsize=(10, 4))
     sns.heatmap(df.transpose(), cmap='copper')
